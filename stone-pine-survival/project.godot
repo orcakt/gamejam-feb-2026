@@ -12,4 +12,17 @@ config_version=5
 
 config/name="Stone Pine Survival"
 config/features=PackedStringArray("4.5", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://assets/textures/icon.svg"
+
+[file_customization]
+
+folder_colors={
+"res://assets/": "gray",
+"res://systems/": "yellow",
+"res://tests/": "red",
+"res://ui/": "orange",
+"res://world/": "purple",
+"res://world/character/": "purple",
+"res://world/items/": "purple",
+"res://world/vines/": "purple"
+}
