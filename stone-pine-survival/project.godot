@@ -22,7 +22,7 @@ folder_colors={
 "res://tests/": "red",
 "res://ui/": "orange",
 "res://world/": "purple",
-"res://world/character/": "purple",
 "res://world/items/": "purple",
+"res://world/player/": "purple",
 "res://world/vines/": "purple"
 }
