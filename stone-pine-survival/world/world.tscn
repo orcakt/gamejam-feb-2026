@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://76eovtpf6jeg"]
+
+[ext_resource type="PackedScene" uid="uid://dsjtoq57s78y6" path="res://world/player/player.tscn" id="1_6xmxd"]
+[ext_resource type="Script" uid="uid://s7vsu7dxf4xq" path="res://world/daynightcycle.gd" id="2_tcf2h"]
+
+[sub_resource type="Gradient" id="Gradient_tcf2h"]
+offsets = PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1)
+colors = PackedColorArray(0.050980393, 0.050980393, 0.2627451, 1, 0.22690201, 0.07720085, 0.5325651, 1, 0.40784314, 0.35686275, 0.70980394, 1, 0.62352943, 0.6627451, 0.8745098, 1, 0.91764706, 0.92156863, 1, 1, 1, 1, 1, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4717r"]
+gradient = SubResource("Gradient_tcf2h")
+
+[node name="World" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_6xmxd")]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.052388564, 0.050778426, 0.2621302, 1)
+script = ExtResource("2_tcf2h")
+gradient = SubResource("GradientTexture1D_4717r")
