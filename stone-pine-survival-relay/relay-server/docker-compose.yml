@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  relay-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: survival-game-relay:latest
+    container_name: survival-game-relay
+    ports:
+      - "56564:56564"
+    restart: unless-stopped
+    environment:
+      - TZ=UTC
