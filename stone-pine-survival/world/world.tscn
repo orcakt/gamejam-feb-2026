@@ -17,7 +17,7 @@ color = Color(0.052388564, 0.050778426, 0.2621302, 1)
 script = ExtResource("2_tcf2h")
 gradient = SubResource("GradientTexture1D_4717r")
 
-[node name="Players Spawner" type="MultiplayerSpawner" parent="." unique_id=672211328]
+[node name="PlayerSpawner" type="MultiplayerSpawner" parent="." unique_id=672211328]
 _spawnable_scenes = PackedStringArray("uid://dsjtoq57s78y6")
 spawn_path = NodePath("../Players")
 
