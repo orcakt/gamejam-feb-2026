@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://cbo8yid1nwxh1"]
+
+[ext_resource type="Script" uid="uid://dwciga0bdgevv" path="res://data/items/Item.gd" id="1_5ycnh"]
+
+[resource]
+script = ExtResource("1_5ycnh")
+name = "berry"
+edible = true
+metadata/_custom_type_script = "uid://dwciga0bdgevv"
