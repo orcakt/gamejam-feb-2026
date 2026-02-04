@@ -19,6 +19,7 @@ config/icon="res://assets/textures/icon.svg"
 
 folder_colors={
 "res://assets/": "gray",
+"res://data/": "gray",
 "res://systems/": "yellow",
 "res://tests/": "red",
 "res://ui/": "orange",
