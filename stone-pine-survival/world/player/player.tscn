@@ -1,7 +1,9 @@
-[gd_scene load_steps=29 format=3 uid="uid://dsjtoq57s78y6"]
+[gd_scene format=3 uid="uid://dsjtoq57s78y6"]
 
 [ext_resource type="Script" uid="uid://btfkhxegt31ik" path="res://world/player/player.gd" id="1_bvkkv"]
 [ext_resource type="Texture2D" uid="uid://dxotka7sicu1l" path="res://assets/textures/temporaryPlayer.png" id="2_cvtd2"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_bvkkv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_40qjc"]
 atlas = ExtResource("2_cvtd2")
@@ -198,17 +200,20 @@ animations = [{
 radius = 5.0
 height = 20.0
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" unique_id=524976522]
 script = ExtResource("1_bvkkv")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1316071739]
+replication_config = SubResource("SceneReplicationConfig_bvkkv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1503866388]
 position = Vector2(0, -17)
 sprite_frames = SubResource("SpriteFrames_ljdef")
 animation = &"idle"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=957849651]
 position = Vector2(1, -9)
 shape = SubResource("CapsuleShape2D_bvkkv")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1451487643]
 zoom = Vector2(3, 3)
