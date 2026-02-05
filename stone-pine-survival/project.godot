@@ -15,9 +15,17 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="Stone Pine Survival"
-run/main_scene="uid://76eovtpf6jeg"
+run/main_scene="uid://c7vif4tmi1lis"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://assets/textures/icon.svg"
+
+[autoload]
+
+GM="*uid://wc03ne58onqi"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/gmap_hotkeys/plugin.cfg")
 
 [file_customization]
 
