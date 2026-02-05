@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://diagt3m0ao5nj"]
+[gd_scene load_steps=3 format=3 uid="uid://diagt3m0ao5nj"]
 
 [ext_resource type="Script" uid="uid://b88e3rad0ubfo" path="res://ui/game/inventory_ui.gd" id="1_jyxci"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jyxci"]
+bg_color = Color(0.043399997, 0.31, 0.07005997, 1)
 
 [node name="InventoryUI" type="Control"]
 layout_mode = 3
@@ -27,7 +30,7 @@ theme_override_constants/margin_bottom = 64
 
 [node name="TextureRect" type="ColorRect" parent="MarginContainer"]
 layout_mode = 2
-color = Color(0.057399992, 0.41, 0.09265996, 1)
+color = Color(0.019607844, 0.14117648, 0.03137255, 1)
 
 [node name="Label" type="Label" parent="MarginContainer/TextureRect"]
 layout_mode = 1
@@ -35,7 +38,7 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 88.0
 grow_horizontal = 2
-theme_override_colors/font_color = Color(1, 0.91866666, 0.39, 1)
+theme_override_colors/font_color = Color(1, 0.91764706, 0.3882353, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 64
@@ -55,6 +58,7 @@ offset_right = -4.0
 offset_bottom = -59.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jyxci")
 max_columns = 6
 same_column_width = true
 icon_mode = 0
