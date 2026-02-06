@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cpinnoj410y7a"]
+[gd_scene load_steps=6 format=3 uid="uid://cpinnoj410y7a"]
 
-[ext_resource type="PackedScene" uid="uid://dvu1o1sobdo3q" path="res://ui/game/crafting_ui.tscn" id="1_hwone"]
+[ext_resource type="PackedScene" uid="uid://dvu1o1sobdo3q" path="res://ui/game/crafting/crafting_ui.tscn" id="1_hwone"]
 [ext_resource type="Script" uid="uid://cdivoavxw4frb" path="res://tests/test_crafting.gd" id="1_vu8bc"]
 [ext_resource type="PackedScene" uid="uid://834qgegb5pgc" path="res://systems/crafting/crafter.tscn" id="2_ri5ea"]
 [ext_resource type="PackedScene" uid="uid://c37b7ydq2nrlk" path="res://systems/inventory/inventory.tscn" id="3_bnw5g"]
+[ext_resource type="PackedScene" uid="uid://diagt3m0ao5nj" path="res://ui/game/inventory_ui.tscn" id="4_ri5ea"]
 
 [node name="TestCrafting" type="Node"]
 script = ExtResource("1_vu8bc")
@@ -13,6 +14,8 @@ script = ExtResource("1_vu8bc")
 [node name="Inventory" parent="." instance=ExtResource("3_bnw5g")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="InventoryUI" parent="CanvasLayer" instance=ExtResource("4_ri5ea")]
 
 [node name="CraftingUI" parent="CanvasLayer" node_paths=PackedStringArray("crafter", "inventory") instance=ExtResource("1_hwone")]
 crafter = NodePath("../../Crafter")

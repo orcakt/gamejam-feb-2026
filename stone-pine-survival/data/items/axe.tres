@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://bxmot11ypr558"]
+
+[ext_resource type="Script" uid="uid://dwciga0bdgevv" path="res://data/items/Item.gd" id="1_e8x3d"]
+
+[resource]
+script = ExtResource("1_e8x3d")
+name = "axe"
+craftable = true
+wieldable = true
+metadata/_custom_type_script = "uid://dwciga0bdgevv"

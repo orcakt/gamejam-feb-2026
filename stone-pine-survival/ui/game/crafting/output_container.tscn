@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dk85oqiv8k8uw"]
+
+[ext_resource type="Script" uid="uid://b0urp85q6i3m3" path="res://ui/game/crafting/output_container.gd" id="1_d3ty4"]
+
+[node name="OutputContainer" type="HBoxContainer"]
+script = ExtResource("1_d3ty4")

@@ -1,14 +1,14 @@
-[gd_resource type="Resource" script_class="Craftable" load_steps=5 format=3 uid="uid://c6fvrl5wssdvp"]
+[gd_resource type="Resource" script_class="Craftable" load_steps=6 format=3 uid="uid://c6fvrl5wssdvp"]
 
-[ext_resource type="Script" uid="uid://cigr60qq0xek4" path="res://data/craftables/Craftable.gd" id="1_ac3hf"]
+[ext_resource type="Script" uid="uid://cigr60qq0xek4" path="res://data/craftables/CraftRecipe.gd" id="1_ac3hf"]
 [ext_resource type="Script" uid="uid://dwciga0bdgevv" path="res://data/items/Item.gd" id="1_s2hri"]
 [ext_resource type="Resource" uid="uid://b67dkh1b4y8w2" path="res://data/items/stick.tres" id="2_qgtq7"]
 [ext_resource type="Resource" uid="uid://m0lwpdmuf2p8" path="res://data/items/stone.tres" id="3_gn2c6"]
+[ext_resource type="Resource" uid="uid://bxmot11ypr558" path="res://data/items/axe.tres" id="4_qgtq7"]
 
 [resource]
 script = ExtResource("1_ac3hf")
-name = "axe"
-wieldable = true
+output = ExtResource("4_qgtq7")
 inputs = Dictionary[ExtResource("1_s2hri"), int]({
 ExtResource("2_qgtq7"): 1,
 ExtResource("3_gn2c6"): 1
