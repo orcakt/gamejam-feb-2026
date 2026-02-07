@@ -28,11 +28,14 @@ text = "Room Code:"
 
 [node name="RoomCodeInput" type="LineEdit" parent="VBoxContainer" unique_id=1696011104]
 layout_mode = 2
+unique_name_in_owner = true
 
 [node name="HostButton" type="Button" parent="VBoxContainer" unique_id=933761950]
 layout_mode = 2
+unique_name_in_owner = true
 text = "Host game"
 
 [node name="JoinButton" type="Button" parent="VBoxContainer" unique_id=860685893]
 layout_mode = 2
+unique_name_in_owner = true
 text = "Join game"

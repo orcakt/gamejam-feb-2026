@@ -22,6 +22,7 @@ config/icon="res://assets/textures/icon.svg"
 [autoload]
 
 GM="*uid://wc03ne58onqi"
+NetworkManager="*res://systems/multiplayer/multiplayer_manager.tscn"
 
 [editor_plugins]
 
