@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://bkm6qnmvgoimu"]
+
+[ext_resource type="Script" uid="uid://dwciga0bdgevv" path="res://data/items/Item.gd" id="1_64p78"]
+
+[resource]
+script = ExtResource("1_64p78")
+name = "vine"
+burnable = true
+metadata/_custom_type_script = "uid://dwciga0bdgevv"

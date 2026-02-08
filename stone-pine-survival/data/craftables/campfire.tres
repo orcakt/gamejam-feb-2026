@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Craftable" load_steps=6 format=3 uid="uid://c3iriustqa4g1"]
+
+[ext_resource type="Script" uid="uid://cigr60qq0xek4" path="res://data/craftables/Craftable.gd" id="1_ubtl4"]
+[ext_resource type="Script" uid="uid://dwciga0bdgevv" path="res://data/items/Item.gd" id="1_vj6tw"]
+[ext_resource type="Resource" uid="uid://b67dkh1b4y8w2" path="res://data/items/stick.tres" id="2_6kkb8"]
+[ext_resource type="Resource" uid="uid://m0lwpdmuf2p8" path="res://data/items/stone.tres" id="3_6kkb8"]
+[ext_resource type="Resource" uid="uid://dbs51qiyrnao2" path="res://data/items/bark.tres" id="4_876xo"]
+
+[resource]
+script = ExtResource("1_ubtl4")
+name = "campfire"
+inputs = Dictionary[ExtResource("1_vj6tw"), int]({
+ExtResource("2_6kkb8"): 10,
+ExtResource("3_6kkb8"): 12,
+ExtResource("4_876xo"): 4
+})
+metadata/_custom_type_script = "uid://cigr60qq0xek4"

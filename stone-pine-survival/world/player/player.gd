@@ -4,12 +4,18 @@ extends CharacterBody2D
 const SPEED = 100.0
 
 
+func _ready() -> void:
+	# Only enable camera for the local player
+	$Camera2D.enabled = is_multiplayer_authority()
+
+
 func _physics_process(delta):
-	player_movement(delta)
+	# Remote players will have their position synced via MultiplayerSynchronizer
+	if is_multiplayer_authority():
+		player_movement(delta)
 
 
 func player_movement(delta):
-	# Get the input direction and handle the movement/deceleration.
 	var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	
 	velocity = direction * SPEED
