@@ -1,0 +1,65 @@
+[gd_scene load_steps=3 format=3 uid="uid://diagt3m0ao5nj"]
+
+[ext_resource type="Script" uid="uid://b88e3rad0ubfo" path="res://ui/game/inventory_ui.gd" id="1_jyxci"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jyxci"]
+bg_color = Color(0.043137256, 0.30980393, 0.07058824, 1)
+
+[node name="InventoryUI" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_jyxci")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -576.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 64
+
+[node name="TextureRect" type="ColorRect" parent="MarginContainer"]
+layout_mode = 2
+color = Color(0.019607844, 0.14117648, 0.03137255, 1)
+
+[node name="Label" type="Label" parent="MarginContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 88.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0.91764706, 0.3882353, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 64
+text = "INVENTORY"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ItemList" type="ItemList" parent="MarginContainer/TextureRect"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 92.0
+offset_right = -4.0
+offset_bottom = -59.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jyxci")
+max_columns = 6
+same_column_width = true
+icon_mode = 0
