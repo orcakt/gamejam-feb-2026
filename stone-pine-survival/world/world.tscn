@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://76eovtpf6jeg"]
+[gd_scene format=3 uid="uid://76eovtpf6jeg"]
 
-[ext_resource type="PackedScene" uid="uid://dsjtoq57s78y6" path="res://world/player/player.tscn" id="1_6xmxd"]
+[ext_resource type="Script" uid="uid://k6yln3mi02dr" path="res://world/world.gd" id="1_tcf2h"]
 [ext_resource type="Script" uid="uid://s7vsu7dxf4xq" path="res://world/daynightcycle.gd" id="2_tcf2h"]
 
 [sub_resource type="Gradient" id="Gradient_tcf2h"]
@@ -11,11 +11,16 @@ metadata/_snap_enabled = true
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_4717r"]
 gradient = SubResource("Gradient_tcf2h")
 
-[node name="World" type="Node2D"]
+[node name="World" type="Node2D" unique_id=1372100395]
+script = ExtResource("1_tcf2h")
 
-[node name="Player" parent="." instance=ExtResource("1_6xmxd")]
-
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=759626646]
 color = Color(0.052388564, 0.050778426, 0.2621302, 1)
 script = ExtResource("2_tcf2h")
 gradient = SubResource("GradientTexture1D_4717r")
+
+[node name="PlayerSpawner" type="MultiplayerSpawner" parent="." unique_id=672211328]
+_spawnable_scenes = PackedStringArray("uid://dsjtoq57s78y6")
+spawn_path = NodePath("../Players")
+
+[node name="Players" type="Node2D" parent="." unique_id=1627319672]
