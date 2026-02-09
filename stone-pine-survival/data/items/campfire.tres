@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://cejlk0i086d8u"]
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://cejlk0i086d8u"]
 
 [ext_resource type="Script" uid="uid://dwciga0bdgevv" path="res://data/items/Item.gd" id="1_cjfkn"]
+[ext_resource type="Texture2D" uid="uid://bb004n6yiqmu3" path="res://assets/textures/icon.svg" id="2_cb4g4"]
 
 [resource]
 script = ExtResource("1_cjfkn")
 name = "campfire"
+texture = ExtResource("2_cb4g4")
 craftable = true
 metadata/_custom_type_script = "uid://dwciga0bdgevv"

@@ -1,10 +1,12 @@
-[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://bxmot11ypr558"]
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://bxmot11ypr558"]
 
 [ext_resource type="Script" uid="uid://dwciga0bdgevv" path="res://data/items/Item.gd" id="1_e8x3d"]
+[ext_resource type="Texture2D" uid="uid://bb004n6yiqmu3" path="res://assets/textures/icon.svg" id="2_74bhg"]
 
 [resource]
 script = ExtResource("1_e8x3d")
 name = "axe"
+texture = ExtResource("2_74bhg")
 craftable = true
 wieldable = true
 metadata/_custom_type_script = "uid://dwciga0bdgevv"

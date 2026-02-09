@@ -1,13 +1,24 @@
-[gd_scene load_steps=6 format=3 uid="uid://cpinnoj410y7a"]
+[gd_scene load_steps=12 format=3 uid="uid://cpinnoj410y7a"]
 
 [ext_resource type="PackedScene" uid="uid://dvu1o1sobdo3q" path="res://ui/game/crafting/crafting_ui.tscn" id="1_hwone"]
 [ext_resource type="Script" uid="uid://cdivoavxw4frb" path="res://tests/test_crafting.gd" id="1_vu8bc"]
 [ext_resource type="PackedScene" uid="uid://834qgegb5pgc" path="res://systems/crafting/crafter.tscn" id="2_ri5ea"]
 [ext_resource type="PackedScene" uid="uid://c37b7ydq2nrlk" path="res://systems/inventory/inventory.tscn" id="3_bnw5g"]
+[ext_resource type="Resource" uid="uid://b67dkh1b4y8w2" path="res://data/items/stick.tres" id="3_s01fd"]
 [ext_resource type="PackedScene" uid="uid://diagt3m0ao5nj" path="res://ui/game/inventory_ui.tscn" id="4_ri5ea"]
+[ext_resource type="Resource" uid="uid://m0lwpdmuf2p8" path="res://data/items/stone.tres" id="4_yt52m"]
+[ext_resource type="Script" uid="uid://dwciga0bdgevv" path="res://data/items/Item.gd" id="6_5348f"]
+[ext_resource type="Script" uid="uid://cigr60qq0xek4" path="res://data/craft_recipes/CraftRecipe.gd" id="7_s28s0"]
+[ext_resource type="Resource" uid="uid://c6fvrl5wssdvp" path="res://data/craft_recipes/axe.tres" id="9_yt52m"]
+[ext_resource type="Resource" uid="uid://c3iriustqa4g1" path="res://data/craft_recipes/campfire.tres" id="11_uwes3"]
 
 [node name="TestCrafting" type="Node"]
 script = ExtResource("1_vu8bc")
+items = Dictionary[ExtResource("6_5348f"), int]({
+ExtResource("3_s01fd"): 4,
+ExtResource("4_yt52m"): 3
+})
+recipes = Array[ExtResource("7_s28s0")]([ExtResource("9_yt52m"), ExtResource("11_uwes3")])
 
 [node name="Crafter" parent="." instance=ExtResource("2_ri5ea")]
 
@@ -15,8 +26,12 @@ script = ExtResource("1_vu8bc")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="InventoryUI" parent="CanvasLayer" instance=ExtResource("4_ri5ea")]
+[node name="InventoryUI" parent="CanvasLayer" node_paths=PackedStringArray("inventory") instance=ExtResource("4_ri5ea")]
+inventory = NodePath("../../Inventory")
 
 [node name="CraftingUI" parent="CanvasLayer" node_paths=PackedStringArray("crafter", "inventory") instance=ExtResource("1_hwone")]
 crafter = NodePath("../../Crafter")
 inventory = NodePath("../../Inventory")
+
+[connection signal="recipe_added" from="Crafter" to="CanvasLayer/CraftingUI" method="_handle_recipe_added"]
+[connection signal="item_updated" from="Inventory" to="CanvasLayer/InventoryUI" method="_handle_item_updated"]

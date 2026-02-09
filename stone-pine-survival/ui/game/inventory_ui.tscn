@@ -3,9 +3,10 @@
 [ext_resource type="Script" uid="uid://b88e3rad0ubfo" path="res://ui/game/inventory_ui.gd" id="1_jyxci"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jyxci"]
-bg_color = Color(0.043399997, 0.31, 0.07005997, 1)
+bg_color = Color(0.043137256, 0.30980393, 0.07058824, 1)
 
 [node name="InventoryUI" type="Control"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

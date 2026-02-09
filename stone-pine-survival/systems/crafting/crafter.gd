@@ -2,14 +2,21 @@ class_name Crafter
 extends Node
 
 
-@export var recipies: Dictionary[Item, CraftRecipe]
+signal recipe_added(recipe: CraftRecipe)
+
+var recipies: Array[CraftRecipe]
+
+
+func add(recipe: CraftRecipe) -> void:
+	recipies.push_back(recipe)
+	recipe_added.emit(recipe)
 
 
 func get_recipe(item: Item) -> CraftRecipe:
-	if recipies.has(item):
-		return recipies[item]
-	else:
-		return null
+	for recipe in recipies:
+		if recipe.output == item:
+			return recipe
+	return null
 
 
 func can_craft(recipe: CraftRecipe, items: Dictionary[Item, int]) -> bool:

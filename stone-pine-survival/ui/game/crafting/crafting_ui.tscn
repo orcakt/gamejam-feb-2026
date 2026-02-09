@@ -1,12 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dvu1o1sobdo3q"]
+[gd_scene load_steps=3 format=3 uid="uid://dvu1o1sobdo3q"]
 
 [ext_resource type="Script" uid="uid://egdwp5pke76g" path="res://ui/game/crafting/crafting_ui.gd" id="1_uylle"]
 [ext_resource type="PackedScene" uid="uid://dk85oqiv8k8uw" path="res://ui/game/crafting/output_container.tscn" id="2_21hoc"]
-[ext_resource type="Script" uid="uid://cigr60qq0xek4" path="res://data/craftables/CraftRecipe.gd" id="2_waxfa"]
-[ext_resource type="Resource" uid="uid://c6fvrl5wssdvp" path="res://data/craftables/axe.tres" id="3_loj3m"]
-[ext_resource type="Resource" uid="uid://c3iriustqa4g1" path="res://data/craftables/campfire.tres" id="4_nwelv"]
 
 [node name="CraftingUI" type="Control"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,7 +13,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_uylle")
-recipies = Array[ExtResource("2_waxfa")]([ExtResource("3_loj3m"), ExtResource("4_nwelv")])
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -82,16 +79,14 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 140)
 layout_mode = 1
 anchors_preset = 7
-anchor_left = 0.5
 anchor_top = 1.0
-anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -231.0
 offset_top = -250.0
 offset_right = 231.0
 offset_bottom = -110.0
-grow_horizontal = 2
 grow_vertical = 0
+alignment = 1
 
 [node name="LblOutputs" type="Label" parent="MarginContainer/ColorRect"]
 layout_mode = 1
@@ -109,20 +104,3 @@ grow_vertical = 0
 theme_override_colors/font_color = Color(1, 0.91764706, 0.3882353, 1)
 theme_override_font_sizes/font_size = 20
 text = "CRAFTABLE"
-
-[node name="BtnCraft" type="Button" parent="MarginContainer/ColorRect"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -121.25
-offset_top = -69.0
-offset_right = 121.25
-offset_bottom = -16.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_colors/font_color = Color(1, 0.91764706, 0.3882353, 1)
-theme_override_font_sizes/font_size = 32
-text = "CRAFT"

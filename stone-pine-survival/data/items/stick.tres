@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://b67dkh1b4y8w2"]
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://b67dkh1b4y8w2"]
 
 [ext_resource type="Script" uid="uid://dwciga0bdgevv" path="res://data/items/Item.gd" id="1_k7004"]
+[ext_resource type="Texture2D" uid="uid://bb004n6yiqmu3" path="res://assets/textures/icon.svg" id="2_qjd0l"]
 
 [resource]
 script = ExtResource("1_k7004")
 name = "stick"
+texture = ExtResource("2_qjd0l")
 burnable = true
 metadata/_custom_type_script = "uid://dwciga0bdgevv"
