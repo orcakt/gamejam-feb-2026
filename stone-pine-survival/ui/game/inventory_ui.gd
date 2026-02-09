@@ -18,10 +18,6 @@ func close() -> void:
 	visible = false
 
 
-func _ready() -> void:
-	inventory.item_updated.connect(_handle_item_updated)
-
-
 ### Sets the value of the item.
 func _handle_item_updated(item: Item, value: int) -> void:
 	# keep track of item index
@@ -30,9 +26,15 @@ func _handle_item_updated(item: Item, value: int) -> void:
 			ITEM_SLOT_TEXT % [item.name, value], 
 			item.texture
 		)
-	elif value == 0:
-		item_list.remove_item(item_dict[item])
+	elif value <= 0:
+		var removed_index = item_dict[item]
+		item_list.remove_item(removed_index)
 		item_dict.erase(item)
+		
+		# shift higher indicies
+		for key in item_dict.keys():
+			if removed_index < item_dict[key]:
+				item_dict[key] -= 1
 	else:
 		item_list.set_item_text(
 			item_dict[item],

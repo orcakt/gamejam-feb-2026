@@ -1,0 +1,106 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvu1o1sobdo3q"]
+
+[ext_resource type="Script" uid="uid://egdwp5pke76g" path="res://ui/game/crafting/crafting_ui.gd" id="1_uylle"]
+[ext_resource type="PackedScene" uid="uid://dk85oqiv8k8uw" path="res://ui/game/crafting/output_container.tscn" id="2_21hoc"]
+
+[node name="CraftingUI" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_uylle")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 576.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer"]
+layout_mode = 2
+color = Color(0.023529412, 0.03529412, 0.12156863, 1)
+
+[node name="LblTitle" type="Label" parent="MarginContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 88.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0.91866666, 0.39, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 64
+text = "CRAFTING"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InputContainer" type="HBoxContainer" parent="MarginContainer/ColorRect"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 140)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -231.0
+offset_top = 116.0
+offset_right = 231.0
+offset_bottom = 256.0
+grow_horizontal = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="LblInput" type="Label" parent="MarginContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -36.0
+offset_top = 87.0
+offset_right = 36.0
+offset_bottom = 115.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0.91764706, 0.3882353, 1)
+theme_override_font_sizes/font_size = 20
+text = "INPUTS"
+
+[node name="OutputContainer" parent="MarginContainer/ColorRect" instance=ExtResource("2_21hoc")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 140)
+layout_mode = 1
+anchors_preset = 7
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -231.0
+offset_top = -250.0
+offset_right = 231.0
+offset_bottom = -110.0
+grow_vertical = 0
+alignment = 1
+
+[node name="LblOutputs" type="Label" parent="MarginContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -55.0
+offset_top = -111.0
+offset_right = 55.0
+offset_bottom = -83.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0.91764706, 0.3882353, 1)
+theme_override_font_sizes/font_size = 20
+text = "CRAFTABLE"

@@ -127,6 +127,7 @@ size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 24
 text = "ADD BERRY"
 
+[connection signal="item_updated" from="Inventory" to="CanvasLayer/InventoryUI" method="_handle_item_updated"]
 [connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/HBoxContainer/BtnRemStick" to="." method="_on_btn_rem_stick_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/HBoxContainer/BtnAddStick" to="." method="_on_btn_add_stick_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/HBoxContainer2/BtnRemStone" to="." method="_on_btn_rem_stone_pressed"]
