@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://k6yln3mi02dr" path="res://world/world.gd" id="1_tcf2h"]
 [ext_resource type="Script" uid="uid://s7vsu7dxf4xq" path="res://world/daynightcycle.gd" id="2_tcf2h"]
+[ext_resource type="PackedScene" uid="uid://bgjr2upoa7ib1" path="res://world/terrain/land.tscn" id="3_4717r"]
 
 [sub_resource type="Gradient" id="Gradient_tcf2h"]
 offsets = PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1)
@@ -13,6 +14,8 @@ gradient = SubResource("Gradient_tcf2h")
 
 [node name="World" type="Node2D" unique_id=1372100395]
 script = ExtResource("1_tcf2h")
+
+[node name="Land" parent="." unique_id=951509584 instance=ExtResource("3_4717r")]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=759626646]
 color = Color(0.052388564, 0.050778426, 0.2621302, 1)

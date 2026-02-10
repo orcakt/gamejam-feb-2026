@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://c7vif4tmi1lis"]
 
 [ext_resource type="Script" uid="uid://bl5antg66smw8" path="res://ui/main/main_menu.gd" id="1_avjdu"]
-[ext_resource type="Script" uid="uid://dwfu76lnh2gtl" path="res://addons/gmap_hotkeys/focus fixer/v_box_focus_fixer.gd" id="1_ocgdw"]
 
 [node name="MainMenu" type="Control" unique_id=1689725484]
 layout_mode = 3
@@ -16,7 +15,6 @@ script = ExtResource("1_avjdu")
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("1_ocgdw")
 
 [node name="Menu Label" type="Label" parent="VBoxContainer" unique_id=787990422]
 layout_mode = 2
@@ -27,15 +25,24 @@ layout_mode = 2
 text = "Room Code:"
 
 [node name="RoomCodeInput" type="LineEdit" parent="VBoxContainer" unique_id=1696011104]
-layout_mode = 2
 unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_right = NodePath("../HostButton")
+focus_neighbor_bottom = NodePath("../HostButton")
+focus_next = NodePath("../HostButton")
 
 [node name="HostButton" type="Button" parent="VBoxContainer" unique_id=933761950]
-layout_mode = 2
 unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_top = NodePath("../RoomCodeInput")
+focus_neighbor_bottom = NodePath("../JoinButton")
+focus_next = NodePath("../JoinButton")
+focus_previous = NodePath("../RoomCodeInput")
 text = "Host game"
 
 [node name="JoinButton" type="Button" parent="VBoxContainer" unique_id=860685893]
-layout_mode = 2
 unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_top = NodePath("../HostButton")
+focus_previous = NodePath("../HostButton")
 text = "Join game"
