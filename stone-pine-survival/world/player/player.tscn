@@ -1,7 +1,8 @@
-[gd_scene load_steps=29 format=3 uid="uid://dsjtoq57s78y6"]
+[gd_scene format=3 uid="uid://dsjtoq57s78y6"]
 
 [ext_resource type="Script" uid="uid://btfkhxegt31ik" path="res://world/player/player.gd" id="1_bvkkv"]
 [ext_resource type="Texture2D" uid="uid://dxotka7sicu1l" path="res://assets/textures/temporaryPlayer.png" id="2_cvtd2"]
+[ext_resource type="PackedScene" uid="uid://cllcphk0k7wx8" path="res://world/interactables/interaction_field.tscn" id="3_cvtd2"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_bvkkv"]
 properties/0/path = NodePath(".:position")
@@ -223,3 +224,5 @@ shape = SubResource("CapsuleShape2D_bvkkv")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1451487643]
 zoom = Vector2(3, 3)
+
+[node name="InteractionField" parent="." unique_id=1182964430 instance=ExtResource("3_cvtd2")]

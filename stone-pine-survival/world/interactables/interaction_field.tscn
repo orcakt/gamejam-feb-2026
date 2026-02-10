@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cllcphk0k7wx8"]
+
+[ext_resource type="Script" uid="uid://dtdvhr4paeh02" path="res://world/interactables/interaction_field.gd" id="1_wjdtn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7w60g"]
+radius = 15.0
+
+[node name="InteractionField" type="Area2D" unique_id=336260010]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_wjdtn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1638023718]
+shape = SubResource("CircleShape2D_7w60g")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
