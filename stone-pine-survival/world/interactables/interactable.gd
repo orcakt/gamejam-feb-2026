@@ -2,4 +2,7 @@ class_name Interactable
 extends StaticBody2D
 
 
-var interaction: Callable
+func destroy() -> void:
+	# animations
+	# audio
+	queue_free()

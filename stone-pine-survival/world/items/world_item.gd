@@ -11,11 +11,3 @@ var item: Item
 func setup(data: Item) -> void:
 	sprite_2d.texture = data.texture
 	audio_stream.stream = data.stream
-
-
-func _ready() -> void:
-	interaction = _callback
-
-
-func _callback() -> void:
-	pass

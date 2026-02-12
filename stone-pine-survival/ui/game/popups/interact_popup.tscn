@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://epcwklg6i4ni"]
+
+[ext_resource type="Script" uid="uid://cwccja3o1v0rm" path="res://ui/game/popups/interact_popup.gd" id="1_strsq"]
+
+[sub_resource type="Animation" id="Animation_strsq"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(2),
+"points": PackedFloat32Array(0, -0.2, 0, 0.2, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(2),
+"points": PackedFloat32Array(654, -0.2, 0, 0.2, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_cnsyf"]
+resource_name = "open"
+length = 0.2
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(2, 3),
+"points": PackedFloat32Array(654, 0, 0, 0, -99.74701, 566, -0.06666668, -19.042297, 0.06666668, 19.042297),
+"times": PackedFloat32Array(0, 0.2)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0n0c8"]
+_data = {
+&"RESET": SubResource("Animation_strsq"),
+&"open": SubResource("Animation_cnsyf")
+}
+
+[node name="InteractPopup" type="Control" unique_id=1397782255]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_strsq")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1905313086]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 6.0
+offset_bottom = 88.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.022799999, 0.034140013, 0.12, 0.38039216)
+
+[node name="Label" type="Label" parent="ColorRect" unique_id=843402534]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 48
+text = "Interact ( E )"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2128133620]
+libraries/ = SubResource("AnimationLibrary_0n0c8")
