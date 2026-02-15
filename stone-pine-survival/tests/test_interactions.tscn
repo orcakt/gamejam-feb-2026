@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dsjtoq57s78y6" path="res://world/player/player.tscn" id="1_fcdxs"]
 [ext_resource type="PackedScene" uid="uid://c5n4omxism1tl" path="res://world/items/world_item.tscn" id="2_fcdxs"]
+[ext_resource type="PackedScene" uid="uid://cduadmqriffat" path="res://world/camp/campfire.tscn" id="3_j5o7t"]
 
 [node name="TestInteractions" type="Node" unique_id=1754436492]
 
@@ -9,3 +10,6 @@
 
 [node name="WorldItem" parent="." unique_id=1069644532 instance=ExtResource("2_fcdxs")]
 position = Vector2(0, -35)
+
+[node name="Campfire" parent="." unique_id=1333735154 instance=ExtResource("3_j5o7t")]
+position = Vector2(0, 37)

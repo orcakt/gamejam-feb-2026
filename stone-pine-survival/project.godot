@@ -22,11 +22,6 @@ config/icon="res://assets/textures/icon.svg"
 [autoload]
 
 NetworkManager="*res://systems/multiplayer/multiplayer_manager.tscn"
-GM="*uid://wc03ne58onqi"
-
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/gmap_hotkeys/plugin.cfg")
 
 [file_customization]
 
