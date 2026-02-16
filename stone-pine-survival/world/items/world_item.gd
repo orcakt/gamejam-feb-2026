@@ -2,7 +2,7 @@ class_name WorldItem
 extends Interactable
 
 
-var item: Item
+@export var item: Item
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var audio_stream: AudioStreamPlayer2D = $AudioStreamPlayer2D

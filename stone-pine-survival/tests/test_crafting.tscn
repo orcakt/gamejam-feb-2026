@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cpinnoj410y7a"]
+[gd_scene format=3 uid="uid://cpinnoj410y7a"]
 
 [ext_resource type="PackedScene" uid="uid://dvu1o1sobdo3q" path="res://ui/game/crafting/crafting_ui.tscn" id="1_hwone"]
 [ext_resource type="Script" uid="uid://cdivoavxw4frb" path="res://tests/test_crafting.gd" id="1_vu8bc"]
@@ -12,7 +12,7 @@
 [ext_resource type="Resource" uid="uid://c6fvrl5wssdvp" path="res://data/craft_recipes/axe.tres" id="9_yt52m"]
 [ext_resource type="Resource" uid="uid://c3iriustqa4g1" path="res://data/craft_recipes/campfire.tres" id="11_uwes3"]
 
-[node name="TestCrafting" type="Node"]
+[node name="TestCrafting" type="Node" unique_id=952010815]
 script = ExtResource("1_vu8bc")
 items = Dictionary[ExtResource("6_5348f"), int]({
 ExtResource("3_s01fd"): 4,
@@ -20,18 +20,17 @@ ExtResource("4_yt52m"): 3
 })
 recipes = Array[ExtResource("7_s28s0")]([ExtResource("9_yt52m"), ExtResource("11_uwes3")])
 
-[node name="Crafter" parent="." instance=ExtResource("2_ri5ea")]
+[node name="Crafter" parent="." unique_id=1414948611 instance=ExtResource("2_ri5ea")]
 
-[node name="Inventory" parent="." instance=ExtResource("3_bnw5g")]
+[node name="Inventory" parent="." unique_id=1901847656 instance=ExtResource("3_bnw5g")]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1672952147]
 
-[node name="InventoryUI" parent="CanvasLayer" node_paths=PackedStringArray("inventory") instance=ExtResource("4_ri5ea")]
+[node name="InventoryUI" parent="CanvasLayer" unique_id=1548671945 node_paths=PackedStringArray("inventory") instance=ExtResource("4_ri5ea")]
 inventory = NodePath("../../Inventory")
 
-[node name="CraftingUI" parent="CanvasLayer" node_paths=PackedStringArray("crafter", "inventory") instance=ExtResource("1_hwone")]
+[node name="CraftingUI" parent="CanvasLayer" unique_id=1463781399 node_paths=PackedStringArray("crafter", "inventory") instance=ExtResource("1_hwone")]
 crafter = NodePath("../../Crafter")
 inventory = NodePath("../../Inventory")
 
-[connection signal="recipe_added" from="Crafter" to="CanvasLayer/CraftingUI" method="_handle_recipe_added"]
 [connection signal="item_updated" from="Inventory" to="CanvasLayer/InventoryUI" method="_handle_item_updated"]

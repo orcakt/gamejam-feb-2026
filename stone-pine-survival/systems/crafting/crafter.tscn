@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://834qgegb5pgc"]
+[gd_scene format=3 uid="uid://834qgegb5pgc"]
 
 [ext_resource type="Script" uid="uid://emxi88qeegxf" path="res://systems/crafting/crafter.gd" id="1_hk4v2"]
 
-[node name="Crafter" type="Node"]
+[node name="Crafter" type="Node" unique_id=724726434]
 script = ExtResource("1_hk4v2")

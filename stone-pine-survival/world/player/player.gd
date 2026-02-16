@@ -5,6 +5,7 @@ extends CharacterBody2D
 const SPEED = 100.0
 
 @export var campfire_ui: CampfireUI
+@export var inventory_ui: InventoryUI
 
 @onready var interaction_field: InteractionField = $InteractionField
 @onready var inventory: Inventory = $Inventory
@@ -14,6 +15,7 @@ const SPEED = 100.0
 func _ready() -> void:
 	# Only enable camera for the local player
 	$Camera2D.enabled = is_multiplayer_authority()
+	inventory.item_updated.connect(inventory_ui._handle_item_updated)
 
 
 func _physics_process(delta):
@@ -32,6 +34,7 @@ func _input(event) -> void:
 		elif interactable is Campfire && not campfire_ui.connected():
 			# open campfire ui
 			campfire_ui.interact(interactable)
+			inventory_ui.open()
 
 
 
