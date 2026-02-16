@@ -1,5 +1,5 @@
 class_name Campfire
-extends Node2D
+extends Interactable
 
 
 enum Levels {

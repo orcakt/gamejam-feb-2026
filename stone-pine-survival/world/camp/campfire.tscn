@@ -6,7 +6,13 @@
 [ext_resource type="Resource" uid="uid://dbs51qiyrnao2" path="res://data/items/bark.tres" id="3_vhmcb"]
 [ext_resource type="Resource" uid="uid://b67dkh1b4y8w2" path="res://data/items/stick.tres" id="4_alwu8"]
 
-[node name="Campfire" type="Node2D" unique_id=1333735154]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2cq4u"]
+radius = 8.0
+height = 24.0
+
+[node name="Campfire" type="StaticBody2D" unique_id=939318910]
+collision_layer = 4
+collision_mask = 2
 script = ExtResource("1_08kra")
 fuel_types = Dictionary[ExtResource("2_2cq4u"), int]({
 ExtResource("3_vhmcb"): 3,
@@ -22,3 +28,8 @@ level_amounts = Dictionary[int, int]({
 texture = ExtResource("2_escay")
 hframes = 9
 frame = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=838486680]
+position = Vector2(1, 3)
+rotation = -1.5707964
+shape = SubResource("CapsuleShape2D_2cq4u")

@@ -4,6 +4,8 @@ extends CharacterBody2D
 
 const SPEED = 100.0
 
+@export var campfire_ui: CampfireUI
+
 @onready var interaction_field: InteractionField = $InteractionField
 @onready var inventory: Inventory = $Inventory
 @onready var interact_popup: InteractPopup = %InteractPopup
@@ -27,6 +29,10 @@ func _input(event) -> void:
 			# add item to inventory
 			inventory.add(interactable.item, 1)
 			interactable.destroy()
+		elif interactable is Campfire && not campfire_ui.connected():
+			# open campfire ui
+			campfire_ui.interact(interactable)
+
 
 
 func player_movement(_delta):
