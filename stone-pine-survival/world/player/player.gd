@@ -148,3 +148,17 @@ func _unhandled_input(event: InputEvent) -> void:
 		var scan := scan_surroundings()
 		for dir in scan:
 			print("    ", dir, " -> ", scan[dir])
+		print("  scan_nodes_all_directions (layer 4, r=300):")
+		var node_scan := SpatialSense.scan_nodes_all_directions(global_position, 300.0, 4, [get_rid()])
+		for dir in node_scan:
+			var r: SpatialSense.NodeQueryResult = node_scan[dir]
+			if r.found:
+				print("    ", dir, " -> ", r.node_name, " (", snappedf(r.distance, 0.1), "px)")
+			else:
+				print("    ", dir, " -> open")
+		print("  get_nodes_in_radius (layer 4, r=200):")
+		var nearby := SpatialSense.get_nodes_in_radius(global_position, 200.0, 4, [get_rid()])
+		if nearby.is_empty():
+			print("    (none)")
+		for r: SpatialSense.NodeQueryResult in nearby:
+			print("    ", r.node_name, " @ ", r.direction, " (", snappedf(r.distance, 0.1), "px)")
