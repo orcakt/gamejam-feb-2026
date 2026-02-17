@@ -23,6 +23,7 @@ config/icon="res://assets/textures/icon.svg"
 
 NetworkManager="*res://systems/multiplayer/multiplayer_manager.tscn"
 GM="*uid://wc03ne58onqi"
+SpatialSense="*res://systems/sound/spatial_sense.gd"
 
 [editor_plugins]
 

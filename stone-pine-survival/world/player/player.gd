@@ -3,7 +3,15 @@ extends CharacterBody2D
 
 
 const SPEED = 100.0
+const FOOTSTEP_DISTANCE := 40.0
+const FOOTSTEP_VARIATIONS := 12
+const FOOTSTEP_PITCH_MIN := 0.9
+const FOOTSTEP_PITCH_MAX := 1.1
+const FOOTSTEP_SURFACES: Array[String] = ["grass", "dirt"]
 
+var _footstep_accum: float = 0.0
+
+@onready var sound_pool: SoundPool = $SoundPool
 @onready var interaction_field: InteractionField = $InteractionField
 @onready var inventory: Inventory = $Inventory
 @onready var interact_popup: InteractPopup = %InteractPopup
@@ -18,6 +26,25 @@ func _physics_process(delta):
 	# Remote players will have their position synced via MultiplayerSynchronizer
 	if is_multiplayer_authority():
 		player_movement(delta)
+		_update_footsteps(delta)
+
+
+func _update_footsteps(delta: float) -> void:
+	if velocity.length() < 1.0:
+		return
+	_footstep_accum += velocity.length() * delta
+	if _footstep_accum < FOOTSTEP_DISTANCE:
+		return
+	_footstep_accum = fmod(_footstep_accum, FOOTSTEP_DISTANCE)
+
+	var surface := SpatialSense.describe_tile_at(global_position)
+	if surface not in FOOTSTEP_SURFACES:
+		return
+
+	var variation := randi_range(1, FOOTSTEP_VARIATIONS)
+	var path := "res://assets/sfx/steps/%s/%d.wav" % [surface, variation]
+	var pitch := randf_range(FOOTSTEP_PITCH_MIN, FOOTSTEP_PITCH_MAX)
+	sound_pool.play(path, pitch)
 
 
 func _input(event) -> void:
@@ -65,9 +92,59 @@ func play_anim(direction):
 			anim.play("idle")
 
 
+func scan_surroundings() -> Dictionary:
+	var desc := {}
+	var ray_nodes := {
+		"north": $RayCasts/North, "northeast": $RayCasts/NorthEast,
+		"east": $RayCasts/East,   "southeast": $RayCasts/SouthEast,
+		"south": $RayCasts/South, "southwest": $RayCasts/SouthWest,
+		"west": $RayCasts/West,   "northwest": $RayCasts/NorthWest,
+	}
+	for dir_name in ray_nodes:
+		var rc: RayCast2D = ray_nodes[dir_name]
+		if rc.is_colliding():
+			var surface := SpatialSense.describe_tile_at(rc.get_collision_point())
+			desc[dir_name] = surface if surface != "" else rc.get_collider().name
+		else:
+			desc[dir_name] = "open"
+	return desc
+
+
+func get_facing_ray() -> RayCast2D:
+	var dir_name := SpatialSense.velocity_to_direction_name(velocity)
+	var map := {
+		"north": $RayCasts/North, "northeast": $RayCasts/NorthEast,
+		"east": $RayCasts/East,   "southeast": $RayCasts/SouthEast,
+		"south": $RayCasts/South, "southwest": $RayCasts/SouthWest,
+		"west": $RayCasts/West,   "northwest": $RayCasts/NorthWest,
+	}
+	return map.get(dir_name, $RayCasts/South)
+
+
 func _on_interaction_field_near_interactable() -> void:
 	interact_popup.open()
 
 
 func _on_interaction_field_no_interactables() -> void:
 	interact_popup.close()
+
+
+# spatial sense debug hotkey
+func _unhandled_input(event: InputEvent) -> void:
+	if not is_multiplayer_authority():
+		return
+	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_T:
+		print("  global_position : ", global_position)
+		print("  velocity        : ", velocity)
+		print("  facing direction: ", SpatialSense.velocity_to_direction_name(velocity))
+		var tile := SpatialSense.query_tile_at(global_position)
+		print("  tile found      : ", tile.found)
+		print("  tile layer      : ", tile.layer_name)
+		print("  tile surface    : ", tile.surface_type)
+		print("  tile name       : ", tile.tile_name)
+		print("  tile passable   : ", tile.is_passable)
+		print("  describe_tile   : ", SpatialSense.describe_tile_at(global_position))
+		print("  scan_surroundings:")
+		var scan := scan_surroundings()
+		for dir in scan:
+			print("    ", dir, " -> ", scan[dir])
