@@ -4,10 +4,10 @@ extends CharacterBody2D
 
 const SPEED = 100.0
 const FOOTSTEP_DISTANCE := 40.0
-const FOOTSTEP_VARIATIONS := 12
+const FOOTSTEP_VARIATIONS := 6
 const FOOTSTEP_PITCH_MIN := 0.9
 const FOOTSTEP_PITCH_MAX := 1.1
-const FOOTSTEP_SURFACES: Array[String] = ["grass", "dirt"]
+const FOOTSTEP_SURFACES: Array[String] = ["grass", "dirt", "water"]
 
 var _footstep_accum: float = 0.0
 
