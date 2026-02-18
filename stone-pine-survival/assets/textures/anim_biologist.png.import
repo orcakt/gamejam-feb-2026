@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dxotka7sicu1l"
-path="res://.godot/imported/temporaryPlayer.png-88cb2426083bccab1bdec20d799bce3e.ctex"
+uid="uid://bwujr4wqcsgvr"
+path="res://.godot/imported/anim_biologist.png-4b3b9a6223e0d4d7ea3c101c1a3ddd63.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/temporaryPlayer.png"
-dest_files=["res://.godot/imported/temporaryPlayer.png-88cb2426083bccab1bdec20d799bce3e.ctex"]
+source_file="res://assets/textures/anim_biologist.png"
+dest_files=["res://.godot/imported/anim_biologist.png-4b3b9a6223e0d4d7ea3c101c1a3ddd63.ctex"]
 
 [params]
 

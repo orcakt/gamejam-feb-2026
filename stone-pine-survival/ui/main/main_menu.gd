@@ -9,6 +9,7 @@ var _is_connecting: bool = false
 
 func _ready() -> void:
 	_update_button_states()
+	room_code_input.grab_focus()
 
 	room_code_input.text_changed.connect(_on_room_code_changed)
 	host_button.pressed.connect(_on_host_pressed)
