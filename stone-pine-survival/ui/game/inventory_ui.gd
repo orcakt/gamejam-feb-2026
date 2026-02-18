@@ -9,13 +9,31 @@ const ITEM_SLOT_TEXT: String = "%s - %d"
 @onready var item_list: ItemList = %ItemList
 
 var item_dict: Dictionary[Item, int]
+var focused_index: int
 
 
 func open() -> void:
 	visible = true
+	focused_index = 0
+	item_list.select(0)
+
 
 func close() -> void:
 	visible = false
+
+
+func select_item() -> Item:
+	return item_dict.find_key(focused_index)
+
+
+func next_item() -> void:
+	focused_index = (focused_index + 1) % item_dict.size()
+	item_list.select(focused_index)
+
+
+func prev_item() -> void:
+	focused_index = (focused_index - 1) % item_dict.size()
+	item_list.select(focused_index)
 
 
 ### Sets the value of the item.

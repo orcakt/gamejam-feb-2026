@@ -26,15 +26,18 @@ func open() -> void:
 	# reveal the ui
 	visible = true
 
+
 func focus_next() -> void:
 	var output = output_container.next_item()
 	current_recipe = recipies[output]
 	_reset_inputs(current_recipe.inputs)
 
+
 func focus_prev() -> void:
 	var output = output_container.prev_item()
 	current_recipe = recipies[output]
 	_reset_inputs(current_recipe.inputs)
+
 
 func try_craft() -> void:
 	if crafter.can_craft(current_recipe, inventory.items):

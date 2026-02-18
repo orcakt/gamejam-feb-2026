@@ -1,11 +1,6 @@
 class_name Crafter
 extends Node
 
-func can_craft(craftable: Craftable, items: Dictionary[Item, int]) -> bool:
-	for key in craftable.inputs.keys():
-		if not items.has(key):
-			return false
-		elif items.get(key) < craftable.inputs.get(key):
 
 signal recipe_added(recipe: CraftRecipe)
 

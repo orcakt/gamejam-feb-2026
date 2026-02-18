@@ -7,7 +7,7 @@ signal item_updated(item: Item, amount: int)
 var items: Dictionary[Item, int]
 
 
-func add(item: Item, amount: int) -> void:
+func add(item: Item, amount: int = 1) -> void:
 	if items.has(item):
 		items[item] += amount
 	else:
@@ -16,7 +16,7 @@ func add(item: Item, amount: int) -> void:
 	item_updated.emit(item, items[item])
 
 
-func remove(item: Item, amount: int) -> void:
+func remove(item: Item, amount: int = 1) -> void:
 	if items.has(item):
 		items[item] -= amount
 		var new_value = items[item]

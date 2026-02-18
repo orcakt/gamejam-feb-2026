@@ -1,0 +1,112 @@
+[gd_scene format=3 uid="uid://cq41ri6kiwylm"]
+
+[ext_resource type="Script" uid="uid://bjxvnnc68f1wj" path="res://tests/test_campfire.gd" id="1_4fn3x"]
+[ext_resource type="PackedScene" uid="uid://cduadmqriffat" path="res://world/camp/campfire.tscn" id="2_rm6cn"]
+[ext_resource type="Script" uid="uid://dwciga0bdgevv" path="res://data/items/Item.gd" id="2_urc0a"]
+[ext_resource type="Resource" uid="uid://dbs51qiyrnao2" path="res://data/items/bark.tres" id="3_utrat"]
+[ext_resource type="Resource" uid="uid://b67dkh1b4y8w2" path="res://data/items/stick.tres" id="4_e387u"]
+
+[node name="TestCampfire" type="Node" unique_id=1920326336]
+script = ExtResource("1_4fn3x")
+fuel_types = Dictionary[String, ExtResource("2_urc0a")]({
+"bark": ExtResource("3_utrat"),
+"stick": ExtResource("4_e387u")
+})
+
+[node name="Campfire" parent="." unique_id=1333735154 instance=ExtResource("2_rm6cn")]
+
+[node name="Camera2D" type="Camera2D" parent="Campfire" unique_id=607044845]
+zoom = Vector2(2.56, 2.56)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1273180405]
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=1690640978]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="IncrementBtn" type="Button" parent="CanvasLayer/Control" unique_id=1553140355]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -79.0
+offset_right = 50.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "INCREMENT"
+
+[node name="DecrementBtn" type="Button" parent="CanvasLayer/Control" unique_id=1937997714]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -52.0
+offset_top = 57.0
+offset_right = 52.0
+offset_bottom = 88.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "DECREMENT"
+
+[node name="BarkBtn" type="Button" parent="CanvasLayer/Control" unique_id=1785934366]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 98.0
+offset_top = -50.0
+offset_right = 202.0
+offset_bottom = -19.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "ADD BARK"
+
+[node name="StickBtn" type="Button" parent="CanvasLayer/Control" unique_id=1549907206]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 98.0
+offset_top = 17.0
+offset_right = 202.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "ADD STICK"
+
+[node name="FuelLbl" type="Label" parent="CanvasLayer/Control" unique_id=662964265]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -188.5
+offset_top = -14.75
+offset_right = -73.0
+offset_bottom = 14.75
+grow_horizontal = 2
+grow_vertical = 2
+text = "FUEL: 0.0"
+vertical_alignment = 1
+
+[connection signal="pressed" from="CanvasLayer/Control/IncrementBtn" to="." method="_on_increment_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/DecrementBtn" to="." method="_on_decrement_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/BarkBtn" to="." method="_on_bark_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/StickBtn" to="." method="_on_stick_btn_pressed"]
