@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://cduadmqriffat"]
+
+[ext_resource type="Script" uid="uid://btg5p5sbq76d1" path="res://world/camp/campfire.gd" id="1_08kra"]
+[ext_resource type="Script" uid="uid://dwciga0bdgevv" path="res://data/items/Item.gd" id="2_2cq4u"]
+[ext_resource type="Texture2D" uid="uid://dbvg3ymdhim06" path="res://assets/textures/firescamp.png" id="2_escay"]
+[ext_resource type="Resource" uid="uid://dbs51qiyrnao2" path="res://data/items/bark.tres" id="3_vhmcb"]
+[ext_resource type="Resource" uid="uid://b67dkh1b4y8w2" path="res://data/items/stick.tres" id="4_alwu8"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2cq4u"]
+radius = 8.0
+height = 24.0
+
+[node name="Campfire" type="StaticBody2D" unique_id=939318910]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_08kra")
+fuel_types = Dictionary[ExtResource("2_2cq4u"), int]({
+ExtResource("3_vhmcb"): 3,
+ExtResource("4_alwu8"): 10
+})
+level_amounts = Dictionary[int, int]({
+0: 0,
+1: 10,
+2: 50
+})
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2006538776]
+texture = ExtResource("2_escay")
+hframes = 9
+frame = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=838486680]
+position = Vector2(1, 3)
+rotation = -1.5707964
+shape = SubResource("CapsuleShape2D_2cq4u")

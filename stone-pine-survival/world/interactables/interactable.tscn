@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://b20ps5ercalim"]
+
+[ext_resource type="Script" uid="uid://bvhga2phviub4" path="res://world/interactables/interactable.gd" id="1_tfjcd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7h58f"]
+radius = 4.0
+
+[node name="Interactable" type="StaticBody2D" unique_id=953007245]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_tfjcd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1506828402]
+shape = SubResource("CircleShape2D_7h58f")
