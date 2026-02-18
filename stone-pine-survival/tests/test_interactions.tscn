@@ -17,6 +17,14 @@ inventory_ui = NodePath("../CanvasLayer/InventoryUI")
 position = Vector2(0, -35)
 item = ExtResource("3_1mk4n")
 
+[node name="WorldItem2" parent="." unique_id=1537467193 instance=ExtResource("2_fcdxs")]
+position = Vector2(-23, -26)
+item = ExtResource("3_1mk4n")
+
+[node name="WorldItem3" parent="." unique_id=346009173 instance=ExtResource("2_fcdxs")]
+position = Vector2(22, -26)
+item = ExtResource("3_1mk4n")
+
 [node name="Campfire" parent="." unique_id=1333735154 instance=ExtResource("3_j5o7t")]
 position = Vector2(0, 37)
 

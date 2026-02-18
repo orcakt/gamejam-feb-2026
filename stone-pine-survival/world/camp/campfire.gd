@@ -25,12 +25,18 @@ var current_frame: int
 var current_fuel: float
 
 
-func add_fuel(item: Item) -> void:
+func add_fuel(item: Item) -> bool:
+	# ensure item is burnable
+	if not fuel_types.has(item):
+		return false
+	
 	# increase fuel amount per item
 	current_fuel += fuel_types[item]
 	
 	# set the appropriate level
 	_set_level()
+	
+	return true
 
 
 func _process(delta: float) -> void:

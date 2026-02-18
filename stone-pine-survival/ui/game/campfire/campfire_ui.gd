@@ -12,12 +12,12 @@ func connected() -> bool:
 	return campfire != null
 
 
-func interact(cmp: Campfire) -> void:
+func open(cmp: Campfire) -> void:
 	campfire = cmp
 	visible = true
 
 
-func disengage() -> void:
+func close() -> void:
 	visible = false
 	campfire = null
 

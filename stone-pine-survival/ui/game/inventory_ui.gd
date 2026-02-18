@@ -15,19 +15,25 @@ var focused_index: int
 func open() -> void:
 	visible = true
 	focused_index = 0
+	item_list.select(0)
+
 
 func close() -> void:
 	visible = false
 
-func next_item() -> Item:
-	focused_index = (focused_index + 1) % item_dict.size()
-	item_list.select(focused_index)
+
+func select_item() -> Item:
 	return item_dict.find_key(focused_index)
 
-func prev_item() -> Item:
+
+func next_item() -> void:
+	focused_index = (focused_index + 1) % item_dict.size()
+	item_list.select(focused_index)
+
+
+func prev_item() -> void:
 	focused_index = (focused_index - 1) % item_dict.size()
 	item_list.select(focused_index)
-	return item_dict.find_key(focused_index)
 
 
 ### Sets the value of the item.

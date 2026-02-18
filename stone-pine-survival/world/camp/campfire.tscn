@@ -12,7 +12,7 @@ height = 24.0
 
 [node name="Campfire" type="StaticBody2D" unique_id=939318910]
 collision_layer = 4
-collision_mask = 2
+collision_mask = 3
 script = ExtResource("1_08kra")
 fuel_types = Dictionary[ExtResource("2_2cq4u"), int]({
 ExtResource("3_vhmcb"): 3,
