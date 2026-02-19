@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://k6yln3mi02dr" path="res://world/world.gd" id="1_tcf2h"]
 [ext_resource type="Script" uid="uid://s7vsu7dxf4xq" path="res://world/daynightcycle.gd" id="2_tcf2h"]
 [ext_resource type="PackedScene" uid="uid://bgjr2upoa7ib1" path="res://world/terrain/land.tscn" id="3_4717r"]
+[ext_resource type="PackedScene" uid="uid://7gnb6xwj20sy" path="res://ui/game/campfire/campfire_ui.tscn" id="4_mmdvd"]
+[ext_resource type="PackedScene" uid="uid://diagt3m0ao5nj" path="res://ui/game/inventory_ui.tscn" id="5_fn3g3"]
 
 [sub_resource type="Gradient" id="Gradient_tcf2h"]
 offsets = PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1)
@@ -12,10 +14,14 @@ metadata/_snap_enabled = true
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_4717r"]
 gradient = SubResource("Gradient_tcf2h")
 
-[node name="World" type="Node2D" unique_id=1372100395]
+[node name="World" type="Node2D" unique_id=1372100395 node_paths=PackedStringArray("spawn_point")]
 script = ExtResource("1_tcf2h")
+spawn_point = NodePath("Land/SpawnPoint")
 
 [node name="Land" parent="." unique_id=951509584 instance=ExtResource("3_4717r")]
+
+[node name="SpawnPoint" type="Marker2D" parent="Land" unique_id=469883658]
+position = Vector2(100, 100)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=759626646]
 color = Color(0.052388564, 0.050778426, 0.2621302, 1)
@@ -27,3 +33,11 @@ _spawnable_scenes = PackedStringArray("uid://dsjtoq57s78y6")
 spawn_path = NodePath("../Players")
 
 [node name="Players" type="Node2D" parent="." unique_id=1627319672]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=930521172]
+
+[node name="CampfireUI" parent="CanvasLayer" unique_id=35315147 instance=ExtResource("4_mmdvd")]
+unique_name_in_owner = true
+
+[node name="InventoryUI" parent="CanvasLayer" unique_id=1558702918 instance=ExtResource("5_fn3g3")]
+unique_name_in_owner = true

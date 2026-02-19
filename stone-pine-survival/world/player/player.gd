@@ -88,27 +88,37 @@ func _world_inputs(event: InputEvent) -> void:
 			inventory_ui.open()
 			
 			input_state = InputState.UI
+	elif event.is_action_pressed("open_inventory"):
+		inventory_ui.open()
+		
+		input_state = InputState.UI
 
 
 func _ui_inputs(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_cancel") && campfire_ui.connected():
-		campfire_ui.close()
+	if event.is_action_pressed("ui_cancel"):
 		inventory_ui.close()
 		
+		if campfire_ui.connected():
+			campfire_ui.close()
+			
 		input_state = InputState.WORLD
-	elif event.is_action_pressed("ui_accept") && campfire_ui.connected():
-		var item = inventory_ui.select_item()
-		var burnable = campfire_ui.campfire.add_fuel(item)
+	elif event.is_action_pressed("open_inventory") && inventory_ui.visible:
+		inventory_ui.close()
+		input_state = InputState.WORLD
+	elif event.is_action_pressed("ui_accept"):
+		if campfire_ui.connected():
+			var item = inventory_ui.select_item()
+			var burnable = campfire_ui.campfire.add_fuel(item)
 		
-		if burnable:
-			# remove item from inventory
-			inventory.remove(item)
+			if burnable:
+				# remove item from inventory
+				inventory.remove(item)
 		else:
 			# offer player feedback to know the item cannot burn
 			pass
-	elif event.is_action_pressed("ui_left") && campfire_ui.connected():
+	elif event.is_action_pressed("ui_left"):
 		inventory_ui.prev_item()
-	elif event.is_action_pressed("ui_right") && campfire_ui.connected():
+	elif event.is_action_pressed("ui_right"):
 		inventory_ui.next_item()
 
 
