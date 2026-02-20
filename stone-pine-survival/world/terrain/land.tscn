@@ -10,21 +10,42 @@ margins = Vector2i(10, 10)
 texture_region_size = Vector2i(18, 18)
 33:23/size_in_atlas = Vector2i(3, 3)
 33:23/0 = 0
+33:23/0/custom_data_0 = "grass"
+33:23/0/custom_data_1 = "grassland"
+33:23/0/custom_data_2 = true
 1:5/size_in_atlas = Vector2i(11, 4)
 1:5/0 = 0
+1:5/0/custom_data_0 = "grass"
+1:5/0/custom_data_1 = "grassland"
+1:5/0/custom_data_2 = true
 1:9/size_in_atlas = Vector2i(11, 4)
 1:9/0 = 0
 1:9/0/physics_layer_1/polygon_0/points = PackedVector2Array(-97.28401, 25.652, -98.25201, -34.364006, 96.31601, -32.428, 97.284, 35.33201)
+1:9/0/custom_data_0 = "water"
+1:9/0/custom_data_1 = "river"
+1:9/0/custom_data_2 = false
 1:14/size_in_atlas = Vector2i(11, 3)
 1:14/0 = 0
+1:14/0/custom_data_0 = "grass"
+1:14/0/custom_data_1 = "grassland"
+1:14/0/custom_data_2 = true
 33:20/size_in_atlas = Vector2i(3, 3)
 33:20/0 = 0
 33:20/0/physics_layer_0/polygon_0/points = PackedVector2Array(-25.754284, 10.332558, -24.82898, -9.715687, -12.491598, -18.66029, 10.024124, -11.874729, 17.426552, 8.481953, 12.4916, 25.44585, -26.062717, 25.137417)
+33:20/0/custom_data_0 = "foliage"
+33:20/0/custom_data_1 = "bushes"
+33:20/0/custom_data_2 = false
 
 [sub_resource type="TileSet" id="TileSet_1rcks"]
 physics_layer_0/collision_layer = 1
 physics_layer_0/physics_material = SubResource("PhysicsMaterial_xbcqt")
 physics_layer_1/collision_layer = 1
+custom_data_layer_0/name = "surface_type"
+custom_data_layer_0/type = 4
+custom_data_layer_1/name = "tile_name"
+custom_data_layer_1/type = 4
+custom_data_layer_2/name = "passable"
+custom_data_layer_2/type = 1
 sources/0 = SubResource("TileSetAtlasSource_2ilnj")
 
 [node name="Land" type="Node2D" unique_id=951509584]
