@@ -21,6 +21,7 @@ ExtResource("4_yt52m"): 3
 recipes = Array[ExtResource("7_s28s0")]([ExtResource("9_yt52m"), ExtResource("11_uwes3")])
 
 [node name="Crafter" parent="." unique_id=1414948611 instance=ExtResource("2_ri5ea")]
+recipies = Array[ExtResource("7_s28s0")]([ExtResource("9_yt52m"), ExtResource("11_uwes3")])
 
 [node name="Inventory" parent="." unique_id=1901847656 instance=ExtResource("3_bnw5g")]
 
@@ -32,5 +33,3 @@ inventory = NodePath("../../Inventory")
 [node name="CraftingUI" parent="CanvasLayer" unique_id=1463781399 node_paths=PackedStringArray("crafter", "inventory") instance=ExtResource("1_hwone")]
 crafter = NodePath("../../Crafter")
 inventory = NodePath("../../Inventory")
-
-[connection signal="item_updated" from="Inventory" to="CanvasLayer/InventoryUI" method="_handle_item_updated"]

@@ -4,6 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://dxotka7sicu1l" path="res://assets/textures/temporaryPlayer.png" id="2_cvtd2"]
 [ext_resource type="PackedScene" uid="uid://c37b7ydq2nrlk" path="res://systems/inventory/inventory.tscn" id="2_et4on"]
 [ext_resource type="PackedScene" uid="uid://cllcphk0k7wx8" path="res://world/interactables/interaction_field.tscn" id="3_cvtd2"]
+[ext_resource type="PackedScene" uid="uid://834qgegb5pgc" path="res://systems/crafting/crafter.tscn" id="3_duds0"]
+[ext_resource type="Script" uid="uid://cigr60qq0xek4" path="res://data/craft_recipes/CraftRecipe.gd" id="4_d3e1v"]
+[ext_resource type="Resource" uid="uid://c3iriustqa4g1" path="res://data/craft_recipes/campfire.tres" id="5_4br6r"]
 [ext_resource type="PackedScene" uid="uid://epcwklg6i4ni" path="res://ui/game/popups/interact_popup.tscn" id="5_duds0"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_bvkkv"]
@@ -206,11 +209,11 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bvkkv"]
-radius = 5.0
+radius = 6.0
 height = 20.0
 
 [node name="Player" type="CharacterBody2D" unique_id=524976522]
-collision_mask = 12
+collision_mask = 8
 script = ExtResource("1_bvkkv")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1316071739]
@@ -218,13 +221,16 @@ replication_config = SubResource("SceneReplicationConfig_bvkkv")
 
 [node name="Inventory" parent="." unique_id=1273046441 instance=ExtResource("2_et4on")]
 
+[node name="Crafter" parent="." unique_id=724726434 instance=ExtResource("3_duds0")]
+recipies = Array[ExtResource("4_d3e1v")]([ExtResource("5_4br6r")])
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1503866388]
 position = Vector2(0, -17)
 sprite_frames = SubResource("SpriteFrames_ljdef")
 animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=957849651]
-position = Vector2(1, -9)
+position = Vector2(0, -9)
 shape = SubResource("CapsuleShape2D_bvkkv")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1451487643]

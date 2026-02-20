@@ -2,14 +2,7 @@ class_name Crafter
 extends Node
 
 
-signal recipe_added(recipe: CraftRecipe)
-
-var recipies: Array[CraftRecipe]
-
-
-func add(recipe: CraftRecipe) -> void:
-	recipies.push_back(recipe)
-	recipe_added.emit(recipe)
+@export var recipies: Array[CraftRecipe]
 
 
 func get_recipe(item: Item) -> CraftRecipe:

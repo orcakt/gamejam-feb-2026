@@ -14,17 +14,23 @@ var recipies: Dictionary[Item, CraftRecipe]
 var current_recipe: CraftRecipe
 
 
-func open() -> void:
-	# load up the possible craftables
-	for recipe in recipies.values():
+func setup(reps: Array[CraftRecipe]) -> void:
+	for recipe in reps:
+		recipies[recipe.output] = recipe
 		output_container.add(recipe.output)
-	
+
+
+func open() -> void:
 	# set the inputs for the current output
 	current_recipe = recipies.values()[recipies.values().size() - 1]
 	_reset_inputs(current_recipe.inputs)
 	
 	# reveal the ui
 	visible = true
+
+
+func close() -> void:
+	visible = false
 
 
 func focus_next() -> void:

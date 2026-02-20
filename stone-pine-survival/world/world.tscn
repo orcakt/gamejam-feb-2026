@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://k6yln3mi02dr" path="res://world/world.gd" id="1_tcf2h"]
 [ext_resource type="Script" uid="uid://s7vsu7dxf4xq" path="res://world/daynightcycle.gd" id="2_tcf2h"]
 [ext_resource type="PackedScene" uid="uid://bgjr2upoa7ib1" path="res://world/terrain/land.tscn" id="3_4717r"]
+[ext_resource type="PackedScene" uid="uid://dvu1o1sobdo3q" path="res://ui/game/crafting/crafting_ui.tscn" id="4_fn3g3"]
 [ext_resource type="PackedScene" uid="uid://7gnb6xwj20sy" path="res://ui/game/campfire/campfire_ui.tscn" id="4_mmdvd"]
 [ext_resource type="PackedScene" uid="uid://diagt3m0ao5nj" path="res://ui/game/inventory_ui.tscn" id="5_fn3g3"]
 
@@ -35,6 +36,9 @@ spawn_path = NodePath("../Players")
 [node name="Players" type="Node2D" parent="." unique_id=1627319672]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=930521172]
+
+[node name="CraftingUI" parent="CanvasLayer" unique_id=352761751 instance=ExtResource("4_fn3g3")]
+unique_name_in_owner = true
 
 [node name="CampfireUI" parent="CanvasLayer" unique_id=35315147 instance=ExtResource("4_mmdvd")]
 unique_name_in_owner = true

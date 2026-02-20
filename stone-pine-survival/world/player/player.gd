@@ -9,10 +9,12 @@ enum InputState {
 
 const SPEED = 100.0
 
+@export var crafting_ui: CraftingUI
 @export var campfire_ui: CampfireUI
 @export var inventory_ui: InventoryUI
 
 @onready var interaction_field: InteractionField = $InteractionField
+@onready var crafter: Crafter = $Crafter
 @onready var inventory: Inventory = $Inventory
 @onready var interact_popup: InteractPopup = %InteractPopup
 
@@ -23,6 +25,10 @@ func _ready() -> void:
 	# Only enable camera for the local player
 	$Camera2D.enabled = is_multiplayer_authority()
 	inventory.item_updated.connect(inventory_ui._handle_item_updated)
+	
+	# setup crafter
+	crafting_ui.crafter = crafter
+	crafting_ui.inventory = inventory
 
 
 func _physics_process(delta):
@@ -86,21 +92,29 @@ func _world_inputs(event: InputEvent) -> void:
 			# open campfire ui
 			campfire_ui.open(interactable)
 			inventory_ui.open()
-			
 			input_state = InputState.UI
+	elif event.is_action_pressed("open_crafting_menu"):
+		crafting_ui.open()
+		inventory_ui.open()
+		input_state = InputState.UI
 	elif event.is_action_pressed("open_inventory"):
 		inventory_ui.open()
-		
 		input_state = InputState.UI
 
 
 func _ui_inputs(event: InputEvent) -> void:
+	if event.is_action_pressed("craft_item") && crafting_ui.visible:
+		crafting_ui.try_craft()
 	if event.is_action_pressed("ui_cancel"):
 		inventory_ui.close()
 		
 		if campfire_ui.connected():
 			campfire_ui.close()
-			
+		
+		input_state = InputState.WORLD
+	elif event.is_action_pressed("open_crafting_menu") && crafting_ui.visible:
+		crafting_ui.close()
+		inventory_ui.close()
 		input_state = InputState.WORLD
 	elif event.is_action_pressed("open_inventory") && inventory_ui.visible:
 		inventory_ui.close()
@@ -116,10 +130,14 @@ func _ui_inputs(event: InputEvent) -> void:
 		else:
 			# offer player feedback to know the item cannot burn
 			pass
-	elif event.is_action_pressed("ui_left"):
-		inventory_ui.prev_item()
+	elif event.is_action_pressed("ui_right") && crafting_ui.visible:
+		crafting_ui.focus_next()
+	elif event.is_action_pressed("ui_left") && crafting_ui.visible:
+		crafting_ui.focus_prev()
 	elif event.is_action_pressed("ui_right"):
 		inventory_ui.next_item()
+	elif event.is_action_pressed("ui_left"):
+		inventory_ui.prev_item()
 
 
 func _on_interaction_field_near_interactable() -> void:

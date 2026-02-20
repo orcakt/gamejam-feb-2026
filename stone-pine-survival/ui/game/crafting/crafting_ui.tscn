@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://dvu1o1sobdo3q"]
+[gd_scene format=3 uid="uid://dvu1o1sobdo3q"]
 
 [ext_resource type="Script" uid="uid://egdwp5pke76g" path="res://ui/game/crafting/crafting_ui.gd" id="1_uylle"]
 [ext_resource type="PackedScene" uid="uid://dk85oqiv8k8uw" path="res://ui/game/crafting/output_container.tscn" id="2_21hoc"]
 
-[node name="CraftingUI" type="Control"]
+[node name="CraftingUI" type="Control" unique_id=574459549]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -14,7 +14,7 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_uylle")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1401297339]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -27,11 +27,11 @@ theme_override_constants/margin_top = 64
 theme_override_constants/margin_right = 64
 theme_override_constants/margin_bottom = 64
 
-[node name="ColorRect" type="ColorRect" parent="MarginContainer"]
+[node name="ColorRect" type="ColorRect" parent="MarginContainer" unique_id=1544192824]
 layout_mode = 2
 color = Color(0.023529412, 0.03529412, 0.12156863, 1)
 
-[node name="LblTitle" type="Label" parent="MarginContainer/ColorRect"]
+[node name="LblTitle" type="Label" parent="MarginContainer/ColorRect" unique_id=587802389]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -45,7 +45,7 @@ text = "CRAFTING"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="InputContainer" type="HBoxContainer" parent="MarginContainer/ColorRect"]
+[node name="InputContainer" type="HBoxContainer" parent="MarginContainer/ColorRect" unique_id=919317969]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 140)
 layout_mode = 1
@@ -60,7 +60,7 @@ grow_horizontal = 2
 theme_override_constants/separation = 16
 alignment = 1
 
-[node name="LblInput" type="Label" parent="MarginContainer/ColorRect"]
+[node name="LblInput" type="Label" parent="MarginContainer/ColorRect" unique_id=2143814081]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -74,7 +74,7 @@ theme_override_colors/font_color = Color(1, 0.91764706, 0.3882353, 1)
 theme_override_font_sizes/font_size = 20
 text = "INPUTS"
 
-[node name="OutputContainer" parent="MarginContainer/ColorRect" instance=ExtResource("2_21hoc")]
+[node name="OutputContainer" parent="MarginContainer/ColorRect" unique_id=919512543 instance=ExtResource("2_21hoc")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 140)
 layout_mode = 1
@@ -88,7 +88,7 @@ offset_bottom = -110.0
 grow_vertical = 0
 alignment = 1
 
-[node name="LblOutputs" type="Label" parent="MarginContainer/ColorRect"]
+[node name="LblOutputs" type="Label" parent="MarginContainer/ColorRect" unique_id=11880749]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5

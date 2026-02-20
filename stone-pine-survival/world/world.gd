@@ -1,3 +1,4 @@
+class_name World
 extends Node2D
 
 # Preload player scene for spawning
@@ -6,6 +7,7 @@ const PLAYER_SCENE = preload("res://world/player/player.tscn")
 @export var spawn_point: Marker2D
 @export var spawn_spacing: int = 100
 
+@onready var crafting_ui: CraftingUI = %CraftingUI
 @onready var campfire_ui: CampfireUI = %CampfireUI
 @onready var inventory_ui: InventoryUI = %InventoryUI
 
@@ -53,9 +55,11 @@ func _spawn_player(peer_id: int) -> void:
 	# connect UI
 	player.inventory_ui = inventory_ui
 	player.campfire_ui = campfire_ui
+	player.crafting_ui = crafting_ui
 	
 	# Add to scene, second parameter 'true' means force readable name
 	$Players.add_child(player, true)
+	player.crafting_ui.setup(player.crafter.recipies)
 	
 	# Assign multiplayer authority to the owning peer
 	player.set_multiplayer_authority(peer_id)

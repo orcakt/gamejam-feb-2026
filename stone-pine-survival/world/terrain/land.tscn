@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://dqg5knenkkk21" path="res://assets/textures/temporaryTilemap_stonepine2026.png" id="1_xbcqt"]
 [ext_resource type="PackedScene" uid="uid://c5n4omxism1tl" path="res://world/items/world_item.tscn" id="2_1rcks"]
 [ext_resource type="Resource" uid="uid://cbo8yid1nwxh1" path="res://data/items/berry.tres" id="3_fvoey"]
+[ext_resource type="Resource" uid="uid://m0lwpdmuf2p8" path="res://data/items/stone.tres" id="5_ho114"]
+[ext_resource type="Resource" uid="uid://b67dkh1b4y8w2" path="res://data/items/stick.tres" id="6_jsbd4"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xbcqt"]
 
@@ -74,3 +76,75 @@ item = ExtResource("3_fvoey")
 [node name="Berry5" parent="Resources" unique_id=1039629354 instance=ExtResource("2_1rcks")]
 position = Vector2(959, 459)
 item = ExtResource("3_fvoey")
+
+[node name="Stone1" parent="Resources" unique_id=115066038 instance=ExtResource("2_1rcks")]
+position = Vector2(406, 57)
+item = ExtResource("5_ho114")
+
+[node name="Stone2" parent="Resources" unique_id=1123471469 instance=ExtResource("2_1rcks")]
+position = Vector2(479, 97)
+item = ExtResource("5_ho114")
+
+[node name="Stone3" parent="Resources" unique_id=396409594 instance=ExtResource("2_1rcks")]
+position = Vector2(555, 151)
+item = ExtResource("5_ho114")
+
+[node name="Stone4" parent="Resources" unique_id=349682006 instance=ExtResource("2_1rcks")]
+position = Vector2(586, 183)
+item = ExtResource("5_ho114")
+
+[node name="Stone5" parent="Resources" unique_id=637884725 instance=ExtResource("2_1rcks")]
+position = Vector2(496, 127)
+item = ExtResource("5_ho114")
+
+[node name="Stone6" parent="Resources" unique_id=1393952661 instance=ExtResource("2_1rcks")]
+position = Vector2(637, 203)
+item = ExtResource("5_ho114")
+
+[node name="Stone7" parent="Resources" unique_id=1901725863 instance=ExtResource("2_1rcks")]
+position = Vector2(528, 139)
+item = ExtResource("5_ho114")
+
+[node name="Stone8" parent="Resources" unique_id=1760593732 instance=ExtResource("2_1rcks")]
+position = Vector2(446, 78)
+item = ExtResource("5_ho114")
+
+[node name="Stone9" parent="Resources" unique_id=1175674667 instance=ExtResource("2_1rcks")]
+position = Vector2(671, 244)
+item = ExtResource("5_ho114")
+
+[node name="Stone10" parent="Resources" unique_id=636221697 instance=ExtResource("2_1rcks")]
+position = Vector2(708, 267)
+item = ExtResource("5_ho114")
+
+[node name="Stone11" parent="Resources" unique_id=1188800490 instance=ExtResource("2_1rcks")]
+position = Vector2(613, 205)
+item = ExtResource("5_ho114")
+
+[node name="Stone12" parent="Resources" unique_id=1235040629 instance=ExtResource("2_1rcks")]
+position = Vector2(373, 36)
+item = ExtResource("5_ho114")
+
+[node name="Stick1" parent="Resources" unique_id=1139459988 instance=ExtResource("2_1rcks")]
+position = Vector2(189, 485)
+item = ExtResource("6_jsbd4")
+
+[node name="Stick2" parent="Resources" unique_id=2053788107 instance=ExtResource("2_1rcks")]
+position = Vector2(296, 453)
+item = ExtResource("6_jsbd4")
+
+[node name="Stick3" parent="Resources" unique_id=1776013776 instance=ExtResource("2_1rcks")]
+position = Vector2(390, 466)
+item = ExtResource("6_jsbd4")
+
+[node name="Stick4" parent="Resources" unique_id=97495083 instance=ExtResource("2_1rcks")]
+position = Vector2(466, 457)
+item = ExtResource("6_jsbd4")
+
+[node name="Stick5" parent="Resources" unique_id=1034493760 instance=ExtResource("2_1rcks")]
+position = Vector2(525, 446)
+item = ExtResource("6_jsbd4")
+
+[node name="Stick6" parent="Resources" unique_id=547030384 instance=ExtResource("2_1rcks")]
+position = Vector2(590, 437)
+item = ExtResource("6_jsbd4")
