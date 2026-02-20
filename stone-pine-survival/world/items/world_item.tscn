@@ -12,7 +12,8 @@ collision_mask = 2
 script = ExtResource("1_1v5c6")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2012819945]
-scale = Vector2(0.051757816, 0.051757816)
+position = Vector2(5.9604645e-08, 5.9604645e-08)
+scale = Vector2(0.078125, 0.078125)
 texture = ExtResource("2_4innt")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=796612924]

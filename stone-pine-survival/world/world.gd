@@ -1,10 +1,18 @@
+class_name World
 extends Node2D
 
 # Preload player scene for spawning
 const PLAYER_SCENE = preload("res://world/player/player.tscn")
 
+@export var spawn_point: Marker2D
+@export var spawn_spacing: int = 100
+
+@onready var crafting_ui: CraftingUI = %CraftingUI
+@onready var campfire_ui: CampfireUI = %CampfireUI
+@onready var inventory_ui: InventoryUI = %InventoryUI
+
 # Track spawned players by peer_id
-var players: Dictionary = {}
+var players: Dictionary[int, Player]
 
 
 func _ready() -> void:
@@ -45,30 +53,32 @@ func _on_peer_disconnected(peer_id: int) -> void:
 func _spawn_player(peer_id: int) -> void:
 	if peer_id in players:
 		return
-
-	var player = PLAYER_SCENE.instantiate()
+	
+	var player: Player = PLAYER_SCENE.instantiate()
 	player.name = "Player" + str(peer_id)
-
+	
 	# we'll change this once we have logic for this
 	player.position = _get_spawn_position(peer_id)
-
+	
+	# connect UI
+	player.inventory_ui = inventory_ui
+	player.campfire_ui = campfire_ui
+	player.crafting_ui = crafting_ui
+	
 	# Add to scene, second parameter 'true' means force readable name
 	$Players.add_child(player, true)
-
+	player.crafting_ui.setup(player.crafter.recipies)
+	
 	# Assign multiplayer authority to the owning peer
 	player.set_multiplayer_authority(peer_id)
-
+	
 	players[peer_id] = player
-
+	
 	print("Spawned player for peer %d at position %s (Authority: %d)" % [peer_id, player.position, player.get_multiplayer_authority()])
 
 
 func _get_spawn_position(peer_id: int) -> Vector2:
-	var base_x = 100
-	var base_y = 100
-	var offset = 50
-
-	var x = base_x + ((peer_id - 1) * offset)
-	var y = base_y
-
-	return Vector2(x, y)
+	return Vector2(
+		spawn_point.global_position.x + ((peer_id - 1) * spawn_spacing),
+		spawn_point.global_position.y
+	)

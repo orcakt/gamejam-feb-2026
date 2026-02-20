@@ -13,9 +13,6 @@ extends Node
 func _ready() -> void:
 	for item in items:
 		inventory.add(item, items[item])
-	
-	for recipe in recipes:
-		crafter.add(recipe)
 
 
 func _input(event) -> void:

@@ -15,7 +15,9 @@ var focused_index: int
 func open() -> void:
 	visible = true
 	focused_index = 0
-	item_list.select(0)
+	
+	if item_dict.size() > 0: 
+		item_list.select(0)
 
 
 func close() -> void:
@@ -23,15 +25,24 @@ func close() -> void:
 
 
 func select_item() -> Item:
+	# no movement if no items
+	if item_dict.size() == 0: return null
+	
 	return item_dict.find_key(focused_index)
 
 
 func next_item() -> void:
+	# no movement if no items
+	if item_dict.size() == 0: return
+	
 	focused_index = (focused_index + 1) % item_dict.size()
 	item_list.select(focused_index)
 
 
 func prev_item() -> void:
+	# no movement if no items
+	if item_dict.size() == 0: return
+	
 	focused_index = (focused_index - 1) % item_dict.size()
 	item_list.select(focused_index)
 

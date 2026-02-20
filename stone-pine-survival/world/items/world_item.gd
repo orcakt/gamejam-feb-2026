@@ -8,6 +8,6 @@ extends Interactable
 @onready var audio_stream: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 
-func setup(data: Item) -> void:
-	sprite_2d.texture = data.texture
-	audio_stream.stream = data.stream
+func setup() -> void:
+	sprite_2d.texture = item.texture
+	#audio_stream.stream = item.stream
