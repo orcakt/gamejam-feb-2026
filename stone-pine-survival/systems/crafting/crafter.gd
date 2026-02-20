@@ -1,6 +1,7 @@
 class_name Crafter
 extends Node
 
+
 signal recipe_added(recipe: CraftRecipe)
 
 var recipies: Array[CraftRecipe]

@@ -2,10 +2,34 @@
 
 [ext_resource type="PackedScene" uid="uid://dsjtoq57s78y6" path="res://world/player/player.tscn" id="1_fcdxs"]
 [ext_resource type="PackedScene" uid="uid://c5n4omxism1tl" path="res://world/items/world_item.tscn" id="2_fcdxs"]
+[ext_resource type="Resource" uid="uid://b67dkh1b4y8w2" path="res://data/items/stick.tres" id="3_1mk4n"]
+[ext_resource type="PackedScene" uid="uid://cduadmqriffat" path="res://world/camp/campfire.tscn" id="3_j5o7t"]
+[ext_resource type="PackedScene" uid="uid://7gnb6xwj20sy" path="res://ui/game/campfire/campfire_ui.tscn" id="4_d4uww"]
+[ext_resource type="PackedScene" uid="uid://diagt3m0ao5nj" path="res://ui/game/inventory_ui.tscn" id="5_xkolb"]
 
 [node name="TestInteractions" type="Node" unique_id=1754436492]
 
-[node name="Player" parent="." unique_id=1450695958 instance=ExtResource("1_fcdxs")]
+[node name="Player" parent="." unique_id=1450695958 node_paths=PackedStringArray("campfire_ui", "inventory_ui") instance=ExtResource("1_fcdxs")]
+campfire_ui = NodePath("../CanvasLayer/CampfireUI")
+inventory_ui = NodePath("../CanvasLayer/InventoryUI")
 
 [node name="WorldItem" parent="." unique_id=1069644532 instance=ExtResource("2_fcdxs")]
 position = Vector2(0, -35)
+item = ExtResource("3_1mk4n")
+
+[node name="WorldItem2" parent="." unique_id=1537467193 instance=ExtResource("2_fcdxs")]
+position = Vector2(-23, -26)
+item = ExtResource("3_1mk4n")
+
+[node name="WorldItem3" parent="." unique_id=346009173 instance=ExtResource("2_fcdxs")]
+position = Vector2(22, -26)
+item = ExtResource("3_1mk4n")
+
+[node name="Campfire" parent="." unique_id=1333735154 instance=ExtResource("3_j5o7t")]
+position = Vector2(0, 37)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=322752682]
+
+[node name="CampfireUI" parent="CanvasLayer" unique_id=35315147 instance=ExtResource("4_d4uww")]
+
+[node name="InventoryUI" parent="CanvasLayer" unique_id=1558702918 instance=ExtResource("5_xkolb")]
