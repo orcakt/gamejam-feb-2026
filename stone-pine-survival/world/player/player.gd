@@ -129,36 +129,35 @@ func _on_interaction_field_no_interactables() -> void:
 	interact_popup.close()
 
 
-# spatial sense debug hotkey
+# spatial sense debug hotkey — announces surroundings via screen reader
 func _unhandled_input(event: InputEvent) -> void:
 	if not is_multiplayer_authority():
 		return
 	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_T:
-		print("  global_position : ", global_position)
-		print("  velocity        : ", velocity)
-		print("  facing direction: ", SpatialSense.velocity_to_direction_name(velocity))
+		var facing := SpatialSense.velocity_to_direction_name(velocity)
 		var tile := SpatialSense.query_tile_at(global_position)
-		print("  tile found      : ", tile.found)
-		print("  tile layer      : ", tile.layer_name)
-		print("  tile surface    : ", tile.surface_type)
-		print("  tile name       : ", tile.tile_name)
-		print("  tile passable   : ", tile.is_passable)
-		print("  describe_tile   : ", SpatialSense.describe_tile_at(global_position))
-		print("  scan_surroundings:")
+		var surface := tile.surface_type if tile.found and tile.surface_type != "" else "unknown"
+
+		var parts: Array[String] = []
+		parts.append("Position: %d, %d" % [roundi(global_position.x), roundi(global_position.y)])
+		parts.append("Facing: %s" % facing)
+		parts.append("Surface: %s" % surface)
+
 		var scan := scan_surroundings()
-		for dir in scan:
-			print("    ", dir, " -> ", scan[dir])
-		print("  scan_nodes_all_directions (layer 4, r=300):")
-		var node_scan := SpatialSense.scan_nodes_all_directions(global_position, 300.0, 4, [get_rid()])
-		for dir in node_scan:
-			var r: SpatialSense.NodeQueryResult = node_scan[dir]
-			if r.found:
-				print("    ", dir, " -> ", r.node_name, " (", snappedf(r.distance, 0.1), "px)")
-			else:
-				print("    ", dir, " -> open")
-		print("  get_nodes_in_radius (layer 4, r=200):")
+		var obstacles: Array[String] = []
+		for dir: String in ["north", "northeast", "east", "southeast", "south", "southwest", "west", "northwest"]:
+			if scan[dir] != "open":
+				obstacles.append("%s: %s" % [dir, scan[dir]])
+		if obstacles.is_empty():
+			parts.append("Surroundings: open")
+		else:
+			parts.append("Obstacles: " + ", ".join(obstacles))
+
 		var nearby := SpatialSense.get_nodes_in_radius(global_position, 200.0, 4, [get_rid()])
-		if nearby.is_empty():
-			print("    (none)")
-		for r: SpatialSense.NodeQueryResult in nearby:
-			print("    ", r.node_name, " @ ", r.direction, " (", snappedf(r.distance, 0.1), "px)")
+		if not nearby.is_empty():
+			var node_parts: Array[String] = []
+			for r: SpatialSense.NodeQueryResult in nearby:
+				node_parts.append("%s to the %s at %d pixels" % [r.node_name, r.direction, roundi(r.distance)])
+			parts.append("Nearby: " + ", ".join(node_parts))
+
+		ScreenReader.speak(". ".join(parts))
