@@ -16,6 +16,14 @@ var players: Dictionary[int, Player]
 
 
 func _ready() -> void:
+	# Register terrain layers for spatial queries
+	SpatialSense.register_tilemap_layers(
+		$Land.get_node("TileMapLayer"),
+		$Land.get_node("TileMapLayer2"),
+		$Land.get_node("TileMapLayer3"),
+		$Land.get_node("TileMapLayer4")
+	)
+
 	if not multiplayer.has_multiplayer_peer():
 		push_warning("No multiplayer peer found in world scene")
 		return
