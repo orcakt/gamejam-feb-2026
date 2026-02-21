@@ -16,8 +16,10 @@ gradient = SubResource("Gradient_tcf2h")
 script = ExtResource("1_tcf2h")
 
 [node name="Land" parent="." unique_id=951509584 instance=ExtResource("3_4717r")]
+position = Vector2(0, -5)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=759626646]
+visible = false
 color = Color(0.052388564, 0.050778426, 0.2621302, 1)
 script = ExtResource("2_tcf2h")
 gradient = SubResource("GradientTexture1D_4717r")
@@ -27,3 +29,4 @@ _spawnable_scenes = PackedStringArray("uid://dsjtoq57s78y6")
 spawn_path = NodePath("../Players")
 
 [node name="Players" type="Node2D" parent="." unique_id=1627319672]
+position = Vector2(-1, -1)

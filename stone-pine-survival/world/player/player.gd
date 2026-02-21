@@ -22,7 +22,7 @@ var input_state: InputState
 func _ready() -> void:
 	# Only enable camera for the local player
 	$Camera2D.enabled = is_multiplayer_authority()
-	inventory.item_updated.connect(inventory_ui._handle_item_updated)
+	#inventory.item_updated.connect(inventory_ui._handle_item_updated)
 
 
 func _physics_process(delta):

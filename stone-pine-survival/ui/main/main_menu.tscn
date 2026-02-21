@@ -34,28 +34,15 @@ focus_next = NodePath("../HostButton")
 [node name="HostButton" type="Button" parent="VBoxContainer" unique_id=933761950]
 unique_name_in_owner = true
 layout_mode = 2
-<<<<<<< HEAD
-focus_neighbor_left = NodePath("../RoomCodeInput")
-focus_neighbor_top = NodePath("../RoomCodeInput")
-focus_neighbor_right = NodePath("../JoinButton")
-focus_neighbor_bottom = NodePath("../JoinButton")
-focus_next = NodePath("../JoinButton")
-focus_previous = NodePath(".")
-=======
 focus_neighbor_top = NodePath("../RoomCodeInput")
 focus_neighbor_bottom = NodePath("../JoinButton")
 focus_next = NodePath("../JoinButton")
 focus_previous = NodePath("../RoomCodeInput")
->>>>>>> origin/main
 text = "Host game"
 
 [node name="JoinButton" type="Button" parent="VBoxContainer" unique_id=860685893]
 unique_name_in_owner = true
 layout_mode = 2
-<<<<<<< HEAD
-focus_neighbor_left = NodePath("../HostButton")
-=======
->>>>>>> origin/main
 focus_neighbor_top = NodePath("../HostButton")
 focus_previous = NodePath("../HostButton")
 text = "Join game"

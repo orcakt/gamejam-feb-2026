@@ -1,14 +1,7 @@
 [gd_scene format=3 uid="uid://dsjtoq57s78y6"]
 
 [ext_resource type="Script" uid="uid://btfkhxegt31ik" path="res://world/player/player.gd" id="1_bvkkv"]
-<<<<<<< HEAD
 [ext_resource type="Texture2D" uid="uid://bwujr4wqcsgvr" path="res://assets/textures/anim_biologist.png" id="2_bvkkv"]
-=======
-[ext_resource type="Texture2D" uid="uid://dxotka7sicu1l" path="res://assets/textures/temporaryPlayer.png" id="2_cvtd2"]
-[ext_resource type="PackedScene" uid="uid://c37b7ydq2nrlk" path="res://systems/inventory/inventory.tscn" id="2_et4on"]
-[ext_resource type="PackedScene" uid="uid://cllcphk0k7wx8" path="res://world/interactables/interaction_field.tscn" id="3_cvtd2"]
-[ext_resource type="PackedScene" uid="uid://epcwklg6i4ni" path="res://ui/game/popups/interact_popup.tscn" id="5_duds0"]
->>>>>>> origin/main
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_bvkkv"]
 properties/0/path = NodePath(".:position")
@@ -109,16 +102,14 @@ radius = 5.0
 height = 20.0
 
 [node name="Player" type="CharacterBody2D" unique_id=524976522]
-collision_mask = 12
 script = ExtResource("1_bvkkv")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1316071739]
 replication_config = SubResource("SceneReplicationConfig_bvkkv")
 
-[node name="Inventory" parent="." unique_id=1273046441 instance=ExtResource("2_et4on")]
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1503866388]
 position = Vector2(0, -17)
+scale = Vector2(0.05, 0.05)
 sprite_frames = SubResource("SpriteFrames_ljdef")
 animation = &"walk_up"
 
@@ -128,13 +119,3 @@ shape = SubResource("CapsuleShape2D_bvkkv")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1451487643]
 zoom = Vector2(3, 3)
-
-[node name="InteractionField" parent="." unique_id=1182964430 instance=ExtResource("3_cvtd2")]
-
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=616254280]
-
-[node name="InteractPopup" parent="CanvasLayer" unique_id=1397782255 instance=ExtResource("5_duds0")]
-unique_name_in_owner = true
-
-[connection signal="near_interactable" from="InteractionField" to="." method="_on_interaction_field_near_interactable"]
-[connection signal="no_interactables" from="InteractionField" to="." method="_on_interaction_field_no_interactables"]
