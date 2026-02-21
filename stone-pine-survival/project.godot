@@ -22,13 +22,8 @@ config/icon="res://assets/textures/icon.svg"
 [autoload]
 
 NetworkManager="*res://systems/multiplayer/multiplayer_manager.tscn"
-GM="*uid://wc03ne58onqi"
 SpatialSense="*res://systems/sound/spatial_sense.gd"
 ScreenReader="*res://systems/accessibility/screen_reader.gd"
-
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/gmap_hotkeys/plugin.cfg")
 
 [file_customization]
 
@@ -43,6 +38,10 @@ folder_colors={
 "res://world/player/": "purple",
 "res://world/vines/": "purple"
 }
+
+[global_group]
+
+land=""
 
 [input]
 

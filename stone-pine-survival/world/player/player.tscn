@@ -8,7 +8,8 @@
 [ext_resource type="Script" uid="uid://cigr60qq0xek4" path="res://data/craft_recipes/CraftRecipe.gd" id="4_d3e1v"]
 [ext_resource type="Resource" uid="uid://c3iriustqa4g1" path="res://data/craft_recipes/campfire.tres" id="5_4br6r"]
 [ext_resource type="PackedScene" uid="uid://epcwklg6i4ni" path="res://ui/game/popups/interact_popup.tscn" id="5_duds0"]
-[ext_resource type="Script" uid="uid://dw42ydma8hux1" path="res://systems/sound/sound_pool.gd" id="6_sndpl"]
+[ext_resource type="Script" path="res://systems/sound/sound_pool.gd" id="6_sndpl"]
+[ext_resource type="PackedScene" uid="uid://chv81nccninet" path="res://world/player/item_placement.tscn" id="8_ljdef"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_bvkkv"]
 properties/0/path = NodePath(".:position")
@@ -272,6 +273,10 @@ collision_mask = 13
 [node name="NorthWest" type="RayCast2D" parent="RayCasts" unique_id=100000009]
 target_position = Vector2(-212, -212)
 collision_mask = 13
+
+[node name="ItemPlacement" parent="." unique_id=2061494542 instance=ExtResource("8_ljdef")]
+unique_name_in_owner = true
+position = Vector2(0, 15)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=616254280]
 
