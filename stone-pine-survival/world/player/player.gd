@@ -25,6 +25,9 @@ var _footstep_accum: float = 0.0
 @onready var crafter: Crafter = $Crafter
 @onready var inventory: Inventory = $Inventory
 @onready var interact_popup: InteractPopup = %InteractPopup
+@onready var item_placement: ItemPlacement = %ItemPlacement
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+
 
 var input_state: InputState
 
@@ -48,7 +51,11 @@ func setup_local_ui() -> void:
 func _physics_process(delta):
 	# Remote players will have their position synced via MultiplayerSynchronizer
 	if is_multiplayer_authority() && input_state == InputState.WORLD:
-		player_movement(delta)
+		var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+		player_movement(direction)
+		item_placement.face(direction)
+		
+		play_anim(direction)
 		_update_footsteps(delta)
 	elif not is_multiplayer_authority():
 		_update_footsteps(delta)
@@ -61,11 +68,11 @@ func _update_footsteps(delta: float) -> void:
 	if _footstep_accum < FOOTSTEP_DISTANCE:
 		return
 	_footstep_accum = fmod(_footstep_accum, FOOTSTEP_DISTANCE)
-
+	
 	var surface := SpatialSense.describe_tile_at(global_position)
 	if surface not in FOOTSTEP_SURFACES:
 		return
-
+	
 	var variation := randi_range(1, FOOTSTEP_VARIATIONS)
 	var path := "res://assets/sfx/steps/%s/%d.wav" % [surface, variation]
 	var pitch := randf_range(FOOTSTEP_PITCH_MIN, FOOTSTEP_PITCH_MAX)
@@ -85,40 +92,25 @@ func _input(event: InputEvent) -> void:
 			_ui_inputs(event)
 
 
-func player_movement(_delta):
-	var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	
+func player_movement(direction: Vector2) -> void:
 	velocity = direction * SPEED
-	if Input.is_action_pressed("ui_left"):
-		play_anim("left")
-	elif Input.is_action_pressed("ui_right"):
-		play_anim("right")
-	elif Input.is_action_pressed("ui_down"):
-		play_anim("down")
-	elif Input.is_action_pressed("ui_up"):
-		play_anim("up")
-	else:
-		play_anim("idle")
-	
 	move_and_slide()
 
 
-func play_anim(direction):
-	var anim = $AnimatedSprite2D
-	
+func play_anim(direction: Vector2) -> void:
 	match direction:
-		"right":
-			anim.flip_h = false
-			anim.play("walk_side")
-		"left":
-			anim.flip_h = true
-			anim.play("walk_side")
-		"down":
-			anim.play("walk_down")
-		"up":
-			anim.play("walk_up")
-		"idle":
-			anim.play("idle")
+		Vector2.RIGHT:
+			animated_sprite.flip_h = false
+			animated_sprite.play("walk_side")
+		Vector2.LEFT:
+			animated_sprite.flip_h = true
+			animated_sprite.play("walk_side")
+		Vector2.DOWN:
+			animated_sprite.play("walk_down")
+		Vector2.UP:
+			animated_sprite.play("walk_up")
+		Vector2.ZERO:
+			animated_sprite.play("idle")
 
 
 func scan_surroundings() -> Dictionary:
@@ -151,7 +143,14 @@ func get_facing_ray() -> RayCast2D:
 
 
 func _world_inputs(event: InputEvent) -> void:
-	if event.is_action_pressed("interact") && interaction_field.can_interact():
+	if event.is_action_pressed("interact") && item_placement.is_holding():
+		var item = item_placement.release()
+		inventory.remove(item)
+		interact_popup.close()
+	elif event.is_action_pressed("ui_cancel") && item_placement.is_holding():
+		item_placement.cancel()
+		interact_popup.close()
+	elif event.is_action_pressed("interact") && interaction_field.can_interact():
 		var interactable: Interactable = interaction_field.interact(global_position)
 		if interactable is WorldItem:
 			# add item to inventory
@@ -172,8 +171,6 @@ func _world_inputs(event: InputEvent) -> void:
 
 
 func _ui_inputs(event: InputEvent) -> void:
-	if event.is_action_pressed("craft_item") && crafting_ui.visible:
-		crafting_ui.try_craft()
 	if event.is_action_pressed("ui_cancel"):
 		inventory_ui.close()
 		
@@ -181,6 +178,8 @@ func _ui_inputs(event: InputEvent) -> void:
 			campfire_ui.close()
 		
 		input_state = InputState.WORLD
+	elif event.is_action_pressed("craft_item") && crafting_ui.visible:
+		crafting_ui.try_craft()
 	elif event.is_action_pressed("open_crafting_menu") && crafting_ui.visible:
 		crafting_ui.close()
 		inventory_ui.close()
@@ -188,17 +187,26 @@ func _ui_inputs(event: InputEvent) -> void:
 	elif event.is_action_pressed("open_inventory") && inventory_ui.visible:
 		inventory_ui.close()
 		input_state = InputState.WORLD
+	elif event.is_action_pressed("interact") && campfire_ui.connected():
+		campfire_ui.close()
+		inventory_ui.close()
+		input_state = InputState.WORLD
 	elif event.is_action_pressed("ui_accept"):
-		if campfire_ui.connected():
-			var item = inventory_ui.select_item()
-			var burnable = campfire_ui.campfire.add_fuel(item)
+		var item = inventory_ui.select_item()
 		
-			if burnable:
-				# remove item from inventory
-				inventory.remove(item)
-		else:
-			# offer player feedback to know the item cannot burn
-			pass
+		if campfire_ui.connected() && item.burnable:
+			# use item as fuel
+			campfire_ui.campfire.add_fuel(item)
+			inventory.remove(item)
+		elif item.placeable:
+			# allow player to place item where they want
+			item_placement.hold(item)
+			inventory_ui.close()
+			
+			interact_popup.set_msg(InteractPopup.Message.PLACE)
+			interact_popup.open()
+			
+			input_state = InputState.WORLD
 	elif event.is_action_pressed("ui_right") && crafting_ui.visible:
 		crafting_ui.focus_next()
 	elif event.is_action_pressed("ui_left") && crafting_ui.visible:
@@ -210,7 +218,9 @@ func _ui_inputs(event: InputEvent) -> void:
 
 
 func _on_interaction_field_near_interactable() -> void:
+	interact_popup.set_msg(InteractPopup.Message.INTERACT)
 	interact_popup.open()
+
 
 func _on_interaction_field_no_interactables() -> void:
 	interact_popup.close()

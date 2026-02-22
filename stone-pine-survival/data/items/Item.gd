@@ -9,3 +9,4 @@ extends Resource
 @export var edible: bool
 @export var craftable: bool
 @export var wieldable: bool
+@export var placeable: bool

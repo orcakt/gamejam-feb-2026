@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://chv81nccninet"]
+
+[ext_resource type="Script" uid="uid://byshcpttavtru" path="res://world/player/item_placement.gd" id="1_rccb0"]
+[ext_resource type="Script" uid="uid://dwciga0bdgevv" path="res://data/items/Item.gd" id="2_v6uit"]
+[ext_resource type="Resource" uid="uid://cejlk0i086d8u" path="res://data/items/campfire.tres" id="3_54uh4"]
+
+[node name="ItemPlacement" type="Sprite2D" unique_id=583908452]
+script = ExtResource("1_rccb0")
+items = Dictionary[ExtResource("2_v6uit"), String]({
+ExtResource("3_54uh4"): "res://world/camp/campfire.tscn"
+})

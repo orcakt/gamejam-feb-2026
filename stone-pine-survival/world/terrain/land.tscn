@@ -28,7 +28,6 @@ texture_region_size = Vector2i(18, 18)
 1:9/0/physics_layer_1/polygon_0/points = PackedVector2Array(-97.28401, 25.652, -98.25201, -34.364006, 96.31601, -32.428, 97.284, 35.33201)
 1:9/0/custom_data_0 = "water"
 1:9/0/custom_data_1 = "river"
-1:9/0/custom_data_2 = false
 1:14/size_in_atlas = Vector2i(11, 3)
 1:14/0 = 0
 1:14/0/custom_data_0 = "grass"
@@ -39,7 +38,6 @@ texture_region_size = Vector2i(18, 18)
 33:20/0/physics_layer_0/polygon_0/points = PackedVector2Array(-25.754284, 10.332558, -24.82898, -9.715687, -12.491598, -18.66029, 10.024124, -11.874729, 17.426552, 8.481953, 12.4916, 25.44585, -26.062717, 25.137417)
 33:20/0/custom_data_0 = "foliage"
 33:20/0/custom_data_1 = "bushes"
-33:20/0/custom_data_2 = false
 
 [sub_resource type="TileSet" id="TileSet_1rcks"]
 physics_layer_0/collision_layer = 1
@@ -53,7 +51,7 @@ custom_data_layer_2/name = "passable"
 custom_data_layer_2/type = 1
 sources/0 = SubResource("TileSetAtlasSource_2ilnj")
 
-[node name="Land" type="Node2D" unique_id=951509584]
+[node name="Land" type="Node2D" unique_id=951509584 groups=["land"]]
 script = ExtResource("1_fvoey")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1874961641]
@@ -147,7 +145,7 @@ position = Vector2(373, 36)
 item = ExtResource("5_ho114")
 
 [node name="Stick1" parent="Resources" unique_id=1139459988 instance=ExtResource("2_1rcks")]
-position = Vector2(189, 485)
+position = Vector2(211, 473)
 item = ExtResource("6_jsbd4")
 
 [node name="Stick2" parent="Resources" unique_id=2053788107 instance=ExtResource("2_1rcks")]
@@ -155,7 +153,7 @@ position = Vector2(296, 453)
 item = ExtResource("6_jsbd4")
 
 [node name="Stick3" parent="Resources" unique_id=1776013776 instance=ExtResource("2_1rcks")]
-position = Vector2(390, 466)
+position = Vector2(395, 455)
 item = ExtResource("6_jsbd4")
 
 [node name="Stick4" parent="Resources" unique_id=97495083 instance=ExtResource("2_1rcks")]
@@ -167,5 +165,21 @@ position = Vector2(525, 446)
 item = ExtResource("6_jsbd4")
 
 [node name="Stick6" parent="Resources" unique_id=547030384 instance=ExtResource("2_1rcks")]
-position = Vector2(590, 437)
+position = Vector2(611, 441)
+item = ExtResource("6_jsbd4")
+
+[node name="Stick7" parent="Resources" unique_id=1507398055 instance=ExtResource("2_1rcks")]
+position = Vector2(166, 478)
+item = ExtResource("6_jsbd4")
+
+[node name="Stick8" parent="Resources" unique_id=2025079775 instance=ExtResource("2_1rcks")]
+position = Vector2(367, 459)
+item = ExtResource("6_jsbd4")
+
+[node name="Stick9" parent="Resources" unique_id=1874766490 instance=ExtResource("2_1rcks")]
+position = Vector2(502, 439)
+item = ExtResource("6_jsbd4")
+
+[node name="Stick10" parent="Resources" unique_id=403179923 instance=ExtResource("2_1rcks")]
+position = Vector2(579, 442)
 item = ExtResource("6_jsbd4")
