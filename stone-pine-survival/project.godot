@@ -24,6 +24,11 @@ config/icon="res://assets/textures/icon.svg"
 NetworkManager="*res://systems/multiplayer/multiplayer_manager.tscn"
 SpatialSense="*res://systems/sound/spatial_sense.gd"
 ScreenReader="*res://systems/accessibility/screen_reader.gd"
+GM="*uid://wc03ne58onqi"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/gmap_hotkeys/plugin.cfg")
 
 [file_customization]
 
