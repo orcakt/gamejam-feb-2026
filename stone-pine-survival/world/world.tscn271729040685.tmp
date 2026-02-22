@@ -16,7 +16,7 @@ gradient = SubResource("Gradient_tcf2h")
 script = ExtResource("1_tcf2h")
 
 [node name="Land" parent="." unique_id=951509584 instance=ExtResource("3_4717r")]
-position = Vector2(1623, -182)
+position = Vector2(0, -5)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=759626646]
 visible = false

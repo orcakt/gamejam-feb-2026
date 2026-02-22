@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="tile_water-2" data-name="tile_water" xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 1000 1000">
+  <g id="template-2" data-name="template">
+    <g id="middle">
+      <rect x="222.22" y="444.44" width="111.11" height="111.11" fill="#00c9ff"/>
+      <path d="M444.44,444.44h-111.11c61.36,0,111.11-49.75,111.11-111.11h0v111.11Z" fill="#00c9ff"/>
+      <rect x="333.33" y="444.44" width="111.11" height="111.11" fill="#00c9ff"/>
+      <path d="M444.44,666.67h0c0-61.36-49.75-111.11-111.11-111.11h0s111.11,0,111.11,0v111.11Z" fill="#00c9ff"/>
+      <rect x="444.44" y="666.67" width="111.11" height="111.11" fill="#00c9ff"/>
+      <rect x="444.44" y="555.56" width="111.11" height="111.11" fill="#00c9ff"/>
+      <rect x="444.44" y="444.44" width="111.11" height="111.11" fill="#00c9ff"/>
+      <rect x="444.44" y="333.33" width="111.11" height="111.11" fill="#00c9ff"/>
+      <rect x="444.44" y="222.22" width="111.11" height="111.11" fill="#00c9ff"/>
+      <rect x="666.67" y="444.44" width="111.11" height="111.11" fill="#00c9ff"/>
+      <path d="M555.56,444.44h111.11c-61.36,0-111.11-49.75-111.11-111.11h0v111.11Z" fill="#00c9ff"/>
+      <rect x="555.56" y="444.44" width="111.11" height="111.11" fill="#00c9ff"/>
+      <path d="M555.56,666.67h0c0-61.36,49.75-111.11,111.11-111.11h0s-111.11,0-111.11,0v111.11Z" fill="#00c9ff"/>
+    </g>
+    <g id="butttom">
+      <rect x="333.33" y="888.89" width="111.11" height="111.11" fill="#00c9ff"/>
+      <rect x="444.44" y="888.89" width="111.11" height="111.11" fill="#00c9ff"/>
+      <rect x="555.56" y="888.89" width="111.11" height="111.11" fill="#00c9ff"/>
+    </g>
+    <g id="top">
+      <rect x="333.33" width="111.11" height="111.11" fill="#00c9ff"/>
+      <rect x="444.44" width="111.11" height="111.11" fill="#00c9ff"/>
+      <rect x="555.56" width="111.11" height="111.11" fill="#00c9ff"/>
+    </g>
+    <g id="top_corner" data-name="top corner">
+      <rect x="111.11" y="111.11" width="111.11" height="111.11" fill="#00c9ff"/>
+      <rect x="111.11" width="111.11" height="111.11" fill="#00c9ff"/>
+      <path d="M111.11,0v111.11H0v-59.74C0,23,23,0,51.37,0h59.74Z" fill="#00c9ff"/>
+      <rect y="111.11" width="111.11" height="111.11" fill="#00c9ff"/>
+    </g>
+    <g>
+      <path d="M0,444.44v-111.11h0c61.36,0,111.11,49.75,111.11,111.11h0s-111.11,0-111.11,0Z" fill="#00c9ff"/>
+      <rect y="444.44" width="111.11" height="111.11" fill="#00c9ff"/>
+      <path d="M0,666.67v-111.11h111.11c0,61.37-49.75,111.11-111.11,111.11h0Z" fill="#00c9ff"/>
+    </g>
+    <g>
+      <path d="M222.22,888.89h-111.11v-111.11h0c43.39,43.39,67.72,67.72,111.11,111.11h0Z" fill="#00c9ff"/>
+      <rect x="111.11" y="888.89" width="111.11" height="111.11" fill="#00c9ff"/>
+      <path d="M111.11,888.89H0c43.39,43.39,67.72,67.72,111.11,111.11h0v-111.11Z" fill="#00c9ff"/>
+      <rect y="777.78" width="111.11" height="111.11" fill="#00c9ff"/>
+    </g>
+    <g id="top_right_corner" data-name="top right corner">
+      <rect x="888.89" y="111.11" width="111.11" height="111.11" fill="#00c9ff"/>
+      <rect x="777.78" y="111.11" width="111.11" height="111.11" fill="#00c9ff"/>
+      <rect x="777.78" width="111.11" height="111.11" fill="#00c9ff"/>
+      <path d="M1000,51.37v59.74h-111.11V0h59.74c28.37,0,51.37,23,51.37,51.37Z" fill="#00c9ff"/>
+      <rect x="888.89" y="111.11" width="111.11" height="111.11" fill="#00c9ff"/>
+    </g>
+    <g>
+      <path d="M1000,444.44v-111.11h0c-61.36,0-111.11,49.75-111.11,111.11h0s111.11,0,111.11,0Z" fill="#00c9ff"/>
+      <rect x="888.89" y="444.44" width="111.11" height="111.11" fill="#00c9ff"/>
+      <path d="M1000,666.67v-111.11h-111.11c0,61.37,49.75,111.11,111.11,111.11h0Z" fill="#00c9ff"/>
+    </g>
+    <g>
+      <rect x="888.89" y="777.78" width="111.11" height="111.11" fill="#00c9ff"/>
+      <path d="M777.78,888.89h111.11v-111.11h0c-43.39,43.39-67.72,67.72-111.11,111.11h0Z" fill="#00c9ff"/>
+      <rect x="777.78" y="888.89" width="111.11" height="111.11" fill="#00c9ff"/>
+      <path d="M888.89,888.89h111.11c-43.39,43.39-67.72,67.72-111.11,111.11h0v-111.11Z" fill="#00c9ff"/>
+      <rect x="888.89" y="777.78" width="111.11" height="111.11" fill="#00c9ff"/>
+    </g>
+  </g>
+</svg>
