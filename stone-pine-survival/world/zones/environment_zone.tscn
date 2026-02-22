@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cenv4n2qr8xl7"]
+
+[ext_resource type="Script" path="res://world/zones/environment_zone.gd" id="1_envzone"]
+
+[node name="EnvironmentZone" type="Area2D"]
+collision_layer = 8
+collision_mask = 1
+monitoring = true
+monitorable = false
+script = ExtResource("1_envzone")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
