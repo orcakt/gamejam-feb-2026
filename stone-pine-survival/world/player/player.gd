@@ -30,8 +30,12 @@ var input_state: InputState
 
 
 func _ready() -> void:
+	var local_peer := multiplayer.get_unique_id()
+	var auth := get_multiplayer_authority()
+	var is_auth := is_multiplayer_authority()
+	print("[Player._ready] node=%s local_peer=%d authority=%d is_auth=%s" % [name, local_peer, auth, is_auth])
 	# Only enable camera for the local player
-	$Camera2D.enabled = is_multiplayer_authority()
+	$Camera2D.enabled = is_auth
 	# UI setup deferred to setup_local_ui(), called by world after UI refs are assigned
 
 
@@ -45,6 +49,8 @@ func _physics_process(delta):
 	# Remote players will have their position synced via MultiplayerSynchronizer
 	if is_multiplayer_authority() && input_state == InputState.WORLD:
 		player_movement(delta)
+		_update_footsteps(delta)
+	elif not is_multiplayer_authority():
 		_update_footsteps(delta)
 
 
@@ -63,10 +69,15 @@ func _update_footsteps(delta: float) -> void:
 	var variation := randi_range(1, FOOTSTEP_VARIATIONS)
 	var path := "res://assets/sfx/steps/%s/%d.wav" % [surface, variation]
 	var pitch := randf_range(FOOTSTEP_PITCH_MIN, FOOTSTEP_PITCH_MAX)
-	sound_pool.play(path, pitch)
+	if is_multiplayer_authority():
+		sound_pool.play(path, pitch)
+	else:
+		sound_pool.play_2d(path, global_position, pitch)
 
 
 func _input(event: InputEvent) -> void:
+	if not is_multiplayer_authority():
+		return
 	match input_state:
 		InputState.WORLD:
 			_world_inputs(event)
