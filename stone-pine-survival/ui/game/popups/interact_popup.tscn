@@ -71,6 +71,7 @@ grow_vertical = 0
 color = Color(0.022799999, 0.034140013, 0.12, 0.38039216)
 
 [node name="Label" type="Label" parent="ColorRect" unique_id=843402534]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

@@ -1,37 +1,40 @@
 class_name ItemPlacement
-extends Marker2D
+extends Sprite2D
 
 
 @export var distance: int = 15
 @export var items: Dictionary[Item, String]
 
-var held: Interactable
 var item: Item
 
 
 func is_holding() -> bool:
-	return held != null
+	return item != null
 
 
 func hold(itm: Item) -> void:
 	item = itm
-	var path: String = items[item]
-	var scene: PackedScene = load(path)
-	held = scene.instantiate()
-	add_child(held)
+	texture = item.texture
 
 
 func release() -> Item:
+	var path: String = items[item]
+	var scene: PackedScene = load(path)
+	var held: Interactable = scene.instantiate()
+	
 	var land: Land = get_tree().get_first_node_in_group("land")
-	held.reparent(land)
-	held = null
-	return item
+	land.add_child(held)
+	held.global_position = global_position
+	
+	var itm = item
+	item = null
+	texture = null
+	return itm
 
 
 func cancel() -> void:
-	remove_child(held)
-	held = null
 	item = null
+	texture = null
 
 
 ### Accepts a normalized direction and sets the position accordingly.

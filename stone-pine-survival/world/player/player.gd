@@ -133,8 +133,10 @@ func _world_inputs(event: InputEvent) -> void:
 	if event.is_action_pressed("interact") && item_placement.is_holding():
 		var item = item_placement.release()
 		inventory.remove(item)
+		interact_popup.close()
 	elif event.is_action_pressed("ui_cancel") && item_placement.is_holding():
 		item_placement.cancel()
+		interact_popup.close()
 	elif event.is_action_pressed("interact") && interaction_field.can_interact():
 		var interactable: Interactable = interaction_field.interact(global_position)
 		if interactable is WorldItem:
@@ -187,6 +189,10 @@ func _ui_inputs(event: InputEvent) -> void:
 			# allow player to place item where they want
 			item_placement.hold(item)
 			inventory_ui.close()
+			
+			interact_popup.set_msg(InteractPopup.Message.PLACE)
+			interact_popup.open()
+			
 			input_state = InputState.WORLD
 	elif event.is_action_pressed("ui_right") && crafting_ui.visible:
 		crafting_ui.focus_next()
@@ -199,7 +205,9 @@ func _ui_inputs(event: InputEvent) -> void:
 
 
 func _on_interaction_field_near_interactable() -> void:
+	interact_popup.set_msg(InteractPopup.Message.INTERACT)
 	interact_popup.open()
+
 
 func _on_interaction_field_no_interactables() -> void:
 	interact_popup.close()
