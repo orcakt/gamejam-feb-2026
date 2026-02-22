@@ -32,9 +32,11 @@ var input_state: InputState
 func _ready() -> void:
 	# Only enable camera for the local player
 	$Camera2D.enabled = is_multiplayer_authority()
+	# UI setup deferred to setup_local_ui(), called by world after UI refs are assigned
+
+
+func setup_local_ui() -> void:
 	inventory.item_updated.connect(inventory_ui._handle_item_updated)
-	
-	# setup crafter
 	crafting_ui.crafter = crafter
 	crafting_ui.inventory = inventory
 
@@ -203,7 +205,6 @@ func _on_interaction_field_no_interactables() -> void:
 	interact_popup.close()
 
 
-# spatial sense debug hotkey — announces surroundings via screen reader
 func _unhandled_input(event: InputEvent) -> void:
 	if not is_multiplayer_authority():
 		return

@@ -30,9 +30,11 @@ func _ready() -> void:
 
 	multiplayer.peer_connected.connect(_on_peer_connected)
 	multiplayer.peer_disconnected.connect(_on_peer_disconnected)
+	$PlayerSpawner.spawned.connect(_on_player_spawned)
 
-	# local player
-	_spawn_player(multiplayer.get_unique_id())
+	# Only server spawns
+	if multiplayer.is_server():
+		_spawn_player(multiplayer.get_unique_id())
 
 
 func _on_peer_connected(peer_id: int) -> void:
@@ -44,37 +46,47 @@ func _on_peer_connected(peer_id: int) -> void:
 
 func _on_peer_disconnected(peer_id: int) -> void:
 	if peer_id in players:
-		var player = players[peer_id]
-		if is_instance_valid(player):
-			player.queue_free()
+		if multiplayer.is_server():
+			var player = players[peer_id]
+			if is_instance_valid(player):
+				player.queue_free()  # triggers MultiplayerSpawner despawn on clients
 		players.erase(peer_id)
 
 
 func _spawn_player(peer_id: int) -> void:
 	if peer_id in players:
 		return
-	
+
 	var player: Player = PLAYER_SCENE.instantiate()
 	player.name = "Player" + str(peer_id)
-	
-	# we'll change this once we have logic for this
 	player.position = _get_spawn_position(peer_id)
-	
-	# connect UI
-	player.inventory_ui = inventory_ui
-	player.campfire_ui = campfire_ui
-	player.crafting_ui = crafting_ui
-	
-	# Add to scene, second parameter 'true' means force readable name
-	$Players.add_child(player, true)
-	player.crafting_ui.setup(player.crafter.recipies)
-	
-	# Assign multiplayer authority to the owning peer
+
+	# Assign multiplayer authority BEFORE entering scene tree
+	# so _ready() sees the correct authority
 	player.set_multiplayer_authority(peer_id)
-	
+
+	# Add to scene, second parameter 'true' means force readable name
+	# UI setup and dict tracking handled in _on_player_spawned
+	$Players.add_child(player, true)
+
+
+func _on_player_spawned(node: Node) -> void:
+	var player := node as Player
+	if player == null:
+		return
+
+	var peer_id := player.get_multiplayer_authority()
 	players[peer_id] = player
-	
-	print("Spawned player for peer %d at position %s (Authority: %d)" % [peer_id, player.position, player.get_multiplayer_authority()])
+
+	# Only set up UI for the local player on this peer
+	if player.is_multiplayer_authority():
+		player.inventory_ui = inventory_ui
+		player.campfire_ui = campfire_ui
+		player.crafting_ui = crafting_ui
+		player.setup_local_ui()
+		crafting_ui.setup(player.crafter.recipies)
+
+	print("Player tracked for peer %d" % peer_id)
 
 
 func _get_spawn_position(peer_id: int) -> Vector2:
