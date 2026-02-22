@@ -35,6 +35,10 @@ var _transfer_channel: int = 0
 var _incoming_packets: Array[Dictionary] = []
 var _current_packet_peer: int = 0
 
+var _waiting_for_scene_ready: bool = false
+var _held_packets: Array[Dictionary] = []
+var _flush_deferred: bool = false
+
 var _room_code: String = ""
 var _relay_url: String = ""
 
@@ -61,9 +65,31 @@ func disconnect_from_relay():
 	_my_peer_id = 0
 	_peers.clear()
 	_incoming_packets.clear()
+	_held_packets.clear()
+	_waiting_for_scene_ready = false
+	_flush_deferred = false
+
+
+func scene_ready() -> void:
+	# Only set the flag, emission and packet delivery happen inside _do_poll()
+	# so that peer_connected and packet availability are atomic within one poll cycle.
+	_flush_deferred = true
 
 
 func _do_poll() -> void:
+	# Atomically emit peer_connected for pre-existing peers and deliver held
+	# packets. Both happen before _socket.poll() so that
+	# connected_peers is populated before any new packets arrive, and
+	# everything occurs within one _do_poll() call, SceneMultiplayer
+	#       only reads _incoming_packets after _do_poll() returns.
+	if _flush_deferred:
+		_flush_deferred = false
+		_waiting_for_scene_ready = false
+		for peer_id in _peers:
+			peer_connected.emit(peer_id)
+		_incoming_packets.append_array(_held_packets)
+		_held_packets.clear()
+
 	_socket.poll()
 
 	var state = _socket.get_ready_state()
@@ -130,15 +156,21 @@ func _handle_room_joined(data: PackedByteArray):
 	_connection_status = MultiplayerPeer.CONNECTION_CONNECTED
 	connected_to_relay.emit()
 	print("Connected to relay as peer %d, existing peers: %s" % [_my_peer_id, _peers])
+	# Clients must wait for the game scene to load before emitting peer_connected
+	# or delivering data packets otherwise spawn data arrives before the spawner exists.
+	if _my_peer_id != 1:
+		_waiting_for_scene_ready = true
 
 
 func _handle_peer_joined(data: PackedByteArray):
 	if data.size() < 5:
 		return
-	
+
 	var peer_id = data.decode_u32(1)
 	if peer_id not in _peers:
 		_peers.append(peer_id)
+		if not _waiting_for_scene_ready:
+			peer_connected.emit(peer_id)   # safe: scene is already loaded
 		peer_joined.emit(peer_id)
 		print("Peer %d joined" % peer_id)
 
@@ -146,9 +178,10 @@ func _handle_peer_joined(data: PackedByteArray):
 func _handle_peer_left(data: PackedByteArray):
 	if data.size() < 5:
 		return
-	
+
 	var peer_id = data.decode_u32(1)
 	_peers.erase(peer_id)
+	peer_disconnected.emit(peer_id)
 	peer_left.emit(peer_id)
 	print("Peer %d left" % peer_id)
 
@@ -159,11 +192,12 @@ func _handle_data(data: PackedByteArray):
 	
 	var sender_id = data.decode_u32(1)
 	var game_data = data.slice(5)
-	
-	_incoming_packets.append({
-		"peer": sender_id,
-		"data": game_data
-	})
+	# print("[RelayPeer] data from sender=%d (holding=%s)" % [sender_id, _waiting_for_scene_ready])
+	var packet = {"peer": sender_id, "data": game_data}
+	if _waiting_for_scene_ready:
+		_held_packets.append(packet)
+	else:
+		_incoming_packets.append(packet)
 
 
 
@@ -220,7 +254,9 @@ func _get_packet_mode() -> MultiplayerPeer.TransferMode:
 
 
 func _get_packet_peer() -> int:
-	return _current_packet_peer
+	if not _incoming_packets.is_empty():
+		return _incoming_packets[0]["peer"]
+	return _current_packet_peer  # fallback when queue is empty
 
 
 func _is_server() -> bool:
