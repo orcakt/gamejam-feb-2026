@@ -6,6 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://dvu1o1sobdo3q" path="res://ui/game/crafting/crafting_ui.tscn" id="4_fn3g3"]
 [ext_resource type="PackedScene" uid="uid://7gnb6xwj20sy" path="res://ui/game/campfire/campfire_ui.tscn" id="4_mmdvd"]
 [ext_resource type="PackedScene" uid="uid://diagt3m0ao5nj" path="res://ui/game/inventory_ui.tscn" id="5_fn3g3"]
+[ext_resource type="PackedScene" uid="uid://cenv4n2qr8xl7" path="res://world/zones/environment_zone.tscn" id="6_envzone"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_meadow"]
+size = Vector2(100000, 100000)
 
 [sub_resource type="Gradient" id="Gradient_tcf2h"]
 offsets = PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1)
@@ -18,6 +22,11 @@ gradient = SubResource("Gradient_tcf2h")
 [node name="World" type="Node2D" unique_id=1372100395 node_paths=PackedStringArray("spawn_point")]
 script = ExtResource("1_tcf2h")
 spawn_point = NodePath("Land/SpawnPoint")
+
+[node name="MeadowZone" parent="." unique_id=400000001 instance=ExtResource("6_envzone")]
+
+[node name="CollisionShape2D" parent="MeadowZone"]
+shape = SubResource("RectangleShape2D_meadow")
 
 [node name="Land" parent="." unique_id=951509584 instance=ExtResource("3_4717r")]
 

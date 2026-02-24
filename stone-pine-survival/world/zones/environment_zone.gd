@@ -15,6 +15,10 @@ signal player_exited(zone: EnvironmentZone)
 @export var zone_priority: int = 0
 
 
+func _ready() -> void:
+	add_to_group("environment_zone")
+
+
 # Connected in .tscn
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
