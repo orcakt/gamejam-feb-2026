@@ -1,6 +1,8 @@
 class_name InventoryUI
-extends Control
+extends JournalTab
 
+
+signal selected(item: Item)
 
 const ITEM_SLOT_TEXT: String = "%s - %d"
 
@@ -13,22 +15,17 @@ var focused_index: int
 
 
 func open() -> void:
-	visible = true
 	focused_index = 0
 	
 	if item_dict.size() > 0: 
 		item_list.select(0)
 
 
-func close() -> void:
-	visible = false
-
-
-func select_item() -> Item:
+func select() -> void:
 	# no movement if no items
-	if item_dict.size() == 0: return null
-	
-	return item_dict.find_key(focused_index)
+	if item_dict.size() > 0:
+		var item = item_dict.find_key(focused_index)
+		selected.emit(item)
 
 
 func next_item() -> void:

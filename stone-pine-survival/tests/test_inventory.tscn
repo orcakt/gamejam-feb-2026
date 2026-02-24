@@ -1,8 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bi7ytpauj6vwf"]
+[gd_scene format=3 uid="uid://bi7ytpauj6vwf"]
 
 [ext_resource type="PackedScene" uid="uid://c37b7ydq2nrlk" path="res://systems/inventory/inventory.tscn" id="1_i0jss"]
 [ext_resource type="Script" uid="uid://dmalctu6woj6s" path="res://tests/test_inventory.gd" id="1_wp8uh"]
-[ext_resource type="PackedScene" uid="uid://diagt3m0ao5nj" path="res://ui/game/inventory_ui.tscn" id="2_wp8uh"]
+[ext_resource type="PackedScene" uid="uid://diagt3m0ao5nj" path="res://ui/game/journal/inventory/inventory_ui.tscn" id="2_wp8uh"]
 
 [node name="TestInventory" type="Node"]
 script = ExtResource("1_wp8uh")

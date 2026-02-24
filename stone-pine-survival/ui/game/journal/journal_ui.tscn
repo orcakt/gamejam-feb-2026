@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://dafkiindrymx"]
+
+[ext_resource type="Script" uid="uid://bc6bsg0hj42lr" path="res://ui/game/journal/journal_ui.gd" id="1_4p0qy"]
+[ext_resource type="PackedScene" uid="uid://7kybg7vnib0b" path="res://ui/game/journal/instructions/instructions_ui.tscn" id="2_qv4j4"]
+[ext_resource type="PackedScene" uid="uid://diagt3m0ao5nj" path="res://ui/game/journal/inventory/inventory_ui.tscn" id="2_tunli"]
+[ext_resource type="PackedScene" uid="uid://dvu1o1sobdo3q" path="res://ui/game/journal/crafting/crafting_ui.tscn" id="3_tunli"]
+
+[node name="JournalUI" type="Control" unique_id=1708608937]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4p0qy")
+
+[node name="TabContainer" type="TabContainer" parent="." unique_id=2115154489]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 235.0
+offset_top = 30.0
+offset_right = -235.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 2
+current_tab = 1
+
+[node name="InstructionsUI" parent="TabContainer" unique_id=1434539595 instance=ExtResource("2_qv4j4")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="InventoryUI" parent="TabContainer" unique_id=954018450 instance=ExtResource("2_tunli")]
+unique_name_in_owner = true
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="CraftingUI" parent="TabContainer" unique_id=1578677023 instance=ExtResource("3_tunli")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2

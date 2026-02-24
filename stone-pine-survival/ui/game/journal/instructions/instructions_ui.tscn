@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://7kybg7vnib0b"]
+
+[ext_resource type="Script" uid="uid://d1r2sptti3ic6" path="res://ui/game/journal/instructions/instructions_ui.gd" id="1_kwkfi"]
+
+[node name="InstructionsUI" type="TabBar" unique_id=1434539595]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_kwkfi")

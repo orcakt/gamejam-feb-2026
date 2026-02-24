@@ -1,5 +1,5 @@
 class_name CraftingUI
-extends Control
+extends JournalTab
 
 
 const SLOT_PATH: String = "res://ui/game/crafting/craft_slot_ui.tscn"
@@ -24,28 +24,9 @@ func open() -> void:
 	# set the inputs for the current output
 	current_recipe = recipies.values()[recipies.values().size() - 1]
 	_reset_inputs(current_recipe.inputs)
-	
-	# reveal the ui
-	visible = true
 
 
-func close() -> void:
-	visible = false
-
-
-func focus_next() -> void:
-	var output = output_container.next_item()
-	current_recipe = recipies[output]
-	_reset_inputs(current_recipe.inputs)
-
-
-func focus_prev() -> void:
-	var output = output_container.prev_item()
-	current_recipe = recipies[output]
-	_reset_inputs(current_recipe.inputs)
-
-
-func try_craft() -> void:
+func select() -> void:
 	if crafter.can_craft(current_recipe, inventory.items):
 		# remove inputs from inventory
 		for input_item in current_recipe.inputs.keys():
@@ -53,6 +34,18 @@ func try_craft() -> void:
 		
 		# add new craftable to inventory
 		inventory.add(current_recipe.output, 1)
+
+
+func next_item() -> void:
+	var output = output_container.next_item()
+	current_recipe = recipies[output]
+	_reset_inputs(current_recipe.inputs)
+
+
+func prev_item() -> void:
+	var output = output_container.prev_item()
+	current_recipe = recipies[output]
+	_reset_inputs(current_recipe.inputs)
 
 
 func _reset_inputs(inputs: Dictionary[Item, int]) -> void:
