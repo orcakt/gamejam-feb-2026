@@ -25,16 +25,16 @@ offset_right = -235.0
 offset_bottom = -30.0
 grow_horizontal = 2
 grow_vertical = 2
-current_tab = 1
+current_tab = 0
 
 [node name="InstructionsUI" parent="TabContainer" unique_id=1434539595 instance=ExtResource("2_qv4j4")]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
 [node name="InventoryUI" parent="TabContainer" unique_id=954018450 instance=ExtResource("2_tunli")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 

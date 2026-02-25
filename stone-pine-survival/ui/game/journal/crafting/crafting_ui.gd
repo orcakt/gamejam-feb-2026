@@ -14,8 +14,8 @@ var recipies: Dictionary[Item, CraftRecipe]
 var current_recipe: CraftRecipe
 
 
-func setup(reps: Array[CraftRecipe]) -> void:
-	for recipe in reps:
+func setup() -> void:
+	for recipe in crafter.recipies:
 		recipies[recipe.output] = recipe
 		output_container.add(recipe.output)
 
