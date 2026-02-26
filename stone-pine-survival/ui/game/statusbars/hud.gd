@@ -46,8 +46,8 @@ func _process(delta: float):
 		health_drain_speed += 0.002
 
 func _unhandled_input(event: InputEvent) -> void:
-	if Input.is_key_pressed(KEY_W):
-		restore_thirst(20)
+	if event.is_action_pressed("read_hud") :
+		ScreenReader.speak("Health at "+str(health_bar.value)+". Energy at "+str(energy_bar.value)+". Hunger at "+str(hunger_bar.value)+". Thirst at "+str(thirst_bar.value))
 
 func take_damage(amount):
 	health -= amount
