@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://ccff2aegf3pec"]
+
+[ext_resource type="Script" uid="uid://cv28n4ye0cqsn" path="res://ui/game/statusbars/hud.gd" id="1_mr3p8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1rtg8"]
+bg_color = Color(1, 0.12941177, 0.27058825, 0.19607843)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jgj1q"]
+bg_color = Color(1, 0.12941177, 0.27058825, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qal71"]
+bg_color = Color(0.26666668, 0.6745098, 0.3019608, 0.19607843)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g7jwj"]
+bg_color = Color(0.26666668, 0.6745098, 0.3019608, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tokk6"]
+bg_color = Color(0.64705884, 0.5764706, 0.13333334, 0.19607843)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t3vak"]
+bg_color = Color(0.64705884, 0.5764706, 0.13333334, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yk5nb"]
+bg_color = Color(0.07058824, 0.58431375, 0.6784314, 0.19607843)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r22jn"]
+bg_color = Color(0.07058824, 0.58431375, 0.6784314, 1)
+
+[node name="Hud" type="Control" unique_id=229844827]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_right = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mr3p8")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=607947781]
+
+[node name="Health" type="ProgressBar" parent="CanvasLayer" unique_id=855901411]
+offset_left = 962.0
+offset_right = 1149.0
+offset_bottom = 27.0
+theme_override_styles/background = SubResource("StyleBoxFlat_1rtg8")
+theme_override_styles/fill = SubResource("StyleBoxFlat_jgj1q")
+value = 100.0
+fill_mode = 1
+
+[node name="Energy" type="ProgressBar" parent="CanvasLayer" unique_id=78993652]
+offset_left = 962.0
+offset_top = 32.0
+offset_right = 1149.0
+offset_bottom = 59.0
+theme_override_styles/background = SubResource("StyleBoxFlat_qal71")
+theme_override_styles/fill = SubResource("StyleBoxFlat_g7jwj")
+value = 100.0
+fill_mode = 1
+
+[node name="Hunger" type="ProgressBar" parent="CanvasLayer" unique_id=215463385]
+offset_left = 962.0
+offset_top = 64.0
+offset_right = 1149.0
+offset_bottom = 91.0
+theme_override_styles/background = SubResource("StyleBoxFlat_tokk6")
+theme_override_styles/fill = SubResource("StyleBoxFlat_t3vak")
+value = 100.0
+fill_mode = 1
+
+[node name="Thirst" type="ProgressBar" parent="CanvasLayer" unique_id=1089762882]
+offset_left = 962.0
+offset_top = 96.0
+offset_right = 1149.0
+offset_bottom = 123.0
+theme_override_styles/background = SubResource("StyleBoxFlat_yk5nb")
+theme_override_styles/fill = SubResource("StyleBoxFlat_r22jn")
+value = 100.0
+fill_mode = 1

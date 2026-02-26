@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dvu1o1sobdo3q" path="res://ui/game/crafting/crafting_ui.tscn" id="4_fn3g3"]
 [ext_resource type="PackedScene" uid="uid://7gnb6xwj20sy" path="res://ui/game/campfire/campfire_ui.tscn" id="4_mmdvd"]
 [ext_resource type="PackedScene" uid="uid://diagt3m0ao5nj" path="res://ui/game/inventory_ui.tscn" id="5_fn3g3"]
+[ext_resource type="PackedScene" uid="uid://ccff2aegf3pec" path="res://ui/game/statusbars/hud.tscn" id="7_sc4t8"]
 
 [sub_resource type="Gradient" id="Gradient_tcf2h"]
 offsets = PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1)
@@ -45,3 +46,5 @@ unique_name_in_owner = true
 
 [node name="InventoryUI" parent="CanvasLayer" unique_id=1558702918 instance=ExtResource("5_fn3g3")]
 unique_name_in_owner = true
+
+[node name="Hud" parent="." unique_id=229844827 instance=ExtResource("7_sc4t8")]
