@@ -72,7 +72,9 @@ func prev_item() -> void:
 		if recipies.size() == 0: return
 		
 		# itterate through the list
-		focused_index = (focused_index - 1) % recipies.size()
+		focused_index -= 1
+		if focused_index < 0:
+			focused_index = focused_index + recipies.size()
 		craftable_list.select(focused_index)
 
 

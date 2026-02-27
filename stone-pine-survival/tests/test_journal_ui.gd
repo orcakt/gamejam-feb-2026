@@ -22,7 +22,7 @@ func _input(event: InputEvent) -> void:
 	elif event.is_action_pressed("open_crafting_menu"):
 		journal.open(JournalUI.Page.CRAFT)
 	elif event.is_action_pressed("ui_accept"):
-		journal.select()
+		journal.select()	
 	elif event.is_action_pressed("ui_focus_next"):
 		journal.next_tab()
 	elif event.is_action_pressed("ui_focus_prev"):

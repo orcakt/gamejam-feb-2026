@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://egdwp5pke76g" path="res://ui/game/journal/crafting/crafting_ui.gd" id="1_uylle"]
 [ext_resource type="PackedScene" uid="uid://bk7ljxj8gqo47" path="res://ui/game/journal/crafting/craft_slot_ui.tscn" id="2_65qwi"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_65qwi"]
+bg_color = Color(0.14117648, 0.16862746, 0.36862746, 1)
+
 [node name="CraftingUI" type="TabBar" unique_id=1578677023]
 anchors_preset = 15
 anchor_right = 1.0
@@ -37,7 +40,6 @@ vertical_alignment = 1
 
 [node name="Selection" type="Control" parent="ColorRect" unique_id=1887892507]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -60,8 +62,12 @@ theme_override_constants/margin_bottom = 64
 [node name="CraftableList" type="ItemList" parent="ColorRect/Selection/MarginContainer" unique_id=1524028122]
 unique_name_in_owner = true
 layout_mode = 2
-max_columns = 6
+theme_override_styles/panel = SubResource("StyleBoxFlat_65qwi")
+max_columns = 4
 same_column_width = true
+fixed_column_width = 150
+icon_mode = 0
+fixed_icon_size = Vector2i(120, 120)
 
 [node name="Craft" type="Control" parent="ColorRect" unique_id=1293203130]
 unique_name_in_owner = true
@@ -82,9 +88,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -308.5
-offset_top = -206.0
+offset_top = -174.0
 offset_right = 308.5
-offset_bottom = -66.0
+offset_bottom = -34.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 16
@@ -98,9 +104,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -308.5
-offset_top = -62.5
+offset_top = -30.5
 offset_right = 308.5
-offset_bottom = -17.5
+offset_bottom = 14.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 0.91764706, 0.3882353, 1)
@@ -113,9 +119,9 @@ vertical_alignment = 1
 unique_name_in_owner = true
 layout_mode = 1
 offset_left = -70.0
-offset_top = 26.0
+offset_top = 58.0
 offset_right = 70.0
-offset_bottom = 166.0
+offset_bottom = 198.0
 
 [node name="LblOutputs" type="Label" parent="ColorRect/Craft" unique_id=1740997530]
 layout_mode = 1
@@ -125,9 +131,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -308.5
-offset_top = 169.5
+offset_top = 201.5
 offset_right = 308.5
-offset_bottom = 214.5
+offset_bottom = 246.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 0.91764706, 0.3882353, 1)

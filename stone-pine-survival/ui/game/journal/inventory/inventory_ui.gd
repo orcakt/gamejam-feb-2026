@@ -42,7 +42,9 @@ func prev_item() -> void:
 	# no movement if no items
 	if item_dict.size() == 0: return
 	
-	focused_index = (focused_index - 1) % item_dict.size()
+	focused_index -= 1
+	if focused_index < 0:
+		focused_index = focused_index + item_dict.size()
 	item_list.select(focused_index)
 
 
@@ -50,10 +52,7 @@ func prev_item() -> void:
 func _handle_item_updated(item: Item, value: int) -> void:
 	# keep track of item index
 	if not item_dict.has(item):
-		item_dict[item] = item_list.add_item(
-			ITEM_SLOT_TEXT % [item.name, value], 
-			item.texture
-		)
+		item_dict[item] = item_list.add_item(ITEM_SLOT_TEXT % [item.name, value], item.texture)
 	elif value <= 0:
 		var removed_index = item_dict[item]
 		item_list.remove_item(removed_index)
