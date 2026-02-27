@@ -171,10 +171,6 @@ func _world_inputs(event: InputEvent) -> void:
 	elif event.is_action_pressed("open_inventory"):
 		inventory_ui.open()
 		input_state = InputState.UI
-	elif event.is_action_pressed("target_next"):
-		_cycle_target(1)
-	elif event.is_action_pressed("target_prev"):
-		_cycle_target(-1)
 
 
 func _ui_inputs(event: InputEvent) -> void:
@@ -264,6 +260,14 @@ func _unhandled_input(event: InputEvent) -> void:
 			parts.append("Nearby: " + ", ".join(node_parts))
 
 		ScreenReader.speak(". ".join(parts))
+
+	if event is InputEventKey and event.pressed and not event.echo \
+			and event.physical_keycode == KEY_TAB \
+			and input_state == InputState.WORLD:
+		if event.shift_pressed:
+			_cycle_target(-1)
+		else:
+			_cycle_target(1)
 
 
 func _cycle_target(direction: int) -> void:
