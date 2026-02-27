@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dvu1o1sobdo3q"]
 
 [ext_resource type="Script" uid="uid://egdwp5pke76g" path="res://ui/game/journal/crafting/crafting_ui.gd" id="1_uylle"]
-[ext_resource type="PackedScene" uid="uid://dk85oqiv8k8uw" path="res://ui/game/journal/crafting/output_container.tscn" id="2_21hoc"]
+[ext_resource type="PackedScene" uid="uid://bk7ljxj8gqo47" path="res://ui/game/journal/crafting/craft_slot_ui.tscn" id="2_65qwi"]
 
 [node name="CraftingUI" type="TabBar" unique_id=1578677023]
 anchors_preset = 15
@@ -35,7 +35,44 @@ text = "CRAFTING"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="InputContainer" type="HBoxContainer" parent="ColorRect" unique_id=998801201]
+[node name="Selection" type="Control" parent="ColorRect" unique_id=1887892507]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect/Selection" unique_id=792195482]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 96
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 64
+
+[node name="CraftableList" type="ItemList" parent="ColorRect/Selection/MarginContainer" unique_id=1524028122]
+unique_name_in_owner = true
+layout_mode = 2
+max_columns = 6
+same_column_width = true
+
+[node name="Craft" type="Control" parent="ColorRect" unique_id=1293203130]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InputContainer" type="HBoxContainer" parent="ColorRect/Craft" unique_id=998801201]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 140)
 layout_mode = 1
@@ -45,15 +82,15 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -308.5
-offset_top = -188.0
+offset_top = -206.0
 offset_right = 308.5
-offset_bottom = -48.0
+offset_bottom = -66.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 16
 alignment = 1
 
-[node name="LblInput" type="Label" parent="ColorRect" unique_id=1206931972]
+[node name="LblInput" type="Label" parent="ColorRect/Craft" unique_id=1206931972]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -61,28 +98,26 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -308.5
-offset_top = -47.0
+offset_top = -62.5
 offset_right = 308.5
-offset_bottom = -19.0
+offset_bottom = -17.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 0.91764706, 0.3882353, 1)
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 32
 text = "INPUTS"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="OutputContainer" parent="ColorRect" unique_id=1051143860 instance=ExtResource("2_21hoc")]
+[node name="OutputSlot" parent="ColorRect/Craft" unique_id=1915304783 instance=ExtResource("2_65qwi")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 140)
 layout_mode = 1
-offset_left = -308.5
-offset_top = 18.0
-offset_right = 308.5
-offset_bottom = 158.0
-alignment = 1
+offset_left = -70.0
+offset_top = 26.0
+offset_right = 70.0
+offset_bottom = 166.0
 
-[node name="LblOutputs" type="Label" parent="ColorRect" unique_id=1740997530]
+[node name="LblOutputs" type="Label" parent="ColorRect/Craft" unique_id=1740997530]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -90,13 +125,13 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -308.5
-offset_top = 162.0
+offset_top = 169.5
 offset_right = 308.5
-offset_bottom = 190.0
+offset_bottom = 214.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 0.91764706, 0.3882353, 1)
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 32
 text = "CRAFTABLE"
 horizontal_alignment = 1
 vertical_alignment = 1

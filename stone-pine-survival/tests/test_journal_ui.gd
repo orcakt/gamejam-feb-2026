@@ -8,10 +8,10 @@ extends Node
 
 
 func _ready() -> void:
+	journal.setup()
+	
 	for item in items.keys():
 		inventory.add(item, items[item])
-	
-	journal.setup()
 
 
 func _input(event: InputEvent) -> void:

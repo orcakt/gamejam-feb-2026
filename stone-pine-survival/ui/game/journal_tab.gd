@@ -3,7 +3,7 @@ extends TabBar
 
 
 func open() -> void:
-	pass
+	visible = true
 
 
 func select() -> void:

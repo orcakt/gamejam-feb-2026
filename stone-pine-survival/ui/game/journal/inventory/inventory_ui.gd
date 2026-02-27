@@ -19,6 +19,8 @@ func open() -> void:
 	
 	if item_dict.size() > 0: 
 		item_list.select(0)
+	
+	visible = true
 
 
 func select() -> void:
