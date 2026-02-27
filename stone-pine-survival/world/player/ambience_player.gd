@@ -34,11 +34,12 @@ func _ready() -> void:
 func _build_configs() -> void:
 	var raw: Dictionary = {
 		EnvironmentZone.EnvironmentType.MEADOW: {
-			"birds":     [24, 15.5, 30.0, 600.0, 400.0],
-			"bats":      [0,   0.0,  0.0,   0.0,   0.0],
-			"crickets":  [8,   4.0, 15.0, 400.0, 400.0],
-			"mosquitos": [1,   5.0, 10.0, 200.0, 200.0],
-			"wind":      [3,   2.5, 10.0, 500.0, 300.0],
+			"birds":     [40, 0.5, 2.5, 600.0, 600.0],
+			"crow":     [5, 10, 30.0, 600.0, 600.0],
+			"bats":      [7,   10.0,  30.0,   0.0,   0.0],
+			"crickets":  [8,   2.0, 15.0, 400.0, 400.0],
+			"mosquitos": [1,   30.0, 60.0, 200.0, 200.0],
+			"wind":      [3,   1, 10.0, 500.0, 300.0],
 		},
 		EnvironmentZone.EnvironmentType.FOREST: {
 			"birds":     [26,  2.5, 15.0, 800.0, 800.0],
