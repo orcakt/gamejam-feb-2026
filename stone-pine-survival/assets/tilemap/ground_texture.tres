@@ -1,0 +1,26 @@
+[gd_resource type="TileSet" format=3 uid="uid://dk6o11x6m5fum"]
+
+[ext_resource type="Texture2D" uid="uid://c84km417eqjh0" path="res://assets/tilemap/ground_texture.png" id="1_xwjkv"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wjg7l"]
+texture = ExtResource("1_xwjkv")
+texture_region_size = Vector2i(111, 111)
+0:0/size_in_atlas = Vector2i(4, 4)
+0:0/0 = 0
+5:0/size_in_atlas = Vector2i(7, 4)
+5:0/0 = 0
+13:1/size_in_atlas = Vector2i(5, 4)
+13:1/0 = 0
+13:6/size_in_atlas = Vector2i(5, 3)
+13:6/0 = 0
+5:5/size_in_atlas = Vector2i(7, 3)
+5:5/0 = 0
+0:5/size_in_atlas = Vector2i(4, 3)
+0:5/0 = 0
+1:13/size_in_atlas = Vector2i(5, 3)
+1:13/0 = 0
+1:9/size_in_atlas = Vector2i(3, 2)
+1:9/0 = 0
+
+[resource]
+sources/0 = SubResource("TileSetAtlasSource_wjg7l")

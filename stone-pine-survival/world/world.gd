@@ -63,7 +63,7 @@ func _spawn_player(peer_id: int) -> void:
 	if peer_id in players:
 		return
 
-	var player: Player = PLAYER_SCENE.instantiate()
+	var player := PLAYER_SCENE.instantiate() as Player
 	player.name = "Player" + str(peer_id)
 	player.position = _get_spawn_position(peer_id)
 

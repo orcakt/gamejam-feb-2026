@@ -28,7 +28,7 @@ GM="*uid://wc03ne58onqi"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gmap_hotkeys/plugin.cfg")
+enabled=PackedStringArray()
 
 [file_customization]
 
@@ -89,3 +89,5 @@ open_inventory={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"

@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://de51q43j4he5x"]
+
+[ext_resource type="PackedScene" uid="uid://cwoaxdxl045rs" path="res://world/terrain/river.tscn" id="1_6bc01"]
+[ext_resource type="PackedScene" uid="uid://dulkrqe2puf04" path="res://world/terrain/forest.tscn" id="1_6rh6y"]
+[ext_resource type="PackedScene" uid="uid://dsjtoq57s78y6" path="res://world/player/player_biologist/player.tscn" id="2_6rh6y"]
+
+[node name="TestLand" type="Node2D" unique_id=951541404]
+
+[node name="River" parent="." unique_id=1159739426 instance=ExtResource("1_6bc01")]
+position = Vector2(-1539, 2940)
+
+[node name="Forest" parent="." unique_id=1568178197 instance=ExtResource("1_6rh6y")]
+position = Vector2(5095, 3257)
+
+[node name="Player" parent="." unique_id=524976522 instance=ExtResource("2_6rh6y")]
+position = Vector2(4035, 3873)
+
+[node name="Forest2" parent="." unique_id=1078962200 instance=ExtResource("1_6rh6y")]
+position = Vector2(14756, -4927)

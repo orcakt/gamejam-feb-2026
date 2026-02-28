@@ -7,7 +7,7 @@ enum InputState {
 	UI
 }
 
-const SPEED = 100.0
+const SPEED = 400.0
 const FOOTSTEP_DISTANCE := 40.0
 const FOOTSTEP_VARIATIONS := 6
 const FOOTSTEP_PITCH_MIN := 0.9
