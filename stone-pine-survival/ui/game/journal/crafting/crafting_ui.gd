@@ -20,7 +20,10 @@ var is_selecting: bool
 var focused_index: int
 
 
-func setup() -> void:
+func setup(cft: Crafter, inv: Inventory) -> void:
+	crafter = cft
+	inventory = inv
+	
 	for recipe in crafter.recipies:
 		recipies[recipe.output] = recipe
 		craftable_list.add_item(
@@ -42,12 +45,30 @@ func open() -> void:
 	_speak("Crafting Menu")
 
 
+func step_out() -> bool:
+	if is_selecting:
+		selection_section.visible = false
+		
+		return true
+	else:
+		is_selecting = true
+		craft_section.visible = false
+		selection_section.visible = true
+		
+		focused_index = recipies.size() - 1
+		craftable_list.select(focused_index)
+		
+		_speak("Crafting Menu")
+		
+		return false
+
+
 func select() -> void:
 	if is_selecting:
 		is_selecting = false
 		
 		var output: Item = recipies.keys()[focused_index]
-		output_slot.fill(output, 1)
+		output_slot.assign(output, 1)
 		
 		current_recipe = recipies[output]
 		_reset_inputs(current_recipe.inputs)
@@ -70,7 +91,10 @@ func select() -> void:
 		var msg: String = "Cannot craft %s. Missing: %s"
 		var missing: PackedStringArray
 		for input_item: Item in current_recipe.inputs.keys():
-			var inv_item_count = inventory.items[input_item]
+			var inv_item_count: int
+			if inventory.has(input_item):
+				inv_item_count = inventory.items[input_item]
+			
 			var input_req_count = current_recipe.inputs[input_item]
 			if inv_item_count <= input_req_count:
 				missing.push_back("%s - %s" % [
@@ -111,24 +135,6 @@ func prev_item() -> void:
 			.get_item_text(focused_index)
 			.split(" - ")[0]
 		)
-
-
-func step_out() -> bool:
-	if is_selecting:
-		selection_section.visible = false
-		
-		return true
-	else:
-		is_selecting = true
-		craft_section.visible = false
-		selection_section.visible = true
-		
-		focused_index = recipies.size() - 1
-		craftable_list.select(focused_index)
-		
-		_speak("Crafting Menu")
-		
-		return false
 
 
 func _reset_inputs(inputs: Dictionary[Item, int]) -> void:

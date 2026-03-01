@@ -2,7 +2,7 @@ class_name OutputContainer
 extends HBoxContainer
 
 
-const CRAFT_SLOT_UI = preload("uid://bk7ljxj8gqo47")
+const ITEM_SLOT_UI = preload("uid://bk7ljxj8gqo47")
 
 var outputs: Array[Item]
 var focused_index: int
@@ -35,6 +35,6 @@ func _reset_output(item: Item) -> void:
 		remove_child(get_child(0))
 	
 	# add current
-	var slot: CraftSlot = CRAFT_SLOT_UI.instantiate()
+	var slot: ItemSlotUI = ITEM_SLOT_UI.instantiate()
 	add_child(slot)
 	slot.fill(item, 1)

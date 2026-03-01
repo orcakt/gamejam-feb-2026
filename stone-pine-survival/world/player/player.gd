@@ -7,14 +7,14 @@ enum InputState {
 	UI
 }
 
+signal dropped(item: Item, pos: Vector2)
+
 const SPEED = 100.0
 const FOOTSTEP_DISTANCE := 40.0
 const FOOTSTEP_VARIATIONS := 6
 const FOOTSTEP_PITCH_MIN := 0.9
 const FOOTSTEP_PITCH_MAX := 1.1
 const FOOTSTEP_SURFACES: Array[String] = ["grass", "dirt", "water"]
-
-var _footstep_accum: float = 0.0
 
 @onready var sound_pool: SoundPool = $SoundPool
 @onready var journal_ui: JournalUI
@@ -27,7 +27,7 @@ var _footstep_accum: float = 0.0
 @onready var item_placement: ItemPlacement = %ItemPlacement
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
-
+var _footstep_accum: float = 0.0
 var input_state: InputState
 
 
@@ -41,10 +41,13 @@ func _ready() -> void:
 	# UI setup deferred to setup_local_ui(), called by world after UI refs are assigned
 
 
-func setup_local_ui() -> void:
+func setup_local_ui(jrl_ui: JournalUI, cmp_ip: CampfireUI) -> void:
+	journal_ui = jrl_ui
+	campfire_ui = cmp_ip
+	journal_ui.setup(crafter, inventory)
+	
 	inventory.item_updated.connect(journal_ui.inventory_ui._handle_item_updated)
-	journal_ui.crafting_ui.crafter = crafter
-	journal_ui.crafting_ui.inventory = inventory
+	journal_ui.inventory_ui.selected.connect(_handle_item_selected)
 
 
 func _physics_process(delta):
@@ -142,14 +145,14 @@ func get_facing_ray() -> RayCast2D:
 
 
 func _world_inputs(event: InputEvent) -> void:
-	if event.is_action_pressed("interact") && item_placement.is_holding():
+	if event.is_action_pressed("ui_accept") && item_placement.is_holding():
 		var item = item_placement.release()
 		inventory.remove(item)
 		interact_popup.close()
 	elif event.is_action_pressed("ui_cancel") && item_placement.is_holding():
 		item_placement.cancel()
 		interact_popup.close()
-	elif event.is_action_pressed("interact") && interaction_field.can_interact():
+	elif event.is_action_pressed("ui_accept") && interaction_field.can_interact():
 		var interactable: Interactable = interaction_field.interact(global_position)
 		if interactable is WorldItem:
 			# add item to inventory
@@ -159,21 +162,29 @@ func _world_inputs(event: InputEvent) -> void:
 			# open campfire ui
 			campfire_ui.open(interactable, inventory)
 			input_state = InputState.UI
+	elif event.is_action_pressed("open_journal_menu"):
+		journal_ui.open(JournalUI.Page.INSTR)
+		input_state = InputState.UI
+	elif event.is_action_pressed("open_inventory_menu"):
+		journal_ui.open(JournalUI.Page.INVEN)
+		input_state = InputState.UI
+	elif event.is_action_pressed("open_crafting_menu"):
+		journal_ui.open(JournalUI.Page.CRAFT)
+		input_state = InputState.UI
 
 
 func _ui_inputs(event: InputEvent) -> void:
-	pass
-	
 	# first, find out what UI is open
 	if journal_ui.visible && event.is_action_pressed("ui_cancel"):
-		journal_ui.close()
-		input_state = InputState.WORLD
+		# some menu's have sub-menus to back out of first
+		if journal_ui.close():
+			input_state = InputState.WORLD
 	elif journal_ui.visible && event.is_action_pressed("ui_accept"):
 		journal_ui.select()
-	elif journal_ui.visible && event.is_action_pressed("ui_focus_next"):
-		journal_ui.next_tab()
 	elif journal_ui.visible && event.is_action_pressed("ui_focus_prev"):
 		journal_ui.prev_tab()
+	elif journal_ui.visible && event.is_action_pressed("ui_focus_next"):
+		journal_ui.next_tab()
 	elif journal_ui.visible && event.is_action_pressed("ui_right"):
 		journal_ui.next_item()
 	elif journal_ui.visible && event.is_action_pressed("ui_left"):
@@ -188,16 +199,12 @@ func _ui_inputs(event: InputEvent) -> void:
 		campfire_ui.next_item()
 	elif campfire_ui.visible && event.is_action_pressed("ui_left"):
 		campfire_ui.prev_item() 
+	elif item_placement.is_holding() && event.is_action_pressed("ui_accept"):
+		# allow player to place item where they want
+		interact_popup.set_msg(InteractPopup.Message.PLACE)
+		interact_popup.open()
 		
-	#elif item.placeable:
-			## allow player to place item where they want
-			#item_placement.hold(item)
-			#inventory_ui.close()
-			#
-			#interact_popup.set_msg(InteractPopup.Message.PLACE)
-			#interact_popup.open()
-			#
-			#input_state = InputState.WORLD
+		input_state = InputState.WORLD
 
 
 func _on_interaction_field_near_interactable() -> void:
@@ -207,6 +214,22 @@ func _on_interaction_field_near_interactable() -> void:
 
 func _on_interaction_field_no_interactables() -> void:
 	interact_popup.close()
+
+
+func _handle_item_selected(item: Item) -> void:
+	# check type for placement or not
+	if item.placeable:
+		# allow player to place item where they want
+		item_placement.hold(item)
+		interact_popup.set_msg(InteractPopup.Message.PLACE)
+		interact_popup.open()
+	else:
+		inventory.remove(item)
+		dropped.emit(item, item_placement.global_position)
+	
+	# return to world
+	journal_ui.close()
+	input_state = InputState.WORLD
 
 
 func _unhandled_input(event: InputEvent) -> void:

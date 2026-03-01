@@ -7,8 +7,8 @@ enum Message {
 	PLACE
 }
 
-@export var interact_msg: String = "Interact ( E )"
-@export var place_msg: String = "Place ( E ) / Cancel ( Esc )"
+@export var interact_msg: String = "Interact ( Space )"
+@export var place_msg: String = "Place ( Space ) / Cancel ( Esc )"
 
 @onready var label: Label = %Label
 @onready var animation: AnimationPlayer = $AnimationPlayer

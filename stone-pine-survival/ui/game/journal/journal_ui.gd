@@ -19,12 +19,8 @@ var current_page: Page
 var current_tab: JournalTab
 
 
-func setup() -> void:
-	crafting_ui.crafter = crafter
-	crafting_ui.inventory = inventory
-	inventory.item_updated.connect(inventory_ui._handle_item_updated)
-	
-	crafting_ui.setup()
+func setup(cft: Crafter, inv: Inventory) -> void:
+	crafting_ui.setup(cft, inv)
 	current_tab = instructions_ui
 
 
@@ -43,12 +39,14 @@ func open(page: Page = Page.INSTR) -> void:
 	visible = true
 
 
-func close() -> void:
+func close() -> bool:
 	if current_page == Page.CRAFT:
 		var leave_journal = crafting_ui.step_out()
 		visible = !leave_journal
+		return leave_journal
 	else:
 		visible = false
+		return true
 
 
 func select() -> void:

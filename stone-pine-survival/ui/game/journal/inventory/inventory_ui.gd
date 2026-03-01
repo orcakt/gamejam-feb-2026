@@ -28,10 +28,10 @@ func open() -> void:
 func select() -> void:
 	# no movement if no items
 	if item_dict.size() > 0:
-		var item = item_dict.find_key(focused_index)
+		var item: Item = item_dict.find_key(focused_index)
 		selected.emit(item)
-	
-	_speak(item_list.get_item_text(focused_index))
+		
+		_speak("%s selected" % item.name)
 
 
 func next_item() -> void:

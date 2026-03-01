@@ -7,6 +7,7 @@ const PLAYER_SCENE = preload("res://world/player/player.tscn")
 @export var spawn_point: Marker2D
 @export var spawn_spacing: int = 100
 
+@onready var land: Land = $Land
 @onready var journal_ui: JournalUI = %JournalUI
 @onready var campfire_ui: CampfireUI = %CampfireUI
 
@@ -113,9 +114,11 @@ func _connect_player_resources(peer_id: int, player: Player) -> void:
 	
 	if player.is_multiplayer_authority():
 		player.get_node("Camera2D").enabled = true
-		player.journal_ui = journal_ui
-		player.campfire_ui = campfire_ui
-		player.setup_local_ui()
-		journal_ui.crafting_ui.setup()
+		player.setup_local_ui(journal_ui, campfire_ui)
+		player.dropped.connect(_on_player_dropped_item)
 	
 	print("Player tracked for peer %d" % peer_id)
+
+
+func _on_player_dropped_item(item: Item, pos: Vector2) -> void:
+	land.place_item.rpc(item, pos)
