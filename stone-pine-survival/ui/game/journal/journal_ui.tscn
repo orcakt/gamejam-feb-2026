@@ -27,9 +27,16 @@ grow_horizontal = 2
 grow_vertical = 2
 current_tab = 0
 
-[node name="InstructionsUI" parent="TabContainer" unique_id=1434539595 instance=ExtResource("2_qv4j4")]
+[node name="InstructionsUI" parent="TabContainer" unique_id=1434539595 node_paths=PackedStringArray("labels") instance=ExtResource("2_qv4j4")]
 unique_name_in_owner = true
 layout_mode = 2
+labels = {
+NodePath("ColorRect/MarginContainer/Instructions/LblItteration"): "itteration",
+NodePath("ColorRect/MarginContainer/Instructions/LblNavigation"): "navigation",
+NodePath("ColorRect/MarginContainer/Instructions/LblSelection"): "selection",
+NodePath("ColorRect/MarginContainer/Instructions/LblExit"): "exit",
+NodePath("ColorRect/MarginContainer/Instructions/LblOpen"): "open"
+}
 metadata/_tab_index = 0
 
 [node name="InventoryUI" parent="TabContainer" unique_id=954018450 instance=ExtResource("2_tunli")]

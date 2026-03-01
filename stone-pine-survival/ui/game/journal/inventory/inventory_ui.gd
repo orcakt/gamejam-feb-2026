@@ -15,12 +15,14 @@ var focused_index: int
 
 
 func open() -> void:
-	focused_index = 0
+	focused_index = item_dict.size() - 1
 	
 	if item_dict.size() > 0: 
-		item_list.select(0)
+		item_list.select(focused_index)
 	
 	visible = true
+	
+	_speak("Inventory Menu")
 
 
 func select() -> void:
@@ -28,6 +30,8 @@ func select() -> void:
 	if item_dict.size() > 0:
 		var item = item_dict.find_key(focused_index)
 		selected.emit(item)
+	
+	_speak(item_list.get_item_text(focused_index))
 
 
 func next_item() -> void:
@@ -36,6 +40,8 @@ func next_item() -> void:
 	
 	focused_index = (focused_index + 1) % item_dict.size()
 	item_list.select(focused_index)
+	
+	_speak(item_list.get_item_text(focused_index))
 
 
 func prev_item() -> void:
@@ -44,15 +50,19 @@ func prev_item() -> void:
 	
 	focused_index -= 1
 	if focused_index < 0:
-		focused_index = focused_index + item_dict.size()
+		focused_index += item_dict.size()
 	item_list.select(focused_index)
+	
+	_speak(item_list.get_item_text(focused_index))
 
 
 ### Sets the value of the item.
 func _handle_item_updated(item: Item, value: int) -> void:
 	# keep track of item index
 	if not item_dict.has(item):
-		item_dict[item] = item_list.add_item(ITEM_SLOT_TEXT % [item.name, value], item.texture)
+		item_dict[item] = item_list.add_item(
+			ITEM_SLOT_TEXT % [item.name, value], item.texture
+		)
 	elif value <= 0:
 		var removed_index = item_dict[item]
 		item_list.remove_item(removed_index)

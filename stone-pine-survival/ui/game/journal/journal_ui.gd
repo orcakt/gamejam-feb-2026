@@ -25,10 +25,10 @@ func setup() -> void:
 	inventory.item_updated.connect(inventory_ui._handle_item_updated)
 	
 	crafting_ui.setup()
-	instructions_ui.select()
+	current_tab = instructions_ui
 
 
-func open(page: Page) -> void:
+func open(page: Page = Page.INSTR) -> void:
 	current_page = page
 	
 	match current_page:
@@ -46,10 +46,15 @@ func open(page: Page) -> void:
 func close() -> void:
 	if current_page == Page.CRAFT:
 		var leave_journal = crafting_ui.step_out()
-		visible = leave_journal
+		visible = !leave_journal
+	else:
+		visible = false
 
 
 func next_tab() -> void:
+	# ensure the journal is open
+	if not visible: return
+	
 	match current_page:
 		Page.INSTR:
 			current_tab = inventory_ui
@@ -65,6 +70,9 @@ func next_tab() -> void:
 
 
 func prev_tab() -> void:
+	# ensure the journal is open
+	if not visible: return
+	
 	match current_page:
 		Page.INSTR:
 			current_tab = crafting_ui
@@ -80,12 +88,21 @@ func prev_tab() -> void:
 
 
 func select() -> void:
+	# ensure the journal is open
+	if not visible: return
+	
 	current_tab.select()
 
 
 func next_item() -> void:
+	# ensure the journal is open
+	if not visible: return
+	
 	current_tab.next_item()
 
 
 func prev_item() -> void:
+	# ensure the journal is open
+	if not visible: return
+	
 	current_tab.prev_item()
