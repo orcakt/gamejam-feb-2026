@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dvu1o1sobdo3q"]
 
 [ext_resource type="Script" uid="uid://egdwp5pke76g" path="res://ui/game/journal/crafting/crafting_ui.gd" id="1_uylle"]
-[ext_resource type="PackedScene" uid="uid://bk7ljxj8gqo47" path="res://ui/game/journal/crafting/craft_slot_ui.tscn" id="2_65qwi"]
+[ext_resource type="PackedScene" uid="uid://bk7ljxj8gqo47" path="res://ui/game/journal/crafting/item_slot_ui.tscn" id="2_65qwi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_65qwi"]
 bg_color = Color(0.14117648, 0.16862746, 0.36862746, 1)

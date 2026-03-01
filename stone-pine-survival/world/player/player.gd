@@ -17,9 +17,8 @@ const FOOTSTEP_SURFACES: Array[String] = ["grass", "dirt", "water"]
 var _footstep_accum: float = 0.0
 
 @onready var sound_pool: SoundPool = $SoundPool
-@export var crafting_ui: CraftingUI
+@onready var journal_ui: JournalUI
 @export var campfire_ui: CampfireUI
-@export var inventory_ui: InventoryUI
 
 @onready var interaction_field: InteractionField = $InteractionField
 @onready var crafter: Crafter = $Crafter
@@ -43,9 +42,9 @@ func _ready() -> void:
 
 
 func setup_local_ui() -> void:
-	inventory.item_updated.connect(inventory_ui._handle_item_updated)
-	crafting_ui.crafter = crafter
-	crafting_ui.inventory = inventory
+	inventory.item_updated.connect(journal_ui.inventory_ui._handle_item_updated)
+	journal_ui.crafting_ui.crafter = crafter
+	journal_ui.crafting_ui.inventory = inventory
 
 
 func _physics_process(delta):
@@ -158,63 +157,47 @@ func _world_inputs(event: InputEvent) -> void:
 			interactable.destroy()
 		elif interactable is Campfire && not campfire_ui.connected():
 			# open campfire ui
-			campfire_ui.open(interactable)
-			inventory_ui.open()
+			campfire_ui.open(interactable, inventory)
 			input_state = InputState.UI
-	elif event.is_action_pressed("open_crafting_menu"):
-		crafting_ui.open()
-		inventory_ui.open()
-		input_state = InputState.UI
-	elif event.is_action_pressed("open_inventory"):
-		inventory_ui.open()
-		input_state = InputState.UI
 
 
 func _ui_inputs(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_cancel"):
-		inventory_ui.close()
+	pass
+	
+	# first, find out what UI is open
+	if journal_ui.visible && event.is_action_pressed("ui_cancel"):
+		journal_ui.close()
+		input_state = InputState.WORLD
+	elif journal_ui.visible && event.is_action_pressed("ui_accept"):
+		journal_ui.select()
+	elif journal_ui.visible && event.is_action_pressed("ui_focus_next"):
+		journal_ui.next_tab()
+	elif journal_ui.visible && event.is_action_pressed("ui_focus_prev"):
+		journal_ui.prev_tab()
+	elif journal_ui.visible && event.is_action_pressed("ui_right"):
+		journal_ui.next_item()
+	elif journal_ui.visible && event.is_action_pressed("ui_left"):
+		journal_ui.prev_item()
 		
-		if campfire_ui.connected():
-			campfire_ui.close()
-		
-		input_state = InputState.WORLD
-	elif event.is_action_pressed("craft_item") && crafting_ui.visible:
-		crafting_ui.try_craft()
-	elif event.is_action_pressed("open_crafting_menu") && crafting_ui.visible:
-		crafting_ui.close()
-		inventory_ui.close()
-		input_state = InputState.WORLD
-	elif event.is_action_pressed("open_inventory") && inventory_ui.visible:
-		inventory_ui.close()
-		input_state = InputState.WORLD
-	elif event.is_action_pressed("interact") && campfire_ui.connected():
+	elif campfire_ui.visible && event.is_action_pressed("ui_cancel"):
 		campfire_ui.close()
-		inventory_ui.close()
 		input_state = InputState.WORLD
-	elif event.is_action_pressed("ui_accept"):
-		var item = inventory_ui.select_item()
+	elif campfire_ui.visible && event.is_action_pressed("ui_accept"):
+		campfire_ui.select()
+	elif campfire_ui.visible && event.is_action_pressed("ui_right"):
+		campfire_ui.next_item()
+	elif campfire_ui.visible && event.is_action_pressed("ui_left"):
+		campfire_ui.prev_item() 
 		
-		if campfire_ui.connected() && item.burnable:
-			# use item as fuel
-			campfire_ui.campfire.add_fuel(item)
-			inventory.remove(item)
-		elif item.placeable:
-			# allow player to place item where they want
-			item_placement.hold(item)
-			inventory_ui.close()
-			
-			interact_popup.set_msg(InteractPopup.Message.PLACE)
-			interact_popup.open()
-			
-			input_state = InputState.WORLD
-	elif event.is_action_pressed("ui_right") && crafting_ui.visible:
-		crafting_ui.focus_next()
-	elif event.is_action_pressed("ui_left") && crafting_ui.visible:
-		crafting_ui.focus_prev()
-	elif event.is_action_pressed("ui_right"):
-		inventory_ui.next_item()
-	elif event.is_action_pressed("ui_left"):
-		inventory_ui.prev_item()
+	#elif item.placeable:
+			## allow player to place item where they want
+			#item_placement.hold(item)
+			#inventory_ui.close()
+			#
+			#interact_popup.set_msg(InteractPopup.Message.PLACE)
+			#interact_popup.open()
+			#
+			#input_state = InputState.WORLD
 
 
 func _on_interaction_field_near_interactable() -> void:

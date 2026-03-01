@@ -1,6 +1,16 @@
 [gd_scene format=3 uid="uid://7gnb6xwj20sy"]
 
 [ext_resource type="Script" uid="uid://hjh55e8bce8p" path="res://ui/game/campfire/campfire_ui.gd" id="1_soxa1"]
+[ext_resource type="PackedScene" uid="uid://bk7ljxj8gqo47" path="res://ui/game/journal/crafting/item_slot_ui.tscn" id="2_lp4cp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_soxa1"]
+bg_color = Color(0.019607844, 0.14117648, 0.03137255, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lp4cp"]
+bg_color = Color(1, 0.91764706, 0.3882353, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dj2bf"]
+bg_color = Color(0.043137256, 0.30980393, 0.07058824, 1)
 
 [node name="CampfireUI" type="Control" unique_id=35315147]
 visible = false
@@ -13,24 +23,22 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_soxa1")
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1275096056]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=2021167745]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 576.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -260.0
+offset_right = 240.0
+offset_bottom = 260.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 32
-theme_override_constants/margin_top = 64
-theme_override_constants/margin_right = 64
-theme_override_constants/margin_bottom = 64
-
-[node name="ColorRect" type="ColorRect" parent="MarginContainer" unique_id=2021167745]
-layout_mode = 2
 color = Color(0.2509804, 0.03137255, 0.03137255, 1)
 
-[node name="TitleLbl" type="Label" parent="MarginContainer/ColorRect" unique_id=1660871600]
+[node name="TitleLbl" type="Label" parent="ColorRect" unique_id=1660871600]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -42,45 +50,7 @@ text = "CAMPFIRE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="FuelLbl" type="Label" parent="MarginContainer/ColorRect" unique_id=415930535]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -111.5
-offset_top = -27.5
-offset_right = -16.5
-offset_bottom = 27.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 0.5568628, 0.2784314, 1)
-theme_override_font_sizes/font_size = 40
-text = "FUEL"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="AmountLbl" type="Label" parent="MarginContainer/ColorRect" unique_id=192944606]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 16.5
-offset_top = -27.5
-offset_right = 111.5
-offset_bottom = 27.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 0.5568628, 0.2784314, 1)
-theme_override_font_sizes/font_size = 40
-text = "0000"
-vertical_alignment = 1
-
-[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/ColorRect" unique_id=1094061599]
+[node name="ProgressBar" type="ProgressBar" parent="ColorRect" unique_id=1094061599]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -89,10 +59,94 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -148.0
-offset_top = 54.0
+offset_top = -59.0
 offset_right = 148.0
-offset_bottom = 108.0
+offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_soxa1")
+theme_override_styles/fill = SubResource("StyleBoxFlat_lp4cp")
 max_value = 1.0
 show_percentage = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/ProgressBar" unique_id=320272909]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -109.5
+offset_top = -83.5
+offset_right = 109.5
+offset_bottom = -28.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="FuelLbl" type="Label" parent="ColorRect/ProgressBar/HBoxContainer" unique_id=415930535]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.5568628, 0.2784314, 1)
+theme_override_font_sizes/font_size = 40
+text = "FUEL"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AmountLbl" type="Label" parent="ColorRect/ProgressBar/HBoxContainer" unique_id=192944606]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.5568628, 0.2784314, 1)
+theme_override_font_sizes/font_size = 40
+text = "0000"
+vertical_alignment = 1
+
+[node name="BurnableSlotUI" parent="ColorRect" unique_id=1915304783 instance=ExtResource("2_lp4cp")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -70.0
+offset_top = -196.0
+offset_right = 70.0
+offset_bottom = -56.0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_dj2bf")
+
+[node name="LblLeftArrow" type="Label" parent="ColorRect/BurnableSlotUI" unique_id=1361093675]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -88.0
+offset_top = -87.5
+offset_right = -15.0
+offset_bottom = 87.5
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.5568628, 0.2784314, 1)
+theme_override_font_sizes/font_size = 128
+text = "<"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LblRightArrow" type="Label" parent="ColorRect/BurnableSlotUI" unique_id=41296747]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 15.0
+offset_top = -87.5
+offset_right = 88.0
+offset_bottom = 87.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.5568628, 0.2784314, 1)
+theme_override_font_sizes/font_size = 128
+text = ">"
+horizontal_alignment = 1
+vertical_alignment = 1

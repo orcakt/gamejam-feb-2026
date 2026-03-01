@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dvu1o1sobdo3q" path="res://ui/game/journal/crafting/crafting_ui.tscn" id="3_tunli"]
 
 [node name="JournalUI" type="Control" unique_id=1708608937]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

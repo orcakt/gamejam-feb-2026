@@ -51,6 +51,13 @@ func close() -> void:
 		visible = false
 
 
+func select() -> void:
+	# ensure the journal is open
+	if not visible: return
+	
+	current_tab.select()
+
+
 func next_tab() -> void:
 	# ensure the journal is open
 	if not visible: return
@@ -85,13 +92,6 @@ func prev_tab() -> void:
 			current_page = Page.INVEN
 	
 	current_tab.open()
-
-
-func select() -> void:
-	# ensure the journal is open
-	if not visible: return
-	
-	current_tab.select()
 
 
 func next_item() -> void:

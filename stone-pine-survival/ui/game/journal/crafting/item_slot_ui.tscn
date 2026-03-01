@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://bk7ljxj8gqo47"]
 
-[ext_resource type="Script" uid="uid://bxsye7k4w5h44" path="res://ui/game/journal/crafting/craft_slot_ui.gd" id="1_7x77a"]
+[ext_resource type="Script" uid="uid://bxsye7k4w5h44" path="res://ui/game/journal/crafting/item_slot_ui.gd" id="1_8wv5b"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7x77a"]
 bg_color = Color(0.050980393, 0.078431375, 0.27058825, 1)
 
-[node name="CraftSlot" type="Panel" unique_id=1915304783]
+[node name="ItemSlotUI" type="Panel" unique_id=1915304783]
 custom_minimum_size = Vector2(140, 140)
 anchors_preset = 8
 anchor_left = 0.5
@@ -15,7 +15,7 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_7x77a")
-script = ExtResource("1_7x77a")
+script = ExtResource("1_8wv5b")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=642001315]
 custom_minimum_size = Vector2(100, 100)

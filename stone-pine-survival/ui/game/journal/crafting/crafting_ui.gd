@@ -2,7 +2,7 @@ class_name CraftingUI
 extends JournalTab
 
 
-const CRAFT_SLOT_UI = preload("uid://bk7ljxj8gqo47")
+const ITEM_SLOT_UI = preload("uid://bk7ljxj8gqo47")
 const ITEM_SLOT_TEXT: String = "%s - %d"
 
 @export var crafter: Crafter
@@ -12,7 +12,7 @@ const ITEM_SLOT_TEXT: String = "%s - %d"
 @onready var craft_section: Node = %Craft
 @onready var craftable_list: ItemList = %CraftableList
 @onready var input_container: HBoxContainer = %InputContainer
-@onready var output_slot: CraftSlot = %OutputSlot
+@onready var output_slot: ItemSlotUI = %OutputSlot
 
 var recipies: Dictionary[Item, CraftRecipe]
 var current_recipe: CraftRecipe
@@ -138,9 +138,9 @@ func _reset_inputs(inputs: Dictionary[Item, int]) -> void:
 	
 	# set new inputs
 	for item: Item in inputs.keys():
-		var slot: CraftSlot = CRAFT_SLOT_UI.instantiate()
+		var slot: ItemSlotUI = ITEM_SLOT_UI.instantiate()
 		input_container.add_child(slot)
-		slot.fill(item, inputs[item])
+		slot.assign(item, inputs[item])
 
 
 func _handle_recipe_added(recipe: CraftRecipe) -> void:
