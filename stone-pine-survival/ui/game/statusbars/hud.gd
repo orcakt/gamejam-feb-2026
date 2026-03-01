@@ -44,6 +44,8 @@ func _process(delta: float):
 		energy_deplete()
 	if(hunger < 1 || thirst < 1 || energy < 1):
 		health_drain_speed += 0.002
+	if(health < 0):
+		ScreenReader.speak("Game Over, you died.")
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("read_hud") :
