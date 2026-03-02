@@ -32,7 +32,6 @@ var _tab_target: Node2D = null
 @onready var item_placement: ItemPlacement = %ItemPlacement
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
-var _footstep_accum: float = 0.0
 var input_state: InputState
 
 
@@ -153,10 +152,10 @@ func _world_inputs(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept") && item_placement.is_holding():
 		var item = item_placement.release()
 		inventory.remove(item)
-		interact_popup.close.rpc()
+		interact_popup.close()
 	elif event.is_action_pressed("ui_cancel") && item_placement.is_holding():
 		item_placement.cancel()
-		interact_popup.close.rpc()
+		interact_popup.close()
 	elif event.is_action_pressed("ui_accept") && interaction_field.can_interact():
 		var interactable: Interactable = interaction_field.interact(global_position)
 		if interactable is WorldItem:
@@ -206,19 +205,19 @@ func _ui_inputs(event: InputEvent) -> void:
 		campfire_ui.prev_item() 
 	elif item_placement.is_holding() && event.is_action_pressed("ui_accept"):
 		# allow player to place item where they want
-		interact_popup.set_msg.rpc(InteractPopup.Message.PLACE)
-		interact_popup.open.rpc()
+		interact_popup.set_msg(InteractPopup.Message.PLACE)
+		interact_popup.open()
 		
 		input_state = InputState.WORLD
 
 
 func _on_interaction_field_near_interactable() -> void:
-	interact_popup.set_msg.rpc(InteractPopup.Message.INTERACT)
-	interact_popup.open.rpc()
+	interact_popup.set_msg(InteractPopup.Message.INTERACT)
+	interact_popup.open()
 
 
 func _on_interaction_field_no_interactables() -> void:
-	interact_popup.close.rpc()
+	interact_popup.close()
 
 
 func _handle_item_selected(item: Item) -> void:
@@ -227,8 +226,8 @@ func _handle_item_selected(item: Item) -> void:
 		# allow player to place item where they want
 		item_placement.hold(item)
 		
-		interact_popup.set_msg.rpc(InteractPopup.Message.PLACE)
-		interact_popup.open.rpc()
+		interact_popup.set_msg(InteractPopup.Message.PLACE)
+		interact_popup.open()
 	else:
 		inventory.remove(item)
 		dropped.emit(item, item_placement.global_position)
