@@ -150,3 +150,60 @@ theme_override_font_sizes/font_size = 128
 text = ">"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="LblInstOverview" type="Label" parent="ColorRect/BurnableSlotUI" unique_id=1768315415]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -121.0
+offset_top = -103.0
+offset_right = 121.0
+offset_bottom = -69.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.91764706, 0.3882353, 1)
+theme_override_font_sizes/font_size = 24
+text = "PICK ITEMS TO BURN"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LblInstRight" type="Label" parent="ColorRect/BurnableSlotUI" unique_id=1034805857]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 77.5
+offset_top = 39.0
+offset_right = 226.5
+offset_bottom = 73.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.91764706, 0.3882353, 1)
+theme_override_font_sizes/font_size = 20
+text = "TOGGLE RIGHT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LblInstLeft" type="Label" parent="ColorRect/BurnableSlotUI" unique_id=894761225]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -216.5
+offset_top = 39.0
+offset_right = -71.5
+offset_bottom = 73.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.91764706, 0.3882353, 1)
+theme_override_font_sizes/font_size = 20
+text = "TOGGLE LEFT"
+horizontal_alignment = 1
+vertical_alignment = 1

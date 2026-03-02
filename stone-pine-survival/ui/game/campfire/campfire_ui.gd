@@ -2,6 +2,8 @@ class_name CampfireUI
 extends Control
 
 
+const INSTRUCTIONS = "Itterate through the inventory and select an item to burn."
+
 @onready var amount_lbl: Label = %AmountLbl
 @onready var progress_bar: ProgressBar = %ProgressBar
 @onready var burnable_slot_ui: ItemSlotUI = %BurnableSlotUI
@@ -11,6 +13,9 @@ var inventory: Inventory
 var burn_counts: Dictionary[Item, int]
 var burnables: Array[Item]
 var current_focus: int
+
+var voices = DisplayServer.tts_get_voices_for_language("en")
+var voice_id = voices[0]
 
 
 func connected() -> bool:
@@ -30,9 +35,15 @@ func open(cmp: Campfire, inv: Inventory) -> void:
 	
 	# set current burnable
 	current_focus = burnables.size() - 1
-	_update_ui(current_focus)
+	var item: Item = burnables[current_focus]
+	_update_ui(item)
 	
 	visible = true
+	
+	# inform via tts
+	_speak("Campfire. Fuel: %s. Instructions: %s" % [
+		campfire.current_fuel, INSTRUCTIONS
+	])
 
 
 func close() -> void:
@@ -57,7 +68,9 @@ func select() -> void:
 		# since the item is gone, shift ahead
 		next_item()
 	else:
-		_update_ui(current_focus)
+		var item = burnables[current_focus]
+		_update_ui(item)
+		_speak("Fuel at: %s" % ceili(campfire.current_fuel))
 
 
 func next_item() -> void:
@@ -70,7 +83,9 @@ func next_item() -> void:
 	current_focus = (current_focus + 1) % burnables.size()
 	
 	# set new burnable item
-	_update_ui(current_focus)
+	var item = burnables[current_focus]
+	_update_ui(item)
+	_speak("Current Item: %s" % item.name)
 
 
 func prev_item() -> void:
@@ -85,7 +100,9 @@ func prev_item() -> void:
 		current_focus += burnables.size()
 	
 	# set new burnable item
-	_update_ui(current_focus)
+	var item = burnables[current_focus]
+	_update_ui(item)
+	_speak("Current Item: %s" % item.name)
 
 
 func _process(_delta) -> void:
@@ -95,6 +112,10 @@ func _process(_delta) -> void:
 		progress_bar.value = fuel - floor(fuel)
 
 
-func _update_ui(index: int) -> void:
-	var item = burnables[index]
+func _update_ui(item: Item) -> void:
 	burnable_slot_ui.assign(item, burn_counts[item])
+
+
+func _speak(text: String) -> void:
+	DisplayServer.tts_stop()
+	DisplayServer.tts_speak(text, voice_id)

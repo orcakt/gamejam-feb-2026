@@ -14,6 +14,7 @@ enum Message {
 @onready var animation: AnimationPlayer = $AnimationPlayer
 
 
+@rpc("call_local")
 func set_msg(msg: Message) -> void:
 	match msg:
 		Message.INTERACT:
@@ -22,9 +23,11 @@ func set_msg(msg: Message) -> void:
 			label.text = place_msg
 
 
+@rpc("call_local")
 func open() -> void:
 	animation.play("open")
 
 
+@rpc("call_local")
 func close() -> void:
 	animation.play_backwards("open")
