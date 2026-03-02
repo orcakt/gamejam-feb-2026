@@ -7,6 +7,10 @@ signal item_updated(item: Item, amount: int)
 var items: Dictionary[Item, int]
 
 
+func has(item: Item) -> bool:
+	return items.has(item)
+
+
 func add(item: Item, amount: int = 1) -> void:
 	if items.has(item):
 		items[item] += amount

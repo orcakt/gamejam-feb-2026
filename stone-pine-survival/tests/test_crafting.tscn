@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://cpinnoj410y7a"]
 
-[ext_resource type="PackedScene" uid="uid://dvu1o1sobdo3q" path="res://ui/game/crafting/crafting_ui.tscn" id="1_hwone"]
+[ext_resource type="PackedScene" uid="uid://dvu1o1sobdo3q" path="res://ui/game/journal/crafting/crafting_ui.tscn" id="1_hwone"]
 [ext_resource type="Script" uid="uid://cdivoavxw4frb" path="res://tests/test_crafting.gd" id="1_vu8bc"]
 [ext_resource type="PackedScene" uid="uid://834qgegb5pgc" path="res://systems/crafting/crafter.tscn" id="2_ri5ea"]
 [ext_resource type="PackedScene" uid="uid://c37b7ydq2nrlk" path="res://systems/inventory/inventory.tscn" id="3_bnw5g"]
 [ext_resource type="Resource" uid="uid://b67dkh1b4y8w2" path="res://data/items/stick.tres" id="3_s01fd"]
-[ext_resource type="PackedScene" uid="uid://diagt3m0ao5nj" path="res://ui/game/inventory_ui.tscn" id="4_ri5ea"]
+[ext_resource type="PackedScene" uid="uid://diagt3m0ao5nj" path="res://ui/game/journal/inventory/inventory_ui.tscn" id="4_ri5ea"]
 [ext_resource type="Resource" uid="uid://m0lwpdmuf2p8" path="res://data/items/stone.tres" id="4_yt52m"]
 [ext_resource type="Script" uid="uid://dwciga0bdgevv" path="res://data/items/Item.gd" id="6_5348f"]
 [ext_resource type="Script" uid="uid://cigr60qq0xek4" path="res://data/craft_recipes/CraftRecipe.gd" id="7_s28s0"]

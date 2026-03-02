@@ -1,0 +1,143 @@
+[gd_scene format=3 uid="uid://dvu1o1sobdo3q"]
+
+[ext_resource type="Script" uid="uid://egdwp5pke76g" path="res://ui/game/journal/crafting/crafting_ui.gd" id="1_uylle"]
+[ext_resource type="PackedScene" uid="uid://bk7ljxj8gqo47" path="res://ui/game/journal/crafting/item_slot_ui.tscn" id="2_65qwi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_65qwi"]
+bg_color = Color(0.14117648, 0.16862746, 0.36862746, 1)
+
+[node name="CraftingUI" type="TabBar" unique_id=1578677023]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_uylle")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=362479567]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.023529412, 0.03529412, 0.12156863, 1)
+
+[node name="LblTitle" type="Label" parent="ColorRect" unique_id=1804240569]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 88.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0.91866666, 0.39, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 64
+text = "CRAFTING"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Selection" type="Control" parent="ColorRect" unique_id=1887892507]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect/Selection" unique_id=792195482]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 96
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 64
+
+[node name="CraftableList" type="ItemList" parent="ColorRect/Selection/MarginContainer" unique_id=1524028122]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_65qwi")
+max_columns = 4
+same_column_width = true
+fixed_column_width = 148
+icon_mode = 0
+fixed_icon_size = Vector2i(120, 120)
+
+[node name="Craft" type="Control" parent="ColorRect" unique_id=1293203130]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InputContainer" type="HBoxContainer" parent="ColorRect/Craft" unique_id=998801201]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 140)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -308.5
+offset_top = -174.0
+offset_right = 308.5
+offset_bottom = -34.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="LblInput" type="Label" parent="ColorRect/Craft" unique_id=1206931972]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -308.5
+offset_top = -30.5
+offset_right = 308.5
+offset_bottom = 14.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.91764706, 0.3882353, 1)
+theme_override_font_sizes/font_size = 32
+text = "INPUTS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OutputSlot" parent="ColorRect/Craft" unique_id=1915304783 instance=ExtResource("2_65qwi")]
+unique_name_in_owner = true
+layout_mode = 1
+offset_left = -70.0
+offset_top = 58.0
+offset_right = 70.0
+offset_bottom = 198.0
+
+[node name="LblOutputs" type="Label" parent="ColorRect/Craft" unique_id=1740997530]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -308.5
+offset_top = 201.5
+offset_right = 308.5
+offset_bottom = 246.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.91764706, 0.3882353, 1)
+theme_override_font_sizes/font_size = 32
+text = "CRAFTABLE"
+horizontal_alignment = 1
+vertical_alignment = 1

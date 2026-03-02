@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://c5j47ht8nbu8u"]
+
+[ext_resource type="Script" uid="uid://creblkvickatr" path="res://ui/game/journal_tab.gd" id="1_6urib"]
+
+[node name="JournalTab" type="TabBar" unique_id=1838797962]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_6urib")

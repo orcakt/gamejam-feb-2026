@@ -9,7 +9,7 @@
 [ext_resource type="Resource" uid="uid://c3iriustqa4g1" path="res://data/craft_recipes/campfire.tres" id="5_4br6r"]
 [ext_resource type="PackedScene" uid="uid://epcwklg6i4ni" path="res://ui/game/popups/interact_popup.tscn" id="5_duds0"]
 [ext_resource type="Script" path="res://systems/sound/sound_pool.gd" id="6_sndpl"]
-[ext_resource type="Script" path="res://world/player/ambience_player.gd" id="7_ambpl"]
+[ext_resource type="Script" uid="uid://brgrlwnm5m2m8" path="res://world/player/ambience_player.gd" id="7_ambpl"]
 [ext_resource type="PackedScene" uid="uid://chv81nccninet" path="res://world/player/item_placement.tscn" id="8_ljdef"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_bvkkv"]

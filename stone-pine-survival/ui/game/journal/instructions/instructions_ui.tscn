@@ -1,0 +1,108 @@
+[gd_scene format=3 uid="uid://7kybg7vnib0b"]
+
+[ext_resource type="Script" uid="uid://d1r2sptti3ic6" path="res://ui/game/journal/instructions/instructions_ui.gd" id="1_kwkfi"]
+
+[node name="InstructionsUI" type="TabBar" unique_id=1434539595 node_paths=PackedStringArray("labels")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kwkfi")
+labels = {
+NodePath("ColorRect/MarginContainer/Instructions/LblItteration"): "itteration",
+NodePath("ColorRect/MarginContainer/Instructions/LblNavigation"): "navigation",
+NodePath("ColorRect/MarginContainer/Instructions/LblSelection"): "selection",
+NodePath("ColorRect/MarginContainer/Instructions/LblExit"): "exit",
+NodePath("ColorRect/MarginContainer/Instructions/LblOpen"): "open"
+}
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=256173214]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.4, 0.76862746, 0.5921569, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect" unique_id=186682100]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 72
+theme_override_constants/margin_top = 128
+theme_override_constants/margin_right = 72
+theme_override_constants/margin_bottom = 64
+
+[node name="Instructions" type="VBoxContainer" parent="ColorRect/MarginContainer" unique_id=159838117]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="LblItteration" type="Label" parent="ColorRect/MarginContainer/Instructions" unique_id=1530761383]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.003921569, 0.07058824, 0.023529412, 1)
+theme_override_font_sizes/font_size = 24
+text = "Use 'A' and 'D' keys to navigate between items in a list / group."
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="LblNavigation" type="Label" parent="ColorRect/MarginContainer/Instructions" unique_id=871761321]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.005599999, 0.07, 0.024919996, 1)
+theme_override_font_sizes/font_size = 24
+text = "Press 'tab' to navigate between journal sections."
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="LblSelection" type="Label" parent="ColorRect/MarginContainer/Instructions" unique_id=1103136934]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.003921569, 0.07058824, 0.023529412, 1)
+theme_override_font_sizes/font_size = 24
+text = "Press 'space' to make a selection."
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="LblExit" type="Label" parent="ColorRect/MarginContainer/Instructions" unique_id=984855797]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.003921569, 0.07058824, 0.023529412, 1)
+theme_override_font_sizes/font_size = 24
+text = "Press 'esc' to move up / out of the journal."
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="LblOpen" type="Label" parent="ColorRect/MarginContainer/Instructions" unique_id=2101916888]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.003921569, 0.07058824, 0.023529412, 1)
+theme_override_font_sizes/font_size = 24
+text = "Press 'J', 'I', or 'K' to open the journal, inventory, or crafting."
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Label" type="Label" parent="ColorRect" unique_id=1288683182]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 88.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.003921569, 0.07058824, 0.023529412, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 64
+text = "INSTRUCTIONS"
+horizontal_alignment = 1
+vertical_alignment = 1

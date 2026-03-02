@@ -7,13 +7,14 @@ enum Message {
 	PLACE
 }
 
-@export var interact_msg: String = "Interact ( E )"
-@export var place_msg: String = "Place ( E ) / Cancel ( Esc )"
+@export var interact_msg: String = "Interact ( Space )"
+@export var place_msg: String = "Place ( Space ) / Cancel ( Esc )"
 
 @onready var label: Label = %Label
 @onready var animation: AnimationPlayer = $AnimationPlayer
 
 
+@rpc("call_local")
 func set_msg(msg: Message) -> void:
 	match msg:
 		Message.INTERACT:
@@ -22,9 +23,11 @@ func set_msg(msg: Message) -> void:
 			label.text = place_msg
 
 
+@rpc("call_local")
 func open() -> void:
 	animation.play("open")
 
 
+@rpc("call_local")
 func close() -> void:
 	animation.play_backwards("open")

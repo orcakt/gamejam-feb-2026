@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://cipvrpgaist0w"]
+
+[ext_resource type="Script" uid="uid://bicra3xcirjx0" path="res://tests/test_journal_ui.gd" id="1_amgt4"]
+[ext_resource type="PackedScene" uid="uid://dafkiindrymx" path="res://ui/game/journal/journal_ui.tscn" id="1_sphia"]
+[ext_resource type="PackedScene" uid="uid://834qgegb5pgc" path="res://systems/crafting/crafter.tscn" id="2_drp17"]
+[ext_resource type="Script" uid="uid://dwciga0bdgevv" path="res://data/items/Item.gd" id="2_xa4m2"]
+[ext_resource type="Resource" uid="uid://m0lwpdmuf2p8" path="res://data/items/stone.tres" id="3_5asjw"]
+[ext_resource type="Script" uid="uid://cigr60qq0xek4" path="res://data/craft_recipes/CraftRecipe.gd" id="3_76m0g"]
+[ext_resource type="PackedScene" uid="uid://c37b7ydq2nrlk" path="res://systems/inventory/inventory.tscn" id="3_jadrv"]
+[ext_resource type="Resource" uid="uid://c3iriustqa4g1" path="res://data/craft_recipes/campfire.tres" id="4_dqnm5"]
+[ext_resource type="Resource" uid="uid://b67dkh1b4y8w2" path="res://data/items/stick.tres" id="4_yms40"]
+[ext_resource type="Resource" uid="uid://c6fvrl5wssdvp" path="res://data/craft_recipes/axe.tres" id="5_dt3is"]
+[ext_resource type="Resource" uid="uid://dbs51qiyrnao2" path="res://data/items/bark.tres" id="5_ylbj3"]
+
+[node name="TestJournalUI" type="Node" unique_id=685857707]
+script = ExtResource("1_amgt4")
+items = Dictionary[ExtResource("2_xa4m2"), int]({
+ExtResource("3_5asjw"): 15,
+ExtResource("4_yms40"): 20,
+ExtResource("5_ylbj3"): 8
+})
+
+[node name="Inventory" parent="." unique_id=1790192894 instance=ExtResource("3_jadrv")]
+
+[node name="Crafter" parent="." unique_id=724726434 instance=ExtResource("2_drp17")]
+recipies = Array[ExtResource("3_76m0g")]([ExtResource("4_dqnm5"), ExtResource("5_dt3is")])
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1609676440]
+
+[node name="JournalUI" parent="CanvasLayer" unique_id=1708608937 node_paths=PackedStringArray("inventory", "crafter") instance=ExtResource("1_sphia")]
+unique_name_in_owner = true
+visible = false
+inventory = NodePath("../../Inventory")
+crafter = NodePath("../../Crafter")
