@@ -13,8 +13,11 @@ const FOOTSTEP_VARIATIONS := 6
 const FOOTSTEP_PITCH_MIN := 0.9
 const FOOTSTEP_PITCH_MAX := 1.1
 const FOOTSTEP_SURFACES: Array[String] = ["grass", "dirt", "water"]
+const TARGET_SCAN_RADIUS := 300.0
+const TARGET_LAYER_MASK := 4
 
 var _footstep_accum: float = 0.0
+var _tab_target: Node2D = null
 
 @onready var sound_pool: SoundPool = $SoundPool
 @export var crafting_ui: CraftingUI
@@ -257,3 +260,52 @@ func _unhandled_input(event: InputEvent) -> void:
 			parts.append("Nearby: " + ", ".join(node_parts))
 
 		ScreenReader.speak(". ".join(parts))
+
+	if event is InputEventKey and event.pressed and not event.echo \
+			and event.physical_keycode == KEY_TAB \
+			and input_state == InputState.WORLD:
+		if event.shift_pressed:
+			_cycle_target(-1)
+		else:
+			_cycle_target(1)
+
+
+func _cycle_target(direction: int) -> void:
+	var hits: Array = SpatialSense.get_nodes_in_radius(
+		global_position, TARGET_SCAN_RADIUS, TARGET_LAYER_MASK, [])
+	var targets: Array = hits.filter(
+		func(r): return r.node != null and is_instance_valid(r.node))
+
+	if targets.is_empty():
+		ScreenReader.speak("Nothing nearby")
+		_tab_target = null
+		return
+
+	var idx := -1
+	for i in targets.size():
+		if targets[i].node == _tab_target:
+			idx = i
+			break
+
+	if idx == -1:
+		idx = 0 if direction > 0 else targets.size() - 1
+	else:
+		idx = (idx + direction) % targets.size()
+		if idx < 0:
+			idx += targets.size()
+
+	var result: SpatialSense.NodeQueryResult = targets[idx]
+	_tab_target = result.node
+
+	var steps := maxi(1, roundi(result.distance / FOOTSTEP_DISTANCE))
+	var step_word := "step" if steps == 1 else "steps"
+	ScreenReader.speak("%s, %d %s %s" % [
+		_get_target_name(result.node), steps, step_word, result.direction])
+
+
+func _get_target_name(node: Node) -> String:
+	if node is WorldItem:
+		return node.item.name
+	if node is Campfire:
+		return "Campfire"
+	return node.name
