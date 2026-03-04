@@ -54,7 +54,7 @@ func setup_local_ui(jrl_ui: JournalUI, cmp_ip: CampfireUI) -> void:
 	journal_ui.inventory_ui.selected.connect(_handle_item_selected)
 
 
-func _physics_process(delta):
+func _physics_process(delta) -> void:
 	# Remote players will have their position synced via MultiplayerSynchronizer
 	if is_multiplayer_authority() && input_state == InputState.WORLD:
 		var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
